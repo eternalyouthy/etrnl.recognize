@@ -1,0 +1,154 @@
+[
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\HANDOFF_PROMPT.md",
+    "hash": "62D683EC552AEE6FDC5A647116ABF529181D6C0CC20D3CCBBFC00267343AD892"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\index.html",
+    "hash": "055F3F200FB097E53FE10EC4A82E18225B79C363F1306D2C108C5BE85F13A1BA"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\manifest.webmanifest",
+    "hash": "B31411AC84F445080F54F714E13018389AD92A300E1919EAA9D7F90A8DFDD3B8"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\README.md",
+    "hash": "FE9DDBDBA1F7124DDCA4655852451F03523400E8133F67E62CF74AABFEF8D9F2"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\sw.js",
+    "hash": "36673BB96279E8E3756E97C1507DFFAA66F5BE222482643AC4E01706D0E85802"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\.claude\\launch.json",
+    "hash": "6183C2D5786048A44114C1F330EBAB282D334629E71F90532CB74FFAA3C4D3C3"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\css\\app.css",
+    "hash": "4E9F88C839914DD7D84ACE5207E4366CA06D02498B5B61404E594A0466250987"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\chunks_sample.js",
+    "hash": "8BF424BBD800E54F502217F6C5C48C23E1F96BFDAE367477D4485FEB91E313E4"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\grammar_konjunktiv2.js",
+    "hash": "EC91F0A8A7F21DCD1BA1A30029B4AF76461565081455253502265A9C4C86AFBE"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\grammar_nebensaetze.js",
+    "hash": "B89142EED13563A4A7ABC5AA29F3AEC6D9D941937CACDFA800894F50CD3B5CC6"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\grammar_passiv.js",
+    "hash": "3BE51B83CCBCCF3DE3ED5D1C4F2BFDEEF66A337D645D24C5BC44C80C6814E3E0"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\it_dev.js",
+    "hash": "7AA37F738CB121D74D736A414D89E0A2D26AB58B26D689012009A7537A5F1C8D"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\it_infra.js",
+    "hash": "4CEB1FCABD288BCEEE3F6D663160F9FBB0A2B5970628090203C0B33F1CC2FC6B"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\it_security_2.js",
+    "hash": "95978413BCE75134A84C2505E476CCD934FE3FA79E9A3FF24BB6B55FB234C61C"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\it_security_3.js",
+    "hash": "705E4BF32B1680E30FCE22CE4EC302D593A58875E8C4C9D7A7CA997BA45E1D56"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\it_security_4.js",
+    "hash": "66EA796472152DDCF6E4E51C4E448BD9F25A8C227F7676BC3DF54E876D55ABE4"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\it_security.js",
+    "hash": "B101C9202324450B337C0B9185D91A8C53CB6D4EC922E4F81A5651F4C3E40B36"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\it_workcomm.js",
+    "hash": "1CF69A1033946713B0066885825965D10DBA4D1B12C83C294EB64CE3F7171518"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\manifest.js",
+    "hash": "B9A750B1335DF588B7B2EE16529265A8E3195343F262C401C19A4A6F132457F8"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\prefixes.js",
+    "hash": "117EAE6DC378979C4598D0D5AE1A1DF9866E25CA51A42BE31AFA19E1E38FED9E"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\roots_bauen.js",
+    "hash": "A5C7037B012A6F55FB405A92A99F28D0BC65E8EF348CD5A32AF914594F7A0B7A"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\roots_stellen.js",
+    "hash": "9777B16D5886E0BE83B2691B3EB492DAC66209C8975C6AB13F6964C1B94DF46C"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\roots_ziehen.js",
+    "hash": "2888E0C6B63438026B92E8A617D6986669127341C765CFEB609ACE94BD626B07"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\words_b2_beruf.js",
+    "hash": "0294BB90C5FCF314BE13B3A2419CC661B104D1AF3308E898717CA122B1FB120A"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\words_everyday.js",
+    "hash": "3D9A6413FEDC3C9B93FDC4E4A3794411E291BCD0FB4DDBDD9D6727B41686C800"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\words_health_2.js",
+    "hash": "B019BD4CE1BA9928FD4B9E46B4CA39B95431A0347C128138C031127DCFFF43B5"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\words_health_3.js",
+    "hash": "69C1639B0F6D0FE6396793216552E960FA494CC9A77AD275A2A98502BB6D6C21"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\words_health_4.js",
+    "hash": "E8D4E59B5B44D81356EE631F132D790052CD6C3D44EC5C77655DBC632FEA1F78"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\words_health.js",
+    "hash": "0EAE89C038BE927520F0B496601C3556AA2A6A252FBA249812FDD4578800665B"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\data\\words_work.js",
+    "hash": "68A3B496794EE342C3C1154747D5A94723B3CB0363E2ADF2D048B227DC833BF8"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\icons\\icon-192.png",
+    "hash": "ED9B43F20656B905F782912D366838691B7DAA6268E56AB7559BEEB470290FD5"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\icons\\icon-512.png",
+    "hash": "A98CD80C6C3FC92881C11BD708D348B5B226CF33BAD1056B3F68D1564D73F367"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\icons\\icon.svg",
+    "hash": "76D209CC173877A51E4447B41313D5F4C940AC35DD63518ADE637CDE0D223FC5"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\js\\app.js",
+    "hash": "BCEE8F8BA66A32F73443449DEF484F6A5EF704D5B45E5FE1CB1929CB68028D90"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\js\\core.js",
+    "hash": "321482B8B8804798CB1FC1609CEDDC5C1446AEA7C468F3F2CCA5C97CE68EF369"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\js\\fsrs.js",
+    "hash": "6D8A6043427D87A038306B42ACFCDF6AE0A624D17A1F363034D859B1118E7587"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\js\\store.js",
+    "hash": "A52AB07710DB661C362CAD64C1BFA5031BDFCE31B8C6E9EF567F09989543E11C"
+  },
+  {
+    "path": "C:\\Users\\rando\\Desktop\\german train\\js\\topics.js",
+    "hash": "91EF394D4A3ED21092EB94AA4068394FF26B3009421730FA4F64B824650E84F0"
+  }
+]
