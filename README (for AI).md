@@ -97,6 +97,22 @@ Entry ids are permanent. Progress keys are `<id>#rec` / `<id>#prod` (drills: `<i
 ## Expressions structure
 Expressions = Idioms · Slang · Everyday Phrases · Chunks · Literary Phrases (sidebar: one collapsible group each, "All …" first, then categories). Sections and category names live once in `GT.EXP_SECTIONS` (js/core.js); every pack says which card goes where in `expressions_cats.js` (`GT.classifyExpressions`). Slang cards (`register: 'slang'`) are registered with their category as topic. Chunk functions are grouped by `GT.CHUNK_GROUPS`. `GT.setupExpressions` runs after a pack loads; unclassified or unknown ids show in Settings → Data.
 
+## Practice Studio (`#/practice`, js/app.js "PRACTICE / LEARNING STUDIO")
+- **A sandbox:** nothing is saved and nothing touches FSRS Review (no rating buttons). Wrong answers come back once
+  at the end of the same session (memory only). Reading progress is optional ("Only words I've already studied").
+- **Setup:** 1 Level (A1–A2 / B1 / B2 / C1–C2 from `item.level` or the topic's `level`; untagged items pass every
+  level) · Questions · 2 Words from (section) + Topic · 3 What to train. URL params: `kind`, `scope`
+  (`words|professional|expressions|literature|roots|root:<id>|topic:<tab>.<id>`), `level`.
+- **Games:** Classic (mixed, cloze, translation, recognition, derivative) · Sentence builder (example tokens; grammar
+  `reorder` drills too) · Family duel (cloze + siblings from the same root) · Family builder (90 s, type relatives) ·
+  Match pairs · Odd one out (by root, else by topic) · Dictation (TTS + cloze) · Blitz (60 s true/false) · Gender
+  (`article` der/die/das, Russian `gender`; hidden when a pack has neither) · Prefixes & suffixes · Grammar.
+- **Typed answers:** `ae/oe/ue/ss` = umlauts, `ё` = `е`, stress marks ignored; 1 typo (2 in words ≥ 9 letters) =
+  "Almost" (counted); wrong German article is reported separately. Every typed task shows what is expected
+  (computed: dictionary form vs. inflected cloze surface, part of speech, two-part answers), and **Hint** opens
+  meaning → dictionary form → first letters one by one. Texts live in `GT.HINTS.<know>.studio` (`h.*`, `truth`).
+- **Honesty note:** the 🥠 "Crack open the truth" fold (`studio.truth`) says that real speaking practice beats tapping.
+
 ## Parallel work by several agents (no shared-code duplication)
 Each language is owned by its files; agents working on different languages never touch the same file.
 - **German content:** `data/*.js` + `GT_DATA_FILES` in `data/manifest.js` (workflow unchanged).
