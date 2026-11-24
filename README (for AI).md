@@ -60,8 +60,8 @@ data/i18n/*.js        overlays: de.en*.js — full English for the German pack (
 data/links/*.js       always-loaded curated sense-level links across packs (GT.link → "In other languages")
 data/about.js         shared project philosophy in Russian, English and German
 data/ru/*.js          Russian pack (written natively for the engine)
-english/              the English catalogue (data reused as-is) + tests; english/index.html now forwards to the
-                      unified site with "I learn: English"; the old standalone app is english/standalone.html
+english/              the English catalogue (data/*.js + js/catalog.js, reused as-is; SOURCES.md = provenance);
+                      english/index.html only forwards old links to the unified site with "I learn: English"
 sw.js                 offline cache of the shell and all packs (bump VERSION after changes)
 ```
 - **Shared once:** interface, views, scheduler, storage, speech, practice logic. A language is only data + a
@@ -78,7 +78,7 @@ sw.js                 offline cache of the shell and all packs (bump VERSION aft
 | `note`, `sense`, `explain`, `meaningExplanation`, grammar `explanation` … | a string in the pack's base language (`baseKnown`: `ru` for German/English, `en` for Russian), or `{ en: '…', de: '…' }`; overlays add `obj.i18n[lang][field]` — `GT.lx(obj, field)` |
 | `examples: [{ t, ru/en/de, sense? }]` | `[[target]]` marks the cloze answer |
 | `alsoIn: [['it','security']]` | extra topic membership (one card, shared progress) |
-| `rootId`, `prefix`, `prefixDrill`, `core`, `transparency`, `meaningType`, `why` | as in the German handoff |
+| `rootId`, `prefix`, `prefixDrill`, `core`, `transparency`, `meaningType`, `why` | see **Content rules** below |
 | Russian extras | `gender: 'm'|'f'|'n'|'pl'`, `aspect: 'impf'|'pf'`, stress written with `+` before the vowel (`говор+ить`) |
 
 Entry ids are permanent. Progress keys are `<id>#rec` / `<id>#prod` (drills: `<id>`).
@@ -116,8 +116,28 @@ Always bump `VERSION` in `sw.js` after changing files, and check Settings → Da
 4. List them in `GT_PACKS.fr` in `data/manifest.js`; bump `sw.js`.
 
 ## Checks
-Serve the workspace root with a local static server such as `py -m http.server 8765` if Python is installed. Open `http://localhost:8765/`. Check **Settings → Data** or inspect `GT.pack.validation`, `GT.loadErrors`, and `GT.pack.duplicates` in the console. `GT.setLanguages('learn', 'ru')` switches to Russian. Run `node --test english/tests/validate.cjs` for the standalone English catalogue tests.
+Serve the workspace root with a local static server such as `py -m http.server 8765` if Python is installed. Open `http://localhost:8765/`. Check **Settings → Data** or inspect `GT.pack.validation`, `GT.loadErrors`, and `GT.pack.duplicates` in the console. `GT.setLanguages('learn', 'ru')` switches to Russian.
 
 ## Keyboard (desktop)
 Learn: `1` Know it · `2` Learn it · `3` Later · `P` pronounce · `Esc` end
 Review: `Space` show answer · `1–4` Again / Hard / Good / Easy
+
+## Content rules (all packs)
+- **Ids are permanent** (progress is keyed by id). Never rename or regenerate them.
+- **Never duplicate a headword or an id.** Grep the whole pack (roots and other topics too) before adding. If the word exists, attach the existing card with `GT.addMember(id, tab, topic)` or `alsoIn`. `GT.register` silently keeps the first item on a repeated id. `GT.addMember` works only for already-loaded ids, so German calls for cards defined later go into `data/memberships.js`.
+- German: correct articles, plurals, verb forms (Präsens 3rd person · Präteritum · Perfekt with haben/sein). Examples are natural B1/B2 sentences (everyday + IT/work); the target is wrapped in `[[…]]` for cloze, separable verbs mark both parts (`[[ruhen]] Sie sich [[aus]]`).
+- German B1 words come only from the Goethe-Zertifikat B1 Wortliste (the user has the PDF; ask for it). Skip A1/A2 basics. Austrian/Swiss-only entries get `region`. B2, Professional/IT and Expressions are curated.
+- Root `id` in `GT.registerRoot` must match `GT.ROOT_PLAN` exactly (`'führen'` with umlaut); word ids stay ASCII (`r-fuehren-*`). Show 6–8 high-frequency derivatives by default (`core: true`), the rest behind "Show all".
+- Russian: `+` before the stressed vowel in `t` and examples, never before `ё`. Double-check stress.
+- `ru_link` only if well established (`loan_in_russian`, `internationalism`, `shared_ancient_root`, `false_friend`), else `null`.
+- **WHY?** `why: { confidence: 'high'|'medium', text, source, evidence, root? }`. Only DWDS/Pfeifer, Wiktionary, Duden, OED, Vasmer-level facts; omit if unsure. Keep morphology, etymology and modern transparency separate; label memory aids «Мнемоника (не этимология)». Split `parts` at real morpheme boundaries (`Sprech- + Stunde`), not syllables.
+- **Badges:** `meaningType: 'polysemous'|'figurative'|'colloquial'` is curated, never generated, and requires `meaningExplanation` + 2–3 `meaningExamples` (else the validator warns). Polysemous ≠ figurative. `transparency: 'transparent'|'figurative'|'opaque'` on derived words; `opaque` shows «СМЫСЛ УШЁЛ»; it does not by itself add a figurative badge.
+- Polysemous verbs: one example per sense with `sense: '…'`, so cloze/recall asks the intended meaning.
+- Prefix meaning indices for `prefixDrill.meaning` are the order of `meanings` in `data/prefixes.js`.
+- Speech: keep `pickVoice()` and its `/natural|online|google|premium|enhanced/i` heuristic so cloud voices win.
+
+## Working environment (Windows)
+- Python: `C:/Users/rando/AppData/Local/Programs/Python/Python314/python.exe` (`python` hits the Store stub). Node.js is not installed.
+- Preview server: `wortschatz` in `.claude/launch.json` (port 8765).
+- Read the current `VERSION` in `sw.js` before bumping (a parallel session may have bumped it); tell the user to press Ctrl+F5.
+- Browser checks: unregister the SW and clear caches, `fetch(file, {cache: 'reload'})` changed data files, reload, then run `GT.validatePack(GT.packs[l])` for every pack and `await GT.validateLinks()` — both should be empty.
