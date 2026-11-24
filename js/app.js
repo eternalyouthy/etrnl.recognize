@@ -3728,7 +3728,7 @@
     var retries = S2.questions.filter(function (q) { return q.retry && q.result; });
     var fixed = retries.filter(function (q) { return q.result === 'ok' || q.result === 'almost'; }).length;
     var lead = firsts.length ? okFirst + ' of ' + firsts.length + ' right on the first try' + (retries.length ? ' · ' + fixed + ' of ' + retries.length + ' fixed on the second try' : '') + '.' : 'Session ended.';
-    var h = '<header class="page-head"><span class="eyebrow">Practice · Done</span><h1>Session complete</h1><p class="lead">' + esc(lead) + '</p></header>';
+    var h = '<div class="st-done"><header class="page-head"><span class="eyebrow">Practice · Done</span><h1>Session complete</h1><p class="lead">' + esc(lead) + '</p></header>';
     h += '<div class="actions-row actions-split"><button class="btn primary" type="button" data-act="st-again">New session</button><a class="btn" href="#/review">Review due</a></div>';
     var summaries = S2.questions.filter(function (q) { return q.result && (q.kind === 'family' || q.kind === 'blitz' || q.kind === 'match'); });
     if (summaries.length) {
@@ -3741,6 +3741,7 @@
     if (wrong.length) h += '<div class="box" style="margin-top:28px"><span class="label ice">Worth another look</span><div class="st-pairs" style="margin-top:12px">' + wrong.map(mistakeLine).join('') + '</div></div>';
     var items = S2.seen.map(function (id) { return GT.byId[id]; }).filter(Boolean);
     if (items.length >= 3) h += practicePanel(practiceFromItems(items), 'Now use these in a real ' + langMeta().name + ' conversation.');
+    h += '</div>';
     page(h, 'mid');
   }
 
