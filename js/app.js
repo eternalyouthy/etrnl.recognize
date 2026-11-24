@@ -609,10 +609,6 @@
           ' Open a topic and use <b>Practice now</b> to get a ready-made role-play prompt for your AI chat.');
       }
     }
-    if (n >= 20 && (!d.lastExport || Date.now() - d.lastExport > 14 * DAY)) {
-      out += notice('download', 'Your progress is stored only in this browser. <button class="link-btn" data-act="export">Export a backup</button>' +
-        (d.lastExport ? ' (last one: ' + fmtDate(d.lastExport) + ').' : '.'), 'subtle');
-    }
     if (!S.storageOk()) out += notice('info', 'This browser is blocking local storage, so progress can’t be saved. Try another browser or host the app.', 'subtle');
     return out;
   }
@@ -1698,7 +1694,11 @@
       '<label class="btn ghost small">' + icon('upload') + 'Replace from file<input type="file" id="importReplaceFile" accept=".json,application/json" hidden></label></div>' +
       '</div>' +
       // Hidden until the owner sets a Google Client ID (GD_CLIENT_ID in store.js), so visitors never see setup steps.
-      (S.gdrive && (S.gdrive.state.hasClientId || S.gdrive.state.enabled) ? '<div class="box" id="gdriveBox">' + gdriveBoxHTML() + '</div>' : '') +
+      (S.gdrive && (S.gdrive.state.hasClientId || S.gdrive.state.enabled) ? '<div class="box" id="gdriveBox">' + gdriveBoxHTML() + '</div>' :
+        '<div class="box"><div class="box-head" style="margin-bottom:10px"><span class="label" style="margin:0">Cloud sync</span><span class="tag dim">Not available</span></div>' +
+        '<p class="note muted">There is no cloud sync: this site has no server or database and never collects your data. ' +
+        'All your progress is stored only in this browser on this device. Clearing site data or browser cache deletes it. ' +
+        'To keep a backup or move progress to another device, use <b>Export progress</b> and <b>Import & merge</b> above.</p></div>') +
       '<div class="box" id="syncBox">' + syncBoxHTML() + '</div>';
   }
   function refreshSyncBox() {
