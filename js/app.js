@@ -700,7 +700,20 @@
   }
 
   function page(html, cls) {
-    mainEl.innerHTML = '<div class="page ' + (cls || '') + '">' + html + '</div>';
+    mainEl.innerHTML = '<div class="page ' + (cls || '') + '">' + langNavHTML + html + '</div>';
+  }
+  /* Phones have no top dropdowns: on the root page of each Language section (Words, Roots, Grammar, Articles)
+   * a row of section buttons replaces them. Hidden on desktop by CSS. Set by route(). */
+  var langNavHTML = '';
+  function langSubnav(tab, p) {
+    if (p.length !== 1 || navGroupFor(tab, p) !== 'language') return '';
+    var g = GT.NAV.filter(function (x) { return x.id === 'language'; })[0];
+    var items = g ? navItemsFor(g) : [];
+    if (!items.some(function (it) { return isNavItemActive(it, tab, p); })) return '';
+    return '<nav class="lang-subnav" aria-label="Language sections">' + items.map(function (it) {
+      var on = isNavItemActive(it, tab, p);
+      return '<a class="lang-subnav-item' + (on ? ' active' : '') + '" href="' + it.href + '"' + (on ? ' aria-current="page"' : '') + '>' + esc(it.label) + '</a>';
+    }).join('') + '</nav>';
   }
 
   /* Start page (logo): "Before You Start" article on the left, language pair + where-to-go panel on the right.
@@ -1184,8 +1197,8 @@
     if (!chosen && groups.length > 1) {
       h += '<div class="box navy" style="margin-bottom:22px"><span class="label ice">Start here · Recommended path</span>' +
         '<p class="note" style="margin-top:8px"><strong>Start with “01 · For Everyone” first.</strong> It covers the universal workplace vocabulary every job shares — emails, meetings, clients, presentations, careers and modern work — so the same essentials aren’t repeated across every profession. Once you have that core, jump into your field below (up to C1–C2).</p>' +
-        '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">' + groups.map(function (g, i) {
-          return '<a class="chip small" href="#/professional/' + esc(g.key) + '">' + pad2(i + 1) + ' · ' + esc(g.title) + '</a>';
+        '<div class="pro-jump">' + groups.map(function (g, i) {
+          return '<a class="pro-jump-item' + (i === 0 ? ' first' : '') + '" href="#/professional/' + esc(g.key) + '"><span class="num">' + pad2(i + 1) + '</span><span class="name">' + esc(g.title) + '</span><span class="arr" aria-hidden="true">→</span></a>';
         }).join('') + '</div></div>';
     } else if (chosen && chosen.key !== 'for-everyone' && groups.some(function (g) { return g.key === 'for-everyone'; })) {
       h += '<div class="box" style="margin-bottom:20px;padding:12px 16px"><p class="note muted" style="margin:0">New to Professional? Start with <a href="#/professional/for-everyone"><strong>01 · For Everyone</strong></a> first — it covers meetings, emails, clients, presentations and careers needed in every field.</p></div>';
@@ -4054,6 +4067,7 @@
     var tab = p[0];
     if (p[0] === 'item') { var it = GT.byId[p[1]]; tab = it ? it.tab : 'words'; }
     renderNav(tab, p);
+    langNavHTML = langSubnav(tab, p);
     $('#settingsBtn').classList.toggle('active', p[0] === 'settings');
     renderSidebar(tab, p);
     switch (p[0]) {
