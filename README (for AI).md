@@ -33,6 +33,8 @@ German B1 has five grammar lessons and 40 exercises. The Wortstellung and Perfek
 
 The Russian pack has 278 entries, nine word families, and eight grammar pages with 64 exercises. People, Home, Food and Travel contain 16 entries each. Russian content includes English and German translations in the pack files.
 
+Grammar is grouped by CEFR level in every pack (A2 / B1 / B2 / C1 grammar). `GT.setupGrammarLevels` (js/core.js, run by the loader) sets each grammar topic's group from `topic.level`, the page's `level`, or a ` · B2` suffix in the topic name; `config.grammarFold` folds A1/A2 into B1 for German and English. New lessons: German `data/grammar_*.js` with `level` and a topic entry in js/topics.js (explanations `{ ru, en }`); English `data/en/grammar_levels_*.js` (`{ ru, de }`); Russian `data/ru/grammar_levels_*.js` with topics in data/ru/config.js (`{ en, de }`, `+` before the stressed vowel). C1 currently has one starter lesson per language. The 33 original English catalogue lessons (english/data + data/en/grammar_practice.js) are enriched by data/en/grammar_expand_1–4.js via `GT.enrichGrammar(id, {...})`, which keeps existing drill ids and the source link and must load after the German overlays.
+
 ## Open it
 - **Locally:** double-click `index.html`.
 - **Hosted:** drag the whole folder onto https://app.netlify.com/drop. On the phone: Add to Home Screen.
