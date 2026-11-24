@@ -78,7 +78,7 @@ data/about.js         shared project philosophy in Russian, English and German
 data/ru/*.js          Russian pack (written natively for the engine)
 english/              the English catalogue (data/*.js + js/catalog.js, reused as-is; SOURCES.md = provenance);
                       english/index.html only forwards old links to the unified site with "I learn: English"
-sw.js                 offline cache of the shell and all packs (bump VERSION after changes)
+sw.js                 offline cache of the shell and all packs (bump the number in VERSION after changes)
 ```
 - **Shared once:** interface, views, scheduler, storage, speech, practice logic. A language is only data + a
   small config. `GT.items`, `GT.TOPICS`, `GT.roots` … are getters on the **active pack**, so views never branch
@@ -137,7 +137,11 @@ Each language is owned by its files; agents working on different languages never
 - **Translations for another known language:** `data/i18n/<learn>.<know>.js` with `GT.localize(lang, {...})`.
 - **Cross-language links:** `data/links/*.js` with `GT.link([{ de: [id, text], en: [id, text], ru: [id, text], note? }, ...])`.
 - **Engine/UI:** `js/*.js`, `css/app.css` — one agent at a time.
-Always bump `VERSION` in `sw.js` after changing files, and check Settings → Data (validation warnings).
+Always bump `VERSION` in `sw.js` after changing files (`CACHE_PREFIX + '125'` → `'126'`), and check Settings → Data (validation warnings).
+
+**Website deploy:** this folder is the same as the website copy (`public/recognize` of the site repo); `sw.js` and
+`manifest.webmanifest` already work in that sub-folder, so do not adapt them per host. The owner copies with a
+local, git-ignored `deploy.ps1` (target path in a git-ignored `.env`). Never commit those two files.
 
 ## Add a language (e.g. French)
 1. `js/i18n.js`: add `GT.LANGS.fr` (names, speech locale, voice regexes) and, if it should be a known

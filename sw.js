@@ -1,12 +1,13 @@
-/* Service worker: offline support when hosted (Netlify / GitHub Pages).
+/* Service worker: offline support for the language trainer.
  * Strategy: precache the app shell + data files; network-first for app files
  * (fresh when online, cached copy when offline); cache-first for Google Fonts.
  * Bump VERSION when you want to force a clean cache. */
-var VERSION = 'etrnl-v125';
+var CACHE_PREFIX = 'etrnl-recognize-';
+var VERSION = CACHE_PREFIX + '125';
 importScripts('data/manifest.js');
 
 var SHELL = [
-  './', 'index.html', 'css/app.css',
+  './', 'css/app.css',
   'js/core.js', 'js/i18n.js', 'js/topics.js', 'js/loader.js', 'js/validate.js', 'js/fsrs.js', 'js/store.js', 'js/whichform.js', 'js/forms/de.js', 'js/forms/en.js', 'js/forms/ru.js', 'js/app.js',
   'data/about.js', 'data/manifest.js', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'
@@ -27,7 +28,9 @@ self.addEventListener('install', function (e) {
 
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (keys) {
-    return Promise.all(keys.filter(function (k) { return k !== VERSION && k !== VERSION + '-fonts'; }).map(function (k) { return caches.delete(k); }));
+    return Promise.all(keys.filter(function (k) {
+      return k.startsWith(CACHE_PREFIX) && k !== VERSION && k !== VERSION + '-fonts';
+    }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
 
@@ -44,7 +47,7 @@ self.addEventListener('fetch', function (e) {
     }));
     return;
   }
-  if (url.origin !== self.location.origin) return;
+  if (!url.href.startsWith(self.registration.scope)) return;
   // App files: network first (so updates show up immediately), cache as offline fallback.
   // cache: 'no-cache' revalidates with the server, so a new deploy is never hidden by the HTTP cache.
   e.respondWith(fetch(req, { cache: 'no-cache' }).then(function (res) {
@@ -53,7 +56,7 @@ self.addEventListener('fetch', function (e) {
   }).catch(function () {
     return caches.open(VERSION).then(function (cache) {
       return cache.match(req, { ignoreSearch: true }).then(function (hit) {
-        return hit || (req.mode === 'navigate' ? cache.match('index.html') : undefined);
+        return hit || (req.mode === 'navigate' ? cache.match('./') : undefined);
       });
     });
   }));
