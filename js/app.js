@@ -608,7 +608,8 @@
       '<h1 class="about-title">' + esc(about.title) + '</h1><div class="about-body" id="bysBody">' + about.body + '</div>' +
       '<div class="bys-controls" lang="en"><button class="bys-btn bys-toggle" type="button" data-act="bys-toggle" aria-controls="bysBody" aria-expanded="' + expanded + '">' +
       (expanded ? 'Show Less ↑' : 'Read More ↓') + '</button></div>' +
-      '<div class="bys-author" lang="en"><a class="btn" href="https://etrnl.world/" target="_blank" rel="noopener">About the author ↗</a></div></article>';
+      '<div class="bys-author" lang="en"><a class="btn" href="https://etrnl.world/" target="_blank" rel="noopener">About the author ↗</a>' +
+      '<a class="btn" href="https://github.com/eternalyouthy/etrnl.recognize" target="_blank" rel="noopener">Project on GitHub ↗</a></div></article>';
     page('<div class="start-grid">' + panel + article + '</div>', 'start');
     if (restoreFocus) $('.about-languages [aria-current="page"]', mainEl).focus({ preventScroll: true });
   }
