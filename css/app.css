@@ -1075,6 +1075,19 @@ body.pack-loading .main { opacity: 0.55; transition: opacity 0.15s; }
 .note-list li + li { border-top: 1px solid var(--line-2); }
 .note-list b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 15.5px; color: var(--text); }
 .note-list span { display: block; margin-top: 3px; font-size: 13.5px; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
+/* Latest updates: one foldable group per date */
+.news-group { margin-top: 10px; border-top: 1px solid var(--line-2); }
+.news-group:first-of-type { border-top: 0; }
+.news-group summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 40px; padding: 8px 0;
+  cursor: pointer; list-style: none; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
+}
+.news-group summary::-webkit-details-marker { display: none; }
+.news-group summary:hover, .news-group[open] summary { color: var(--ice); }
+.news-group .note-list { margin-top: 0; }
+.news-chev { display: inline-grid; place-items: center; transition: transform 0.15s; }
+.news-chev svg { width: 13px; height: 13px; }
+.news-group[open] .news-chev { transform: rotate(180deg); }
 .start-list { list-style: none; margin: 8px 0 0; padding: 0; }
 .start-list li + li { border-top: 1px solid var(--line-2); }
 .start-link { display: block; padding: 10px 4px; transition: background 0.12s; }
