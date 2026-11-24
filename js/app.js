@@ -561,6 +561,15 @@
       { href: '#/review', name: 'Review', ct: due ? due + ' due' : '', due: !!due, desc: 'Spaced repetition: come back to the cards you added when they are due.' }
     ];
   }
+  function startNotes(lang) {
+    var n = (GT.START_NOTES || {})[lang];
+    if (!n) return '';
+    function box(title, list) {
+      return '<div class="start-box start-notes" lang="' + lang + '"><span class="label ice">' + esc(title) + '</span><ul class="note-list">' +
+        list.map(function (x) { return '<li><b>' + esc(x.h) + '</b><span>' + esc(x.p) + '</span></li>'; }).join('') + '</ul></div>';
+    }
+    return box(n.goodTitle, n.good) + box(n.newsTitle, n.news);
+  }
   function viewStart(requested) {
     var languages = GT.KNOW_ORDER.filter(function (lang) { return GT.ABOUT[lang]; });
     var lang = languages.indexOf(requested) >= 0 ? requested : GT.know;
@@ -578,6 +587,7 @@
       '<span class="start-arrow" aria-hidden="true">→</span>' +
       '<label class="lang-field"><span class="label">I learn</span>' + langSelect('learn') + '</label></div>' +
       '<p class="start-hint">Meanings and explanations follow <b>I know</b>. You can change this any time with the globe button.</p></div>' +
+      startNotes(lang) +
       '<div class="start-box"><span class="label ice">Where to go</span><ul class="start-list">' + startSections().map(function (s) {
         return '<li><a class="start-link" href="' + s.href + '"><span class="start-link-top"><span class="nm">' + esc(s.name) + '</span>' +
           (s.ct ? '<span class="ct' + (s.due ? ' due' : '') + '">' + esc(s.ct) + '</span>' : '') + '<span class="go" aria-hidden="true">→</span></span>' +

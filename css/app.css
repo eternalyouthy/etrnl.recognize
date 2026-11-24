@@ -939,6 +939,11 @@ body.pack-loading .main { opacity: 0.55; transition: opacity 0.15s; }
 .start-arrow { padding-bottom: 10px; color: var(--muted); font-family: var(--font-mono); }
 .start-hint { margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--muted); }
 .start-hint b { color: var(--text); font-weight: 500; }
+.note-list { list-style: none; margin: 10px 0 0; padding: 0; }
+.note-list li { padding: 9px 0; }
+.note-list li + li { border-top: 1px solid var(--line-2); }
+.note-list b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 15.5px; color: var(--text); }
+.note-list span { display: block; margin-top: 3px; font-size: 13.5px; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
 .start-list { list-style: none; margin: 8px 0 0; padding: 0; }
 .start-list li + li { border-top: 1px solid var(--line-2); }
 .start-link { display: block; padding: 10px 4px; transition: background 0.12s; }
