@@ -169,13 +169,56 @@
   }
 
   /* ---------------- theme ---------------- */
+  // Two groups (dark / light); exactly one theme is active. Orbit (dark) is the default.
+  var THEMES = [
+    { id: 'orbit', name: 'Orbit (dark)', mode: 'dark', dot: '#8ccbff', bar: '#04060a' },
+    { id: 'holo', name: 'Holo Glass (dark)', mode: 'dark', dot: '#a99bff', bar: '#07061a' },
+    { id: 'nord', name: 'Nordlicht (dark)', mode: 'dark', dot: '#7fe0c3', bar: '#1b2029' },
+    { id: 'autobahn', name: 'Autobahn (light)', mode: 'light', dot: '#1b4f9c', bar: '#1b4f9c' },
+    { id: 'swiss', name: 'Swiss (light)', mode: 'light', dot: '#e3170a', bar: '#ffffff' },
+    { id: 'light', name: 'Orbit (light)', mode: 'light', dot: '#1f5fe0', bar: '#f4f6fa' }
+  ];
   var mql = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+  function themeOf(id) {
+    if (id === 'system') id = mql && mql.matches ? 'light' : 'orbit';   // legacy values
+    for (var i = 0; i < THEMES.length; i++) if (THEMES[i].id === id) return THEMES[i];
+    return THEMES[0];   // 'dark', unknown or empty -> Orbit
+  }
   function applyTheme() {
-    var t = S.settings.theme;
-    if (t === 'system') t = mql && mql.matches ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', t);
+    var t = themeOf(S.settings.theme);
+    if (S.settings.theme !== t.id) { S.settings.theme = t.id; S.saveSettings(); }   // migrate legacy 'dark' / 'system'
+    var root = document.documentElement;
+    if (root.getAttribute('data-theme') !== t.id) {
+      // Switch instantly: no half-faded colors from per-element transitions.
+      root.classList.add('theme-switching');
+      root.setAttribute('data-theme', t.id);
+      void root.offsetWidth;
+      setTimeout(function () { root.classList.remove('theme-switching'); }, 50);
+    }
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', t === 'light' ? '#f4f6fa' : '#04060a');
+    if (meta) meta.setAttribute('content', t.bar);
+  }
+  function themeRowsHTML() {
+    var cur = themeOf(S.settings.theme);
+    function group(mode, title) {
+      var on = cur.mode === mode, other = mode === 'dark' ? 'light' : 'dark';
+      var opts = (on ? '' : '<option value="" selected disabled>— off —</option>') +
+        THEMES.filter(function (t) { return t.mode === mode; }).map(function (t) {
+          return '<option value="' + t.id + '"' + (on && t.id === cur.id ? ' selected' : '') + '>' + esc(t.name) + '</option>';
+        }).join('');
+      return '<div class="setting"><div><div class="lbl">' + title + '</div>' +
+        (on ? '<div class="help">Active: ' + esc(cur.name) + '</div>' : '<span class="theme-off">Now active: ' + other + ' theme</span>') + '</div>' +
+        '<div class="theme-pick' + (on ? '' : ' off') + '"><i class="theme-dot" style="background:' + cur.dot + '" aria-hidden="true"></i>' +
+        '<select data-set="theme" aria-label="' + title + '">' + opts + '</select></div></div>';
+    }
+    return group('dark', 'Dark themes') + group('light', 'Light themes');
+  }
+  function refreshThemeRows() {
+    var box = document.getElementById('themeBox');
+    if (!box) return;
+    box.innerHTML = themeRowsHTML();
+    var sel = box.querySelector('.theme-pick:not(.off) select');
+    if (sel) sel.focus();
   }
   if (mql && mql.addEventListener) mql.addEventListener('change', applyTheme);
 
@@ -1669,10 +1712,7 @@
     }
     function sw(key) { return '<label class="switch"><input type="checkbox" data-set="' + key + '"' + (s[key] ? ' checked' : '') + '><span></span></label>'; }
     function row(label, help, control) { return '<div class="setting"><div><div class="lbl">' + label + '</div>' + (help ? '<div class="help">' + help + '</div>' : '') + '</div>' + control + '</div>'; }
-    var h = '<h3 class="section-title" style="margin-top:0">Languages</h3><div class="box">' +
-      row('I know', 'Language of meanings, translations and explanations.', langSelect('know')) +
-      row('I learn', 'Language you are studying. Progress is kept separately per language.', langSelect('learn')) +
-      '</div>';
+    var h = '<h3 class="section-title" style="margin-top:0">Theme</h3><div class="box" id="themeBox">' + themeRowsHTML() + '</div>';
     h += '<h3 class="section-title">Learning</h3><div class="box">' +
       row('New cards per session', 'How many cards "Learn new" shows.', '<input type="number" min="1" max="50" data-set="newPerSession" value="' + s.newPerSession + '">') +
       row('Review direction', 'Review recognition (' + LS() + ' → ' + KS() + '), production (' + KS() + ' → ' + LS() + '), or both.', sel('reviewDirection', [['both', 'Both'], ['rec', 'Recognition only'], ['prod', 'Production only']])) +
@@ -1682,7 +1722,6 @@
       row('Target retention', 'Higher means more reviews but fewer forgotten cards.', sel('retention', [['0.85', '85%'], ['0.9', '90% (recommended)'], ['0.95', '95%']])) +
       '</div>';
     h += '<h3 class="section-title">Look & sound</h3><div class="box">' +
-      row('Theme', 'The design is made for dark.', sel('theme', [['dark', 'Dark'], ['light', 'Light'], ['system', 'System']])) +
       row('Hide sidebar Practice box', 'Hide the "Practice now" card in the sidebar.', sw('hideSidePractice')) +
       row('' + langMeta().name + ' voice', '<span id="voiceInfo">' + (tts.ok ? 'Loading voices…' : 'Speech is not supported in this browser.') + '</span>',
         tts.ok ? '<select id="voiceSelect" data-set="' + voiceKey() + '" style="max-width:240px"></select>' : '<span class="mono-muted">—</span>') +
@@ -1992,7 +2031,7 @@
       if (k === 'newPerSession') { v = Math.max(1, Math.min(50, Math.round(Number(v) || 10))); el.value = v; }
       if (k === 'retention' || k === 'speechRate') v = Number(v);
       S.setSetting(k, v);
-      if (k === 'theme') applyTheme();
+      if (k === 'theme') { applyTheme(); refreshThemeRows(); }
       if (k === 'hideSidePractice') {
         var curP = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
         var curTab = curP[0] === 'item' && GT.byId[curP[1]] ? GT.byId[curP[1]].tab : (curP[0] || 'words');

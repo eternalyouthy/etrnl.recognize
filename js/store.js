@@ -22,7 +22,7 @@
     retention: 0.9,
     showMediumWhy: true,       // show WHY? notes with confidence 'medium'
     hideSidePractice: false,   // hide the "Practice now" box in the sidebar
-    theme: 'dark',
+    theme: 'orbit',            // see THEMES in app.js
     speechRate: 0.9,
     speechVoice: 'auto',       // German voice (legacy name); other languages: speechVoice_<lang>
     knowLang: 'ru',            // "I know"
