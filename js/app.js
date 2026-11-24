@@ -959,7 +959,7 @@
     var main = '', side = '';
     if (it.type === 'chunk') {
       var fn = GT.topic(it.tab, it.topic), lit = it.lit;
-      main += '<div class="word-tags"><span class="tag outline">' + esc(it.register || 'neutral') + '</span><span class="mono-muted upper">' + esc(fn ? fn.name : it.topic) + '</span>' +
+      main += '<div class="word-tags"><span class="tag outline' + (it.register === 'vulgar' ? ' warn' : '') + '">' + esc(it.register || 'neutral') + '</span><span class="mono-muted upper">' + esc(fn ? fn.name : it.topic) + '</span>' +
         (lit && it.level ? '<span class="tag dim">' + esc(it.level) + '</span>' : '') + meaningBadgeHTML(it) + '</div>';
       main += '<div class="hw-row"><h1 class="hw chunk" lang="' + GT.learn + '">' + rich(it.t) + '</h1>' + speakBtn(it.t, true) + whyBtn(it) + '</div>';
       main += lit ? litBylineHTML(it) + literatureExplanation(it) : meanings(it);
@@ -971,8 +971,12 @@
         }).join('') + '</ul>';
       }
       if (it.note) main += '<hr class="rule"><span class="label">Note</span><p class="note" style="margin-top:14px" lang="' + GT.lxLang(it, 'note') + '">' + esc(lxText(it, 'note')) + fbTag(GT.lxLang(it, 'note')) + '</p>';
+      // Slang: history and where people say it.
+      if (it.origin) main += '<hr class="rule"><span class="label">Origin</span><p class="note" style="margin-top:14px" lang="' + GT.lxLang(it, 'origin') + '">' + esc(lxText(it, 'origin')) + '</p>';
+      if (it.where) main += '<hr class="rule"><span class="label">Where you hear it</span><p class="note" style="margin-top:14px" lang="' + GT.lxLang(it, 'where') + '">' + esc(lxText(it, 'where')) + '</p>';
       if (lit) side += literatureSide(it);
       else {
+        if (it.register === 'vulgar') side += '<div class="box box-warn"><span class="label">Careful</span><p class="note">' + esc(GT.hint('register.vulgarWarn')) + '</p></div>';
         side += '<div class="box"><span class="label">Register</span><p class="note muted">' + esc(GT.hint('register.' + (it.register || 'neutral')) || GT.hint('register.neutral')) + '</p></div>';
         var tags = (it.topics || []).map(function (id) { var t = GT.anyTopic(id); return t ? t.topic.name : null; }).filter(Boolean);
         side += linksBox(it) + levelBox(it);

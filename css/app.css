@@ -292,6 +292,9 @@ code { font-family: var(--font-mono); font-size: 0.9em; color: var(--ice); }
 .notice { display: flex; gap: 14px; align-items: flex-start; padding: 16px 20px; border: 1px solid var(--line-ice); background: var(--ice-soft); margin-bottom: 28px; font-size: 15px; }
 .notice svg { width: 18px; height: 18px; color: var(--ice); flex: none; margin-top: 3px; }
 .notice .grow { flex: 1; }
+.tag.outline.warn { color: var(--bad); border-color: var(--bad); }
+.box.box-warn { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 8%, transparent); }
+.box.box-warn .label { color: var(--bad); }
 .notice.subtle { border-color: var(--line-2); background: transparent; }
 .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line-2); margin-bottom: 32px; }
 .stat { padding: 20px 22px; border-right: 1px solid var(--line-2); }

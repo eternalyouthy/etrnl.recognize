@@ -131,7 +131,8 @@
       { id: 'slang-crew', name: 'Greetings & Crew', desc: 'How friends address and greet each other on the street.' },
       { id: 'slang-react', name: 'Reactions & Hype', desc: 'Wow, cool, cringe, no way: reacting like a local.' },
       { id: 'slang-people', name: 'People & Attitude', desc: 'Labels for people, respect, showing off and drama.' },
-      { id: 'slang-life', name: 'Money, Chilling & Street', desc: 'Cash, food, hanging out, partying and getting out of trouble.' }
+      { id: 'slang-life', name: 'Money, Chilling & Street', desc: 'Cash, food, hanging out, partying and getting out of trouble.' },
+      { id: 'slang-rude', name: 'Swearing & Insults (18+)', desc: 'Swear words and fighting words. Know them so you understand them; say them and you may get hit.' }
     ] },
     { id: 'everyday', name: 'Everyday Phrases', desc: 'Short high-frequency replies for everyday conversation.', cats: [
       { id: 'everyday-respond', name: 'Reacting & Replying', desc: 'Really? I see. Exactly. No idea. Quick reactions in conversation.' },
