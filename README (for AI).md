@@ -99,7 +99,7 @@ Expressions = Idioms · Slang · Everyday Phrases · Chunks · Literary Phrases 
 
 ## Practice Studio (`#/practice`, js/app.js "PRACTICE / LEARNING STUDIO")
 - **A sandbox:** nothing is saved and nothing touches FSRS Review (no rating buttons). Wrong answers come back once
-  at the end of the same session (memory only). Reading progress is optional ("Only words I've already studied").
+  at the end of the same session (memory only).
 - **Setup:** 1 Level (A1–A2 / B1 / B2 / C1–C2 from `item.level` or the topic's `level`; untagged items pass every
   level) · Questions · 2 Words from (section) + Topic · 3 What to train. URL params: `kind`, `scope`
   (`words|professional|expressions|literature|roots|root:<id>|topic:<tab>.<id>`), `level`.
