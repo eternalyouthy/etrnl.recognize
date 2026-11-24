@@ -27,8 +27,8 @@
       items: [
         { label: 'Words', href: '#/words', match: ['words'] },
         { label: 'Roots', href: '#/roots', match: ['roots'] },
-        { label: 'Grammar', href: '#/grammar', match: ['grammar'] },
-        { label: 'Articles', href: '#/articles', match: ['articles'] }
+        { label: 'Grammar', href: '#/grammar', match: ['grammar'] }
+        // 4th item (Articles) comes from the shared "Which form?" engine: js/whichform.js + js/forms/de.js
       ]
     },
     {

@@ -1,8 +1,9 @@
-/* ARTIKEL — German articles & determiner declension: reference page + "Which form?" game.
+/* German definition for the shared "Which form?" engine (js/whichform.js): Articles.
  * Route: #/articles (reference) · #/articles/play (game). German pack only.
  * Data: data/grammar_artikel.js (GT.ARTIKEL). Answers are computed from the tables below,
  * so a sentence only states family + noun + gender + case + reason.
- * app.js calls GT.artikel.render(sub, api) with api = { page, esc, crumbs, setKeys }. */
+ * Games: 'case' (sentences, filtered by case) and 'end' (gender by ending — a separate mode, never in All cases).
+ * GT.artikel stays as a small alias for console checks: GT.artikel.check(), GT.artikel.form(fam, case, gender). */
 (function () {
   'use strict';
 
@@ -181,18 +182,17 @@
   }
 
   /* ---------------- reference page ---------------- */
-  function sectionTitle(t, id) { return '<h3 class="section-title"' + (id ? ' id="ag-' + id + '"' : '') + '>' + t + '</h3>'; }
+  function sectionTitle(t, id) { return GT.whichForm.sectionTitle(t, id); }
   // Sections of the reference page (sidebar jump links).
   var SECTIONS = [['der', 'der · die · das'], ['ein', 'ein · mein · kein'], ['dieser', 'dieser · jeder · welcher'], ['poss', 'Possessives'],
     ['forms', 'Form patterns'], ['cases', 'Which case?'], ['gender', 'Gender by ending']];
   function viewReference(api) {
     var esc = api.esc;
-    var h = api.crumbs('Language · Articles');
-    h += '<header class="page-head"><h1>' + L('Артикли и их формы', 'Articles & their forms') + '</h1><p class="lead">' +
+    var h = '<header class="page-head"><h1>' + L('Артикли и их формы', 'Articles & their forms') + '</h1><p class="lead">' +
       L('Все формы der / ein / kein / mein / dieser на одной странице, главные закономерности рода и падежа — и игра, где по предложению нужно выбрать правильную форму.',
         'Every form of der / ein / kein / mein / dieser on one page, the main gender and case patterns — and a game where you pick the right form in a real sentence.') +
       '</p></header>';
-    h += '<div class="actions-row"><a class="btn primary" href="#/articles/play">' + 'Play · Which form?' + '</a><a class="btn" href="#/grammar/kasus">' + 'Cases lesson' + '</a></div>';
+    h += '<div class="actions-row"><a class="btn primary" href="#/articles/play">' + 'Play · Which form?' + '</a><a class="btn" href="#/grammar/kasus">' + 'Cases lesson' + '</a><a class="btn" href="#/cases">Cases across your languages</a></div>';
 
     h += sectionTitle(L('Определённый артикль · der / die / das', 'Definite article · der / die / das'), 'der') + familyTable('der', esc);
     h += sectionTitle(L('ein-слова · ein, kein, mein, dein, sein, ihr, unser, euer', 'ein-words · ein, kein, mein, dein, sein, ihr, unser, euer'), 'ein') + familyTable('mein', esc) +
@@ -241,7 +241,7 @@
 
     h += sectionTitle(L('Род по окончанию', 'Gender from the ending'), 'gender') + gendersHTML(esc);
     h += '<div class="actions"><a class="btn primary" href="#/articles/play">Try it yourself →</a></div>';
-    api.page(h, 'mid');
+    return h;
   }
   function gendersHTML(esc) {
     var h = '';
@@ -265,24 +265,40 @@
     return h;
   }
 
-  /* ---------------- game ---------------- */
-  var G = { cur: -1, chosen: null, revealed: false, hc: false, hg: false, forms: false, filter: 'all', recent: [], ok: 0, bad: 0, streak: 0, best: 0 };
-  function isEnd() { return G.filter === 'end'; }
-  function sent(i) {
-    if (isEnd()) { var e = GT.ARTIKEL.endings[i]; return { end: true, noun: e[0], g: e[1] }; }
-    var s = GT.ARTIKEL.sentences[i];
-    return { text: s[0], fam: s[1], noun: s[2], g: s[3], c: s[4], r: s[5], head: s[6] };
+  /* ---------------- games ---------------- */
+  function sentTask(s) { return { text: s[0], fam: s[1], noun: s[2], g: s[3], c: s[4], r: s[5], head: s[6] }; }
+  function startCap(s) { return /^___/.test(s.text); }
+  function caseAnswer(s) { var a = form(s.fam, s.c, s.g); return startCap(s) ? cap(a) : a; }
+  function explainHTML(s, chosen) {
+    var lines = [reasonHTML(s.r, s.c), genderHTML(s.noun, s.g), headHTML(s.noun, s.g, s.head), patternHTML(s.noun, s.g), formHTML(s.fam, s.c, s.g), extraHTML(s.c, s.g)];
+    if (chosen && chosen !== caseAnswer(s)) lines.unshift(wrongHTML(s.fam, chosen));
+    return '<ul class="ag-why">' + lines.filter(Boolean).map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
   }
-  function nextSentence() {
-    var all = isEnd() ? GT.ARTIKEL.endings : GT.ARTIKEL.sentences, pool = [];
-    for (var i = 0; i < all.length; i++) if ((isEnd() || G.filter === 'all' || all[i][4] === G.filter) && G.recent.indexOf(i) < 0 && i !== G.cur) pool.push(i);
-    if (!pool.length) { G.recent = []; return nextSentence(); }
-    G.cur = pool[Math.floor(Math.random() * pool.length)];
-    G.recent.push(G.cur);
-    if (G.recent.length > Math.min(30, Math.floor(pool.length / 2))) G.recent.shift();
-    G.chosen = null; G.revealed = false; G.hc = false; G.hg = false;
-  }
-  function answerOf(s) { if (s.end) return DEF.n[s.g]; var a = form(s.fam, s.c, s.g); return /^___/.test(s.text) ? cap(a) : a; }
+  var caseGame = {
+    items: function () { return GT.ARTIKEL.sentences; },
+    match: function (s, mode) { return mode === 'x' ? GT.whichForm.isTrap('de', sentTask(s)) : mode === 'all' || s[4] === mode; },
+    task: sentTask,
+    answer: caseAnswer,
+    options: function (s) { return options(s.fam).map(function (o) { return startCap(s) ? cap(o) : o; }); },
+    kind: function (s) { return 'Pick the form · ' + (s.fam === 'der' ? 'der / die / das' : s.fam); },
+    question: function (s, ctx) { return ctx.esc(s.text).replace('___', ctx.blank); },
+    hintLabels: ['Hint · case', 'More hint · gender'],
+    hint: function (s, level, esc) {
+      var parts = ['<b>' + CASE_NAME[s.c] + '</b> <span class="ag-q">' + CASE_Q[s.c] + '</span>'];
+      if (level >= 2) parts.push(s.g === 'pl' ? '<b>plural</b>' : de(DEF.n[s.g] + ' ' + esc(s.noun)));
+      return parts.join(' · ');
+    },
+    explain: explainHTML,
+    forms: {
+      show: 'All forms', hide: 'Hide forms',
+      html: function (s, esc) {
+        var h = '<h3 class="section-title">' + esc(s.fam === 'der' ? 'der / die / das' : s.fam + ' · all forms') + '</h3>' + familyTable(s.fam, esc);
+        if (s.fam !== 'der') h += '<h3 class="section-title">Compare · der / die / das</h3>' + familyTable('der', esc);
+        return h;
+      }
+    },
+    next: 'Next sentence →'
+  };
 
   /* ---- gender-by-ending mode ---- */
   var GROUP_HINT = {
@@ -312,16 +328,9 @@
     });
     return out;
   }
-  function endHintHTML(s, esc) {
-    var m = markOf(s.noun, s.g), parts = [];
-    if (G.hc) parts.push(m && m.group ? L('смотрите на смысл: ', 'look at the meaning: ') + '<b>' + GROUP_HINT[m.group][ru() ? 0 : 1] + '</b>'
-      : L('смотрите на окончание ', 'look at the ending ') + '<b>' + (m ? m.label : '') + '</b>');
-    if (G.hg) { var sim = similar(s.noun, s.g); parts.push(sim.length ? L('так же: ', 'same as: ') + de(sim.map(esc).join(', ')) : L('других примеров нет', 'no similar words here')); }
-    return '<p class="ag-hint">Hint: ' + parts.join(' · ') + '</p>';
-  }
-  function endExplainHTML(s) {
+  function endExplainHTML(s, chosen) {
     var lines = [], m = markOf(s.noun, s.g), art = DEF.n[s.g];
-    if (G.chosen && G.chosen !== art) lines.push(L('Вы выбрали ' + b(G.chosen) + ' — это ' + gName({ der: 'm', die: 'f', das: 'n' }[G.chosen]) + '.', 'You picked ' + b(G.chosen) + ' — that is for ' + gName({ der: 'm', die: 'f', das: 'n' }[G.chosen]) + ' nouns.'));
+    if (chosen && chosen !== art) lines.push(L('Вы выбрали ' + b(chosen) + ' — это ' + gName({ der: 'm', die: 'f', das: 'n' }[chosen]) + '.', 'You picked ' + b(chosen) + ' — that is for ' + gName({ der: 'm', die: 'f', das: 'n' }[chosen]) + ' nouns.'));
     lines.push(genderHTML(s.noun, s.g));
     lines.push(patternHTML(s.noun, s.g));
     var sim = similar(s.noun, s.g);
@@ -330,169 +339,109 @@
     if (pt && pt.mostly) lines.push(L('У этого правила есть исключения, но их немного.', 'This rule has some exceptions, but not many.'));
     return '<ul class="ag-why">' + lines.filter(Boolean).map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
   }
-  function explainHTML(s) {
-    var lines = [reasonHTML(s.r, s.c), genderHTML(s.noun, s.g), headHTML(s.noun, s.g, s.head), patternHTML(s.noun, s.g), formHTML(s.fam, s.c, s.g), extraHTML(s.c, s.g)];
-    if (G.chosen && G.chosen !== answerOf(s)) lines.unshift(wrongHTML(s.fam, G.chosen));
-    return '<ul class="ag-why">' + lines.filter(Boolean).map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
+  var endGame = {
+    items: function () { return GT.ARTIKEL.endings; },
+    task: function (e) { return { end: true, noun: e[0], g: e[1] }; },
+    answer: function (s) { return DEF.n[s.g]; },
+    options: function () { return ['der', 'die', 'das']; },
+    optClass: function (o) { return 'opt-' + o; },
+    kind: function () { return 'Pick the article · by the ending'; },
+    qClass: 'ag-end-q',
+    question: function (s, ctx) { return ctx.blank + ' ' + (ctx.revealed || ctx.hint ? nounMarked(s.noun, s.g, ctx.esc) : ctx.esc(s.noun)); },
+    hintLabels: ['Hint · ending', 'More hint · similar words'],
+    hint: function (s, level, esc) {
+      var m = markOf(s.noun, s.g), parts = [];
+      parts.push(m && m.group ? L('смотрите на смысл: ', 'look at the meaning: ') + '<b>' + GROUP_HINT[m.group][ru() ? 0 : 1] + '</b>'
+        : L('смотрите на окончание ', 'look at the ending ') + '<b>' + (m ? m.label : '') + '</b>');
+      if (level >= 2) { var sim = similar(s.noun, s.g); parts.push(sim.length ? L('так же: ', 'same as: ') + de(sim.map(esc).join(', ')) : L('других примеров нет', 'no similar words here')); }
+      return parts.join(' · ');
+    },
+    verdict: function (s, ans, esc) { return ans + ' ' + esc(s.noun); },
+    explain: endExplainHTML,
+    forms: { show: 'All rules', hide: 'Hide rules', html: function (s, esc) { return '<h3 class="section-title">Ending patterns</h3>' + gendersHTML(esc); } },
+    keys: 'rules',
+    next: 'Next word →'
+  };
+
+  /* ---- gender traps (I know Russian): German nouns whose gender differs from Russian ---- */
+  var RG = { m: 'мужской', f: 'женский', n: 'средний' };
+  function trapItems() { return (GT.FORMS_CROSS && GT.FORMS_CROSS.genderTraps) || []; }
+  var trapGame = {
+    items: trapItems,
+    task: function (x) { return { noun: x[1], g: { der: 'm', die: 'f', das: 'n' }[x[0]], ru: x[2], rg: x[3] }; },
+    answer: function (s) { return DEF.n[s.g]; },
+    options: function () { return ['der', 'die', 'das']; },
+    optClass: function (o) { return 'opt-' + o; },
+    kind: function () { return 'Pick the article · not like in Russian'; },
+    qClass: 'ag-end-q',
+    question: function (s, ctx) { return ctx.blank + ' ' + ctx.esc(s.noun) + ' <span class="ag-q" lang="ru">' + ctx.esc(GT.whichForm.stressMarks(s.ru)) + '</span>'; },
+    hintLabels: ['Hint · Russian gender', 'More hint · German rule'],
+    hint: function (s, level) {
+      var parts = [L('по-русски ' + RG[s.rg] + ' род — в немецком он другой', 'in Russian it is ' + gName(s.rg) + ' — German is different')];
+      if (level >= 2) parts.push(patternHTML(s.noun, s.g) || L('правила нет — учите с артиклем', 'no rule — learn it with the article'));
+      return parts.join(' · ');
+    },
+    verdict: function (s, ans, esc) { return ans + ' ' + esc(s.noun); },
+    explain: function (s, chosen) {
+      var lines = [];
+      if (chosen && chosen !== DEF.n[s.g]) lines.push(chosen === DEF.n[s.rg] ? L('Вы выбрали ' + b(chosen) + ' — так было бы по русскому роду.', 'You picked ' + b(chosen) + ' — that is the Russian gender.') : L('Вы выбрали ' + b(chosen) + '.', 'You picked ' + b(chosen) + '.'));
+      lines.push(genderHTML(s.noun, s.g));
+      lines.push(L('По-русски ' + GT.whichForm.stressMarks(s.ru) + ' — ' + RG[s.rg] + ' род, по-немецки ' + de(DEF.n[s.g] + ' ' + s.noun) + '. Род из языка в язык не переносится.', 'In Russian ' + GT.whichForm.stressMarks(s.ru) + ' is ' + gName(s.rg) + '; in German it is ' + de(DEF.n[s.g] + ' ' + s.noun) + '. Gender does not carry over.'));
+      lines.push(patternHTML(s.noun, s.g));
+      return '<ul class="ag-why">' + lines.filter(Boolean).map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
+    },
+    next: 'Next word →'
+  };
+
+  function check() {
+    var bad = GT.ARTIKEL.endings.filter(function (e) { return !markOf(e[0], e[1]); }).map(function (e) { return 'ending: ' + e[0]; });
+    var seen = {};
+    GT.ARTIKEL.endings.forEach(function (e) { if (seen[e[0]]) bad.push('dup ending: ' + e[0]); seen[e[0]] = 1; });
+    seen = {};
+    GT.ARTIKEL.sentences.forEach(function (s) { if (seen[s[0]]) bad.push('dup sentence: ' + s[0]); seen[s[0]] = 1; });
+    return bad.concat(GT.ARTIKEL.sentences.map(function (s, i) {
+      var ok = FAM[s[1]] && form(s[1], s[4], s[3]) && (s[0].match(/___/g) || []).length === 1 && CASES.indexOf(s[4]) >= 0;
+      var r = s[5], want = { subj: 'n', pred: 'n', obj: 'a', esgibt: 'a', time: 'a', iobj: 'd', gen: 'g' }[r];
+      var m = /^p:([^+]+)(?:\+(wo|wohin))?$/.exec(r);
+      if (/^v:/.test(r)) want = 'd';
+      else if (m && m[2]) want = m[2] === 'wo' ? 'd' : 'a';
+      else if (m) want = ['a', 'd', 'g'].filter(function (c) { return PREP[c].indexOf(m[1]) >= 0; })[0] || '?';
+      if (want && want !== s[4]) ok = false;
+      return ok ? null : i + ': ' + s[0];
+    }).filter(Boolean));
   }
-  function gameHTML(api) {
-    var esc = api.esc, s = sent(G.cur), ans = answerOf(s), start = /^___/.test(s.text);
-    var opts = options(s.fam).map(function (o) { return start ? cap(o) : o; });
-    var total = G.ok + G.bad;
-    var note = '<p class="mono-muted ag-mode-note">' + (s.end
-      ? 'Ending patterns: guess der / die / das from how the noun ends. These words are not part of All cases.'
-      : 'All cases covers the four cases. Guessing the gender from a noun’s ending is a separate game: Ending patterns.') + '</p>';
-    function tab(o) { return '<button class="seg-tab' + (G.filter === o[0] ? ' active' : '') + '" type="button" data-ag="filter" data-v="' + o[0] + '">' + o[1] + '</button>'; }
-    var h = '<div class="ag-modes"><div class="seg-tabs ag-filter" role="tablist" aria-label="Case">' +
-      [['all', 'All cases'], ['n', 'Nominativ'], ['a', 'Akkusativ'], ['d', 'Dativ'], ['g', 'Genitiv']].map(tab).join('') + '</div>' +
-      '<div class="seg-tabs ag-solo">' + tab(['end', 'Ending patterns']) + '</div></div>' + note;
-    if (s.end) return h + endGameHTML(api, s);
-    h += '<div class="drill ag-card"><div class="ag-top"><p class="drill-kind">' + 'Pick the form' + ' · ' + esc(s.fam === 'der' ? 'der / die / das' : s.fam) + '</p><p class="drill-kind ag-score">✓ ' + G.ok + ' · ✗ ' + G.bad + (total ? ' · ' + 'streak' + ' ' + G.streak : '') + '</p></div>';
-    var shown = G.revealed ? '<mark class="hl">' + esc(ans) + '</mark>' : '<span class="blank">____</span>';
-    h += '<p class="drill-q ag-q-text" lang="de">' + esc(s.text).replace('___', shown) + '</p>';
-    if ((G.hc || G.hg) && !G.revealed) {
-      var parts = [];
-      if (G.hc) parts.push('<b>' + CASE_NAME[s.c] + '</b> <span class="ag-q">' + CASE_Q[s.c] + '</span>');
-      if (G.hg) parts.push(s.g === 'pl' ? '<b>plural</b>' : de(DEF.n[s.g] + ' ' + esc(s.noun)));
-      h += '<p class="ag-hint">Hint: ' + parts.join(' · ') + '</p>';
-    }
-    h += '<div class="options">' + opts.map(function (o, i) {
-      var cls = '';
-      if (G.revealed) { if (o === ans) cls = ' ok'; else if (o === G.chosen) cls = ' bad'; }
-      return '<button class="opt' + cls + '" data-ag="opt" data-v="' + esc(o) + '"' + (G.revealed ? ' disabled' : '') + ' lang="de"><span class="ag-key">' + (i + 1) + '</span>' + esc(o) + '</button>';
-    }).join('') + '</div>';
-    if (G.revealed) {
-      var verdict = G.chosen === ans ? '✓ ' + 'Correct' : G.chosen ? '✗ ' + 'Not quite' : 'Answer';
-      h += '<div class="drill-answer"><div class="a">' + verdict + ' — <span lang="de">' + esc(ans) + '</span></div><div class="x">' + explainHTML(s) + '</div></div>';
-    }
-    h += '</div>';
-    h += '<div class="actions-row ag-actions">';
-    if (!G.revealed) {
-      h += '<button class="btn small" data-ag="hint"' + (G.hg ? ' disabled' : '') + '>' + (G.hc ? 'More hint · gender' : 'Hint · case') + '</button>' +
-        '<button class="btn small" data-ag="show">Show answer</button>';
-    }
-    h += '<button class="btn small' + (G.forms ? ' active' : '') + '" data-ag="forms" aria-pressed="' + G.forms + '">' + (G.forms ? 'Hide forms' : 'All forms') + '</button>' +
-      '<button class="btn small primary" data-ag="next">Next sentence →</button></div>';
-    h += '<p class="mono-muted ag-keys">1–' + opts.length + ' · H hint · F forms · Enter next</p>';
-    if (G.forms) {
-      h += '<div class="ag-forms">' + '<h3 class="section-title">' + esc(s.fam === 'der' ? 'der / die / das' : s.fam + ' · ' + 'all forms') + '</h3>' + familyTable(s.fam, esc);
-      if (s.fam !== 'der') h += '<h3 class="section-title">' + 'Compare · der / die / das' + '</h3>' + familyTable('der', esc);
-      h += '</div>';
-    }
-    return h;
-  }
-  function endGameHTML(api, s) {
-    var esc = api.esc, ans = answerOf(s), opts = ['der', 'die', 'das'];
-    var h = '<div class="drill ag-card"><div class="ag-top"><p class="drill-kind">Pick the article · by the ending</p><p class="drill-kind ag-score">✓ ' + G.ok + ' · ✗ ' + G.bad + (G.ok + G.bad ? ' · streak ' + G.streak : '') + '</p></div>';
-    var shown = G.revealed ? '<mark class="hl">' + ans + '</mark>' : '<span class="blank">____</span>';
-    h += '<p class="drill-q ag-q-text ag-end-q" lang="de">' + shown + ' ' + (G.revealed || G.hc ? nounMarked(s.noun, s.g, esc) : esc(s.noun)) + '</p>';
-    if ((G.hc || G.hg) && !G.revealed) h += endHintHTML(s, esc);
-    h += '<div class="options">' + opts.map(function (o, i) {
-      var cls = '';
-      if (G.revealed) { if (o === ans) cls = ' ok'; else if (o === G.chosen) cls = ' bad'; }
-      return '<button class="opt opt-' + o + cls + '" data-ag="opt" data-v="' + o + '"' + (G.revealed ? ' disabled' : '') + ' lang="de"><span class="ag-key">' + (i + 1) + '</span>' + o + '</button>';
-    }).join('') + '</div>';
-    if (G.revealed) {
-      var verdict = G.chosen === ans ? '✓ Correct' : G.chosen ? '✗ Not quite' : 'Answer';
-      h += '<div class="drill-answer"><div class="a">' + verdict + ' — <span lang="de">' + ans + ' ' + esc(s.noun) + '</span></div><div class="x">' + endExplainHTML(s) + '</div></div>';
-    }
-    h += '</div><div class="actions-row ag-actions">';
-    if (!G.revealed) {
-      h += '<button class="btn small" data-ag="hint"' + (G.hg ? ' disabled' : '') + '>' + (G.hc ? 'More hint · similar words' : 'Hint · ending') + '</button>' +
-        '<button class="btn small" data-ag="show">Show answer</button>';
-    }
-    h += '<button class="btn small' + (G.forms ? ' active' : '') + '" data-ag="forms" aria-pressed="' + G.forms + '">' + (G.forms ? 'Hide rules' : 'All rules') + '</button>' +
-      '<button class="btn small primary" data-ag="next">Next word →</button></div>';
-    h += '<p class="mono-muted ag-keys">1–3 · H hint · F rules · Enter next</p>';
-    if (G.forms) h += '<div class="ag-forms"><h3 class="section-title">Ending patterns</h3>' + gendersHTML(esc) + '</div>';
-    return h;
-  }
-  var lastApi = null;
-  function drawGame() {
-    var el = document.getElementById('agGame');
-    if (el && lastApi) el.innerHTML = gameHTML(lastApi);
-  }
-  function viewGame(api) {
-    if (G.cur < 0) nextSentence();
-    var h = api.crumbs('Language · <a href="#/articles">Articles</a> · Game');
-    h += '<header class="page-head"><h1>Which form?</h1><p class="lead">' + L('Вставьте правильную форму артикля или притяжательного слова. Подсказка покажет падеж, а после ответа — почему именно так.', 'Fill in the right form of the article or possessive. The hint shows the case; after you answer you see why.') + '</p></header>';
-    h += '<div id="agGame">' + gameHTML(api) + '</div>';
-    api.page(h, 'mid');
-    api.setKeys(function (e) {
-      var k = e.key;
-      if (/^[1-6]$/.test(k)) { var bt = document.querySelectorAll('#agGame [data-ag="opt"]')[Number(k) - 1]; if (bt && !G.revealed) { e.preventDefault(); act('opt', bt); } }
-      else if (k === 'h' || k === 'H') { e.preventDefault(); act('hint'); }
-      else if (k === 'f' || k === 'F') { e.preventDefault(); act('forms'); }
-      else if (k === 'Enter' || k === 'n' || k === 'N') { e.preventDefault(); act(G.revealed || k !== 'Enter' ? 'next' : 'show'); }
-    });
-  }
-  function act(name, el) {
-    var s = sent(G.cur);
-    switch (name) {
-      case 'opt':
-        if (G.revealed) return;
-        G.chosen = el.dataset.v; G.revealed = true;
-        if (G.chosen === answerOf(s)) { G.ok++; G.streak++; G.best = Math.max(G.best, G.streak); } else { G.bad++; G.streak = 0; }
-        break;
-      case 'show': if (G.revealed) return; G.revealed = true; G.bad++; G.streak = 0; break;
-      case 'hint': if (G.revealed) return; if (!G.hc) G.hc = true; else G.hg = true; break;
-      case 'hint-case': if (G.revealed) return; G.hc = !G.hc; break;
-      case 'hint-gender': if (G.revealed) return; G.hg = !G.hg; break;
-      case 'forms': G.forms = !G.forms; break;
-      case 'next': nextSentence(); break;
-      case 'filter': if (G.filter !== el.dataset.v) { G.filter = el.dataset.v; G.cur = -1; G.recent = []; } nextSentence(); break;
-      default: return;
-    }
-    drawGame();
-  }
-  function jumpTo(id, smooth) {
-    var t = document.getElementById('ag-' + id);
-    if (t) t.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
-    return !!t;
-  }
-  document.addEventListener('click', function (e) {
-    var j = e.target.closest('[data-ag-jump]');
-    if (j && document.getElementById('ag-' + j.dataset.agJump)) {
-      e.preventDefault();
-      var scrim = document.getElementById('scrim');
-      if (scrim && scrim.classList.contains('open')) scrim.click();
-      jumpTo(j.dataset.agJump, true);
-      try { history.replaceState(history.state, '', '#/articles?s=' + j.dataset.agJump); } catch (err) {}
-      return;
-    }
-    var el = e.target.closest('[data-ag]');
-    if (!el || !document.getElementById('agGame')) return;
-    e.preventDefault();
-    act(el.dataset.ag, el);
+
+  GT.whichForm.define('de', {
+    route: 'articles',
+    label: 'Articles',
+    ready: function () { return !!GT.ARTIKEL; },
+    sections: SECTIONS,
+    reference: viewReference,
+    game: {
+      title: 'Which form?',
+      lead: function () { return L('Вставьте правильную форму артикля или притяжательного слова. Подсказка покажет падеж, а после ответа — почему именно так.', 'Fill in the right form of the article or possessive. The hint shows the case; after you answer you see why.'); }
+    },
+    practice: { label: 'Articles · Which form? ↗', help: 'Opens the Articles game: pick der / den / meinem … in real sentences, with hints and explanations.' },
+    modes: function () {
+      return [
+        { id: 'all', label: 'All cases', game: 'case' },
+        { id: 'n', label: 'Nominativ', game: 'case' },
+        { id: 'a', label: 'Akkusativ', game: 'case' },
+        { id: 'd', label: 'Dativ', game: 'case' },
+        { id: 'g', label: 'Genitiv', game: 'case' },
+        { id: 'end', label: 'Ending patterns', game: 'end', solo: true },
+        { id: 'x', label: 'Interference', game: 'case', solo: true }
+      ].concat(GT.know === 'ru' && trapItems().length ? [{ id: 'gt', label: 'Gender traps', game: 'gtrap', solo: true }] : []);
+    },
+    modeNote: function (m) {
+      if (m === 'x') return 'Interference: sentences where ' + GT.LANGS[GT.know].name + ' pushes you towards a wrong form. The note under each answer compares the two languages.';
+      if (m === 'gt') return 'Gender traps: German nouns whose gender is not the same as in Russian. Pick der / die / das.';
+      return m === 'end' ? 'Ending patterns: guess der / die / das from how the noun ends. These words are not part of All cases.'
+        : 'All cases covers the four cases. Guessing the gender from a noun’s ending is a separate game: Ending patterns.';
+    },
+    games: { 'case': caseGame, end: endGame, gtrap: trapGame },
+    check: check
   });
 
-  GT.artikel = {
-    sections: SECTIONS,
-    render: function (sub, api, params) {
-      lastApi = api;
-      if (!GT.ARTIKEL) return api.page('<div class="empty-state"><h3>German only</h3><p>This page belongs to the German pack.</p></div>', 'mid');
-      if (sub === 'play') return viewGame(api);
-      viewReference(api);
-      if (params && params.s) setTimeout(function () { jumpTo(params.s, false); }, 40);
-    },
-    // for console checks: GT.artikel.check() → sentences / ending words that are inconsistent
-    check: function () {
-      var bad = GT.ARTIKEL.endings.filter(function (e) { return !markOf(e[0], e[1]); }).map(function (e) { return 'ending: ' + e[0]; });
-      var seen = {};
-      GT.ARTIKEL.endings.forEach(function (e) { if (seen[e[0]]) bad.push('dup ending: ' + e[0]); seen[e[0]] = 1; });
-      seen = {};
-      GT.ARTIKEL.sentences.forEach(function (s) { if (seen[s[0]]) bad.push('dup sentence: ' + s[0]); seen[s[0]] = 1; });
-      return bad.concat(GT.ARTIKEL.sentences.map(function (s, i) {
-        var ok = FAM[s[1]] && form(s[1], s[4], s[3]) && (s[0].match(/___/g) || []).length === 1 && CASES.indexOf(s[4]) >= 0;
-        var r = s[5], want = { subj: 'n', pred: 'n', obj: 'a', esgibt: 'a', time: 'a', iobj: 'd', gen: 'g' }[r];
-        var m = /^p:([^+]+)(?:\+(wo|wohin))?$/.exec(r);
-        if (/^v:/.test(r)) want = 'd';
-        else if (m && m[2]) want = m[2] === 'wo' ? 'd' : 'a';
-        else if (m) want = ['a', 'd', 'g'].filter(function (c) { return PREP[c].indexOf(m[1]) >= 0; })[0] || '?';
-        if (want && want !== s[4]) ok = false;
-        return ok ? null : i + ': ' + s[0];
-      }).filter(Boolean));
-    },
-    form: form
-  };
+  GT.artikel = { sections: SECTIONS, check: check, form: form };
 })();

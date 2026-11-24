@@ -144,7 +144,8 @@ self.GT_PACKS = {
       'data/en/words_more.js', 'data/en/words_more_2.js', 'data/en/words_more_3.js',
       'data/en/it_more.js', 'data/en/it_more_2.js', 'data/en/it_topics_new.js',
       'data/en/expressions_more.js', 'data/en/expressions_more_2.js', 'data/en/expressions_more_3.js',
-      'data/en/literature.js', 'data/en/slang.js', 'data/en/expressions_cats.js'
+      'data/en/literature.js', 'data/en/slang.js', 'data/en/expressions_cats.js',
+      'data/en/grammar_articles.js'
     ]
   },
   // Russian: written natively for the shared engine (target `t`, glosses en/de, explanations { en, de }).
@@ -197,7 +198,8 @@ self.GT_PACKS = {
       'grammar_dative.js',
       'grammar_instrumental.js',
       'grammar_adjectives.js',
-      'grammar_reflexive.js'
+      'grammar_reflexive.js',
+      'grammar_endings.js'
     ]
   }
 };
@@ -205,5 +207,6 @@ self.GT_PACKS = {
 // Always-loaded cross-language sense links (small; carry display text so other packs stay lazy).
 self.GT_LINK_FILES = [
   'data/links/cross.js',
-  'data/links/families.js'
+  'data/links/families.js',
+  'data/links/forms_cross.js'
 ];

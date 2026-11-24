@@ -365,7 +365,11 @@
         return { label: gr.title, href: '#/professional/' + gr.key, proGroup: gr.key };
       });
     }
-    return g.items || [];
+    var items = g.items || [];
+    // The pack's "Which form?" section (German Articles …) is added from the shared engine, so the three NAV copies stay as they are.
+    var wf = g.id === 'language' && wfDef();
+    if (wf && !items.some(function (x) { return x.href === '#/' + wf.route; })) items = items.concat([{ label: wf.label, href: '#/' + wf.route, match: [wf.route] }]);
+    return items;
   }
   function isNavItemActive(item, tab, p) {
     var cur = p[0] === 'item' && GT.byId[p[1]] ? GT.byId[p[1]].topic : p[1];
@@ -547,14 +551,14 @@
     return h;
   }
 
-  /** Language section switch: Words · Roots · Grammar · Articles (German). */
+  /** Language section switch: Words · Roots · Grammar · the pack's "Which form?" section (German: Articles). */
   function languageSideLinks(tab, p) {
-    var item = p[0] === 'item' && GT.byId[p[1]];
+    var item = p[0] === 'item' && GT.byId[p[1]], wf = wfDef();
     return '<div class="side-label">Language</div>' +
       sideLink('#/words', '01', 'Words', '', { active: tab === 'words' && !p[1] && !item }) +
       sideLink('#/roots', '02', 'Roots', '', { active: tab === 'roots' && !p[1] }) +
       sideLink('#/grammar', '03', 'Grammar', '', { active: tab === 'grammar' && !p[1] }) +
-      (hasArticles() ? sideLink('#/articles', '04', 'Articles', '', { active: tab === 'articles' }) : '');
+      (wf ? sideLink('#/' + wf.route, '04', wf.label, '', { active: tab === wf.route }) : '');
   }
   function renderSidebar(tab, p) {
     var html = '', cur = p[1];
@@ -593,10 +597,17 @@
       html += sidePractice();
     } else if (tab === 'roots') {
       html += languageSideLinks(tab, p) + rootsSidebar(p);
-    } else if (tab === 'articles') {
-      html += languageSideLinks(tab, p) + '<div class="side-label">Articles</div>' +
-        (GT.artikel.sections || []).map(function (sc, i) {
-          return sideLink('#/articles?s=' + sc[0], pad2(i + 1), sc[1], '', {}).replace('<a ', '<a data-ag-jump="' + sc[0] + '" ');
+    } else if (tab === 'cases' && GT.whichForm) {
+      html += languageSideLinks(tab, p) + '<div class="side-label">Cases across languages</div>' +
+        GT.whichForm.casesSections().map(function (sc, i) {
+          return sideLink('#/cases?s=' + sc[0], pad2(i + 1), sc[1], '', {}).replace('<a ', '<a data-ag-jump="' + sc[0] + '" ');
+        }).join('');
+      html += sidePractice();
+    } else if (wfDef() && tab === wfDef().route) {
+      var wf = wfDef();
+      html += languageSideLinks(tab, p) + '<div class="side-label">' + esc(wf.label) + '</div>' +
+        (wf.sections || []).map(function (sc, i) {
+          return sideLink('#/' + wf.route + '?s=' + sc[0], pad2(i + 1), sc[1], '', {}).replace('<a ', '<a data-ag-jump="' + sc[0] + '" ');
         }).join('');
       html += sidePractice();
     } else if (tab === 'user' || tab === 'review' || tab === 'stats') {
@@ -1678,9 +1689,14 @@
     return (tb.caption ? '<h3 class="section-title">' + esc(lxText(tb, 'caption')) + '</h3>' : '') + '<div class="table-wrap"><table><thead><tr>' + (lxText(tb, 'head') || []).map(function (x) { return '<th>' + esc(x) + '</th>'; }).join('') + '</tr></thead><tbody>' +
       (lxText(tb, 'rows') || []).map(function (r) { return '<tr>' + r.map(function (c, i) { return '<td' + ((tb.deCols || []).indexOf(i) >= 0 ? ' class="de" lang="' + GT.learn + '"' : '') + '>' + rich(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
   }
-  function hasArticles() { return GT.learn === 'de' && !!GT.ARTIKEL && !!GT.artikel; }
-  function viewArticles(sub, params) {
-    GT.artikel.render(sub, { page: page, esc: esc, crumbs: crumbsHTML, setKeys: function (fn) { ui.keyHandler = fn; } }, params);
+  /** The learned pack's "Which form?" definition (js/whichform.js), or null. */
+  function wfDef() { return GT.whichForm ? GT.whichForm.active() : null; }
+  function isWfRoute(t) { return !!GT.whichForm && GT.whichForm.routes().indexOf(t) >= 0; }
+  function viewWhichForm(route, sub, params) {
+    // A link to another language's section (#/articles while learning Russian) opens this language's own section.
+    var wf = wfDef();
+    if (wf && wf.route !== route) { location.replace('#/' + wf.route + (sub === 'play' ? '/play' : '')); return; }
+    GT.whichForm.render(route, sub, { page: page, esc: esc, crumbs: crumbsHTML, setKeys: function (fn) { ui.keyHandler = fn; } }, params);
   }
   function viewGrammar(id) {
     var t = GT.topic('grammar', id);
@@ -2891,6 +2907,7 @@
     if (k === 'recognition') return 'Meaning in context (' + LS() + ' → ' + KS() + ')';
     if (k === 'translation') return 'Meaning → word (' + KS() + ' → ' + LS() + ')';
     if (k === 'gender' && GT.learn === 'de') return 'Article · der / die / das';
+    if (k === 'articles' && wfDef()) return wfDef().practice.label;
     return STUDIO_MODES[k] || k;
   }
   function studioModeAvailable(k) {
@@ -2898,7 +2915,7 @@
     if (k === 'dictation') return tts.ok;
     if (k === 'duel' || k === 'family' || k === 'odd' || k === 'derivative') return Object.keys(GT.roots).length > 0;
     if (k === 'grammar') return Object.keys(GT.grammar).length > 0;
-    if (k === 'articles') return hasArticles();
+    if (k === 'articles') return !!wfDef();
     return true;
   }
   function SH(k, vars) { return GT.hint('studio.h.' + k, vars); }
@@ -3414,7 +3431,7 @@
     var lim = $('#stLimit');
     if (lim) lim.disabled = k === 'blitz';
     if (helpEl) {
-      helpEl.textContent = k === 'articles' ? 'Opens the Articles game: pick der / den / meinem … in real sentences, with hints and explanations.' : GT.hint('studio.' + k) || '';
+      helpEl.textContent = k === 'articles' ? (wfDef() ? wfDef().practice.help : '') : GT.hint('studio.' + k) || '';
       helpEl.lang = GT.know;
       if (k === 'dictation' && !tts.ok) helpEl.textContent += ' — No speech voice in this browser.';
     }
@@ -3470,7 +3487,7 @@
   }
   function startStudioFromForm(form) {
     var f = form.elements;
-    if (f.kind.value === 'articles') { location.hash = '#/articles/play'; return; }
+    if (f.kind.value === 'articles') { location.hash = '#/' + (wfDef() ? wfDef().route : 'grammar') + '/play'; return; }
     var opts = {
       kind: f.kind.value,
       level: f.level.value,
@@ -3940,7 +3957,6 @@
         break;
       case 'vocabulary': case 'catalogue': viewBrowse('all', 'all'); break;
       case 'grammar': if (p[1]) viewGrammar(p[1]); else viewGrammarLanding(); break;
-      case 'articles': viewArticles(p[1], params); break;
       case 'roots':
         if (!p[1]) viewRootsLanding('families');
         else if (p[1] === 'prefixes') viewRootsLanding('prefixes');
@@ -3960,7 +3976,10 @@
       case 'review': if (p[2] === 'go') viewReviewSession(p[1] || 'all'); else viewReviewLanding(p[1] || 'all'); break;
       case 'stats': viewStats(); break;
       case 'settings': viewSettings(); break;
-      default: location.replace('#/words'); return;
+      default:
+        if (p[0] === 'cases' && GT.whichForm) { GT.whichForm.renderCases({ page: page, esc: esc, crumbs: crumbsHTML, setKeys: function (fn) { ui.keyHandler = fn; } }, params); break; }
+        if (isWfRoute(p[0])) { viewWhichForm(p[0], p[1], params); break; }
+        location.replace('#/words'); return;
     }
     fitRootMaps();
     stampPair();
@@ -4108,7 +4127,7 @@
   function nearestValidHash() {
     var p = curPath(), t = p[0];
     if (t === 'item') return GT.byId[p[1]] ? null : '#/words';
-    if (t === 'articles') return hasArticles() ? null : '#/grammar';
+    if (isWfRoute(t)) { var wf = wfDef(); return wf ? (wf.route === t ? null : '#/' + wf.route + (p[1] === 'play' ? '/play' : '')) : '#/grammar'; }
     if (t === 'professional' && p[1]) return proGroups().some(function (g) { return g.key === p[1]; }) ? null : '#/professional';
     if ((t === 'words' || t === 'it' || t === 'chunks' || t === 'expressions' || t === 'literature') && p[1]) {
       if ((t === 'chunks' || t === 'literature') && p[1] === 'all') return null;

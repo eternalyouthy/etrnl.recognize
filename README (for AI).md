@@ -51,8 +51,22 @@ js/validate.js        GT.validatePack: data checks, shown in Settings → Data
 js/fsrs.js            FSRS-5 scheduler (shared)
 js/store.js           progress per learned language + global settings, export/import
 js/app.js             all views (language-neutral), router, language switching
-js/artikel.js         German Articles section + "Which form?" game (#/articles[/play], Language menu item 4; Practice → Rules → Articles redirects there; sidebar = jump links to page sections via #/articles?s=<id>; game modes: 4 cases + separate "Gender by ending" (GT.ARTIKEL.endings), never mixed into All cases); data in data/grammar_artikel.js,
-                      answers computed from the declension tables; GT.artikel.check() lists inconsistent sentences
+js/whichform.js       shared "Which form?" engine: route #/<route> (reference page, sidebar = jump links via ?s=<id>) and
+                      #/<route>/play (game: mode tabs + separate "solo" modes, hints step by step, Show answer, All forms,
+                      explanations, desktop keys 1–9/H/F/Enter); Language menu item 4 + Practice → Rules redirect come from it.
+                      Each language registers GT.whichForm.define(lang, def) — contract at the top of the file.
+                      GT.whichForm.check() must return [] (answers are computed, never typed by hand).
+js/forms/de.js        German definition: Articles (#/articles); data in data/grammar_artikel.js (GT.ARTIKEL); modes = 4 cases +
+                      separate "Ending patterns" (gender by ending, never mixed into All cases). GT.artikel.check() = alias.
+js/forms/en.js        English definition: Articles a / an / the / — (#/articles); data in data/en/grammar_articles.js
+                      (GT.EN_ARTICLES); modes = All + 4 topic groups + separate "a or an" (by sound); a/an computed from SOUNDS.
+js/forms/ru.js        Russian definition: Endings (#/endings); data in data/ru/grammar_endings.js (GT.RU_ENDINGS); modes = 6 cases +
+                      separate "Ending patterns" (он / она / оно by ending). Forms of мой/наш/этот, adjectives and singular nouns are
+                      computed (classes, spelling rules, stress type a/b); GT.ruForms.noun('стол','p') for console checks.
+data/links/forms_cross.js  cross-language layer for the "Which form?" sections (always loaded): contrastive notes per
+                      learned × known language (shown under explanations; non-"=" notes feed each pack's Interference mode),
+                      German ↔ Russian gender traps (Gender traps mode in de when I know = ru, in ru when I know = de)
+                      and the #/cases page "Cases across your languages" (linked from every pack's reference page).
 js/packs/en.js        adapter: the English catalogue (english/) → shared engine
 data/manifest.js      GT_DATA_FILES (German, as before) + GT_PACKS (every language, in load order)
 data/*.js             German pack (unchanged files)
