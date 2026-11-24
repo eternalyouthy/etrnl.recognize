@@ -596,8 +596,15 @@
     /* Phones: the article sits above the panel, collapsed to its first paragraph (Read More / Show Less),
      * Desktop ignores all of this via CSS. */
     var expanded = !!ui.bysExpanded;
-    var article = '<article class="prose about-article' + (expanded ? '' : ' bys-collapsed') + '" id="bys" lang="' + lang + '"><header class="page-head"><span class="eyebrow" lang="en">Before You Start<span class="bys-must"> · Must Read</span></span>' +
-      '<nav class="seg-tabs about-languages" lang="en" aria-label="Article language">' + picker + '</nav></header>' +
+    var mustRead = { ru: 'Важно прочитать', en: 'Before you start', de: 'Unbedingt lesen' };
+    var stickerText = { ru: 'Не пролистывай!', en: 'Don’t skip this!', de: 'Nicht überspringen!' };
+    var labels = languages.map(function (code) {
+      return '<span class="eyebrow bys-label' + (code === lang ? ' active' : '') + '" lang="' + code + '">' + esc(mustRead[code] || 'Before you start') + '</span>';
+    }).join('');
+    var article = '<article class="prose about-article' + (expanded ? '' : ' bys-collapsed') + '" id="bys" lang="' + lang + '"><header class="page-head bys-head">' +
+      '<div class="bys-labels" aria-hidden="true">' + labels + '</div>' +
+      '<nav class="seg-tabs about-languages" lang="en" aria-label="Article language">' + picker + '</nav>' +
+      '<span class="bys-sticker" aria-hidden="true">' + esc(stickerText[lang] || stickerText.en) + '</span></header>' +
       '<h1 class="about-title">' + esc(about.title) + '</h1><div class="about-body" id="bysBody">' + about.body + '</div>' +
       '<div class="bys-controls" lang="en"><button class="bys-btn bys-toggle" type="button" data-act="bys-toggle" aria-controls="bysBody" aria-expanded="' + expanded + '">' +
       (expanded ? 'Show Less ↑' : 'Read More ↓') + '</button></div></article>';
