@@ -1361,13 +1361,18 @@
     page(h, 'mid');
   }
   /* Topic page word list: same tile grid as the topic overview (number · state, headword, gloss, progress line). */
+  /** Long single words (German compounds) shrink to fit the tile instead of breaking mid-word; see .hw-fit in app.css. */
+  function fitAttr(it) {
+    var n = plain(it.t || '').split(/[\s\/–—-]+/).reduce(function (m, w) { return Math.max(m, w.length); }, 0);
+    return n >= 14 ? ' class="hw-fit" style="--n:' + n + '"' : '';
+  }
   function tilesHTML(items, gridId) {
     var W = { '': 0, learning: 35, review: 70, known: 100 };
     return '<div class="grid word-grid" id="' + (gridId || 'rows') + '">' + items.map(function (it, i) {
       var hay = norm([plain(it.t), meaningOf(it), it.plural, it.ru, it.en, it.de, litSearchTerms(it)].join(' '));
       var st = stateClass(it.id);
       return '<a class="tile word-tile' + (st === 'known' ? ' is-known' : '') + '" href="#/item/' + encodeURIComponent(it.id) + '" data-hay="' + esc(hay) + '"><div class="tile-top"><span>' + pad2(i + 1) + '</span><span class="ct">' + (st || 'new') + '</span></div>' +
-        '<h4 lang="' + GT.learn + '">' + headword(it) + '</h4>' + litBylineHTML(it, 'tile-source') + '<p lang="' + GT.glLang(it) + '">' + esc(plain(meaningOf(it))) + '</p><div class="track"><i style="width:' + (W[st] || 0) + '%"></i></div></a>';
+        '<h4 lang="' + GT.learn + '"' + fitAttr(it) + '>' + headword(it) + '</h4>' + litBylineHTML(it, 'tile-source') + '<p lang="' + GT.glLang(it) + '">' + esc(plain(meaningOf(it))) + '</p><div class="track"><i style="width:' + (W[st] || 0) + '%"></i></div></a>';
     }).join('') + '</div>';
   }
   function searchBox() {

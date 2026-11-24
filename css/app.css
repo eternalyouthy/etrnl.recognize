@@ -1097,7 +1097,13 @@ body.pack-loading .main { opacity: 0.55; transition: opacity 0.15s; }
 .topic-stats { margin: 0; font-size: 12px; letter-spacing: 0.08em; }
 
 .word-grid { margin-top: 18px; }
-.word-tile h4 { font-size: 19px; overflow-wrap: anywhere; }
+/* Long compounds (die Allergenkennzeichnung): hyphenate at syllables via lang="…" on the h4, hard break only as a last resort */
+.word-tile { container-type: inline-size; }
+.word-tile h4 { font-size: 19px; -webkit-hyphens: auto; hyphens: auto; overflow-wrap: break-word; }
+/* --n = letters in the longest word (set in tilesHTML); --hw-em = average letter width of the display font
+   (≈0.51em for Space Grotesk / Manrope / Inter Tight / Barlow, 0.67em for Unbounded in Holo), plus a little slack */
+.word-tile h4.hw-fit { font-size: clamp(13px, calc(100cqi / (var(--n) * var(--hw-em, 0.54))), 19px); }
+[data-theme="holo"] .word-tile h4.hw-fit { --hw-em: 0.75; }
 .word-tile.is-known h4, .word-tile.is-known p { color: var(--dim); }
 
 /* Structured "Feeling lucky" buttons (inline on desktop, 2-line split tiles on phones) */
