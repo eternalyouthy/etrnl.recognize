@@ -131,9 +131,10 @@ GT.START_NOTES = {
     ],
     newsTitle: 'Последнее обновление',
     news: [
-      { h: 'Сленг', p: 'По 40 карточек уличного сленга на каждый язык: три примера, происхождение слова и отдельная категория мата (18+).' },
-      { h: 'Литература', p: 'В Expressions появились фразы из классики с разбором.' },
-      { h: 'Темы', p: 'Четыре новые темы: Holo Glass, Nordlicht, Autobahn и Swiss.' }
+      { h: 'Артикли и формы', p: 'Новый раздел в Language: справочник и игра «Which form?». Немецкие артикли по падежам, английские a / an / the, русские падежные окончания. Каждое задание сравнивается с языком, который ты знаешь. Отдельная тренировка Ending patterns учит угадывать род по окончанию, а в английском выбирать a или an по звуку.' },
+      { h: 'Professional', p: 'Теперь семь направлений. Начни с For Everyone, дальше IT, бюрократия, право, сервис, финансы и HR, медицина и производство. Добавлены сотни новых карточек вплоть до C2. Русские темы ещё в пути.' },
+      { h: 'Grammar и Roots', p: 'Новые уроки и упражнения во всех трёх языках, семьи слов стали больше. Галочка Hide basics прячет элементарные слова.' },
+      { h: 'Исправления', p: 'Поправлена вёрстка на телефоне и в темах: кнопки и галочки в Holo Glass, длинные немецкие слова в карточках больше не рвутся. Исправлены ударения, переводы и импорт прогресса.' }
     ]
   },
   en: {
@@ -144,9 +145,10 @@ GT.START_NOTES = {
     ],
     newsTitle: 'Latest update',
     news: [
-      { h: 'Slang', p: '40 street-slang cards per language, with three examples, word origins and a separate swearing category (18+).' },
-      { h: 'Literature', p: 'Expressions now includes lines from the classics, with breakdowns.' },
-      { h: 'Themes', p: 'Four new themes: Holo Glass, Nordlicht, Autobahn and Swiss.' }
+      { h: 'Articles & forms', p: 'A new Language section with a reference and the “Which form?” game: German articles by case, English a / an / the, Russian case endings. Every task is compared with the language you know. A separate Ending patterns drill teaches you to guess gender from the ending, or to pick a or an by sound in English.' },
+      { h: 'Professional', p: 'Now seven tracks. Start with For Everyone, then IT, bureaucracy, law, service, finance & HR, healthcare and operations. Hundreds of new cards, up to C2. Russian topics are on the way.' },
+      { h: 'Grammar & Roots', p: 'New lessons and drills in all three languages, and bigger word families. The Hide basics checkbox hides elementary words.' },
+      { h: 'Fixes', p: 'Phone and theme layout fixes: buttons and checkboxes in Holo Glass, and long German words no longer break inside word cards. Stress marks, translations and progress import are fixed too.' }
     ]
   },
   de: {
@@ -157,9 +159,10 @@ GT.START_NOTES = {
     ],
     newsTitle: 'Letztes Update',
     news: [
-      { h: 'Slang', p: 'Je 40 Karten Straßenslang pro Sprache, mit drei Beispielen, Wortherkunft und einer eigenen Kategorie für Schimpfwörter (18+).' },
-      { h: 'Literatur', p: 'Unter Expressions gibt es jetzt Zeilen aus der Klassik mit Erklärungen.' },
-      { h: 'Designs', p: 'Vier neue Designs: Holo Glass, Nordlicht, Autobahn und Swiss.' }
+      { h: 'Artikel & Formen', p: 'Neuer Bereich unter Language mit Übersicht und dem Spiel „Which form?“: deutsche Artikel nach Fall, englisch a / an / the, russische Kasusendungen. Jede Aufgabe wird mit der Sprache verglichen, die Sie können. Das Training Ending patterns übt das Genus nach der Endung, im Englischen a oder an nach dem Laut.' },
+      { h: 'Professional', p: 'Jetzt sieben Bereiche. Beginnen Sie mit For Everyone, danach IT, Behörden, Recht, Service, Finanzen & HR, Medizin und Technik & Logistik. Hunderte neue Karten bis C2. Die russischen Themen folgen.' },
+      { h: 'Grammar & Roots', p: 'Neue Lektionen und Übungen in allen drei Sprachen, größere Wortfamilien. Das Kästchen Hide basics blendet Grundwörter aus.' },
+      { h: 'Fehlerbehebungen', p: 'Layout auf dem Handy und in den Designs verbessert: Buttons und Kästchen in Holo Glass, lange deutsche Wörter brechen auf den Wortkarten nicht mehr mitten im Wort um. Auch Betonungen, Übersetzungen und der Import des Fortschritts sind korrigiert.' }
     ]
   }
 };
