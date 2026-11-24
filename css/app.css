@@ -811,7 +811,7 @@ input[type="number"] { width: 90px; }
   position: absolute; right: 10px; top: 28px; z-index: 1; display: none;
   padding: 9px 16px; border: 2px solid #ff3b3b; border-radius: 6px; background: #e0201e; color: #fff;
   font: 800 15px/1.1 var(--font-body); letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
-  transform: rotate(45deg); transform-origin: center;
+  transform: rotate(15deg); transform-origin: center;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 0 0 2px rgba(255, 255, 255, 0.25);
   pointer-events: none; user-select: none;
 }
