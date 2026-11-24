@@ -172,13 +172,7 @@
           { label: 'Everyday Phrases', href: '#/expressions/everyday', tab: 'expressions', topic: 'everyday' },
           { label: 'Literary Phrases', href: '#/literature', match: ['literature'] }
         ] },
-      { id: 'practice', label: 'Practice', short: 'Practice', icon: 'spark', href: '#/practice' },
-      { id: 'user', label: 'User', short: 'User', icon: 'user', href: '#/user',
-        items: [
-          { label: 'Sync & Backup', href: '#/user', match: ['user'] },
-          { label: 'Review', href: '#/review', match: ['review'] },
-          { label: 'Stats', href: '#/stats', match: ['stats'] }
-        ] }
+      { id: 'practice', label: 'Practice', short: 'Practice', icon: 'spark', href: '#/practice' }
     ],
     PRO_SUBS: [
       { id: 'workcomm', tab: 'it', topic: 'workcomm', name: 'Work & Office', desc: 'Meetings, emails, deadlines, tasks and coordination.' },

@@ -405,7 +405,9 @@
     if (active === 'user') userBtn.setAttribute('aria-current', 'page'); else userBtn.removeAttribute('aria-current');
     var brand = $('.brand');
     if (group === 'start') brand.setAttribute('aria-current', 'page'); else brand.removeAttribute('aria-current');
-    $('#tabs').innerHTML = GT.NAV.map(function (g, i) {
+    // User lives in the top-bar icon only; never draw it as a tab, whatever a pack config says.
+    var NAV = GT.NAV.filter(function (g) { return g.id !== 'user'; });
+    $('#tabs').innerHTML = NAV.map(function (g, i) {
       var actCls = g.id === group ? ' active' : '';
       var items = navItemsFor(g);
       if (items.length) {
@@ -417,7 +419,7 @@
       }
       return '<a class="tab' + actCls + '" href="' + g.href + '"><span class="num">' + pad2(i + 1) + '</span>' + esc(g.label) + '</a>';
     }).join('');
-    $('#bottomnav').innerHTML = GT.NAV.map(function (g) {
+    $('#bottomnav').innerHTML = NAV.map(function (g) {
       return '<a class="bnav' + (g.id === group ? ' active' : '') + '" href="' + g.href + '">' + icon(g.icon) + '<span>' + esc(g.short) + '</span></a>';
     }).join('');
     renderBrand();
