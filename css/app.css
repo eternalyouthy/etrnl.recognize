@@ -932,7 +932,6 @@ body.pack-loading .main { opacity: 0.55; transition: opacity 0.15s; }
 .start-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); grid-template-areas: 'article panel'; gap: 56px; align-items: start; }
 .start-grid > .about-article { grid-area: article; }
 .start-panel { grid-area: panel; display: grid; gap: 16px; }
-@media (min-width: 1001px) and (min-height: 940px) { .start-panel { position: sticky; top: calc(var(--topbar-h, 64px) + 24px); } }
 .start-box { border: 1px solid var(--line-2); padding: 20px 22px; background: color-mix(in srgb, var(--bg) 80%, transparent); }
 .start-box > .label { display: block; margin-bottom: 4px; }
 .start-langs { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 10px; }
