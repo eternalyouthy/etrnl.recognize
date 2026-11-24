@@ -24,7 +24,7 @@
  *     options(task): [string], answer(task): string,
  *     kind(task): text,             // small label at the top of the card
  *     question(task, ctx): html,    // ctx = { revealed, hint, ans, esc, blank }
- *     hintLabels: [first, more],    // button labels for hint level 0 → 1 and 1 → 2
+ *     hintLabels: [first, ...],     // one label per available hint level
  *     hint(task, level, esc): html, // shown after "Hint:" while not revealed
  *     verdict(task, ans, esc): html,// text after "✓ Correct — "
  *     explain(task, chosen): html,  // after a pick or Show answer
@@ -52,7 +52,10 @@
   }
   /** Pick the text for the "I know" language: tx({ ru, en, de }) — falls back to English. */
   function tx(o) { if (o == null || typeof o === 'string') return o || ''; return o[GT.know] != null ? o[GT.know] : (o.en != null ? o.en : o.ru || ''); }
-  function sectionTitle(t, id) { return '<h3 class="section-title"' + (id ? ' id="ag-' + id + '"' : '') + '>' + t + '</h3>'; }
+  function sectionTitle(t, id) {
+    var safeId = id ? String(id).replace(/[^a-zA-Z0-9_-]/g, '') : '';
+    return '<h3 class="section-title"' + (safeId ? ' id="ag-' + safeId + '"' : '') + '>' + t + '</h3>';
+  }
 
   function stressMarks(s) { return String(s).replace(/\+([аеиоуыэюяАЕИОУЫЭЮЯ])/g, '$1́'); }
 
@@ -77,6 +80,7 @@
 
   /* ---------------- game ---------------- */
   function modesOf(d) { return typeof d.modes === 'function' ? d.modes() : d.modes; }
+  function comparisonMode(m) { return m.id === 'x' || m.id === 'gt'; }
   function modeOf(d, id) { return modesOf(d).filter(function (m) { return m.id === id; })[0] || modesOf(d)[0]; }
   function gameOf(d, G) { return d.games[modeOf(d, G.mode).game]; }
   function poolOf(d, G) {
@@ -99,10 +103,13 @@
 
   function gameHTML(d, G, api) {
     var esc = api.esc, lang = GT.learn, m = modeOf(d, G.mode), gm = d.games[m.game];
-    function tab(mo) { return '<button class="seg-tab' + (G.mode === mo.id ? ' active' : '') + '" type="button" data-ag="mode" data-v="' + mo.id + '">' + esc(mo.label) + '</button>'; }
-    var main = modesOf(d).filter(function (x) { return !x.solo; }), solo = modesOf(d).filter(function (x) { return x.solo; });
+    function tab(mo) { return '<button class="seg-tab' + (G.mode === mo.id ? ' active' : '') + '" type="button" data-ag="mode" data-v="' + esc(mo.id) + '">' + esc(mo.label) + '</button>'; }
+    var modes = modesOf(d), main = modes.filter(function (x) { return !x.solo; });
+    var patterns = modes.find(function (x) { return x.solo && !comparisonMode(x); });
+    var patternButton = patterns ? '<button type="button" class="seg-tab ag-patterns' + (m.id === patterns.id ? ' active' : '') +
+      '" data-ag="mode" data-v="' + esc(patterns.id) + '" aria-pressed="' + (m.id === patterns.id) + '">' + esc(patterns.label) + '</button>' : '';
     var h = '<div class="ag-modes"><div class="seg-tabs ag-filter" role="tablist">' + main.map(tab).join('') + '</div>' +
-      (solo.length ? '<div class="seg-tabs ag-solo">' + solo.map(tab).join('') + '</div>' : '') + '</div>';
+      patternButton + '</div>';
     var note = d.modeNote ? d.modeNote(m.id) : '';
     if (note) h += '<p class="mono-muted ag-mode-note">' + esc(note) + '</p>';
     if (G.cur < 0) return h + '<div class="empty-state"><p>No tasks in this mode yet.</p></div>';
@@ -124,8 +131,10 @@
     h += '</div><div class="actions-row ag-actions">';
     var hl = gm.hintLabels || ['Hint', 'More hint'];
     if (!G.revealed) {
-      h += '<button class="btn small" data-ag="hint"' + (G.hint >= hl.length ? ' disabled' : '') + '>' + esc(hl[Math.min(G.hint, hl.length - 1)]) + '</button>' +
-        '<button class="btn small" data-ag="show">Show answer</button>';
+      if (G.hint < hl.length || hl.length > 1) {
+        h += '<button class="btn small" data-ag="hint"' + (G.hint >= hl.length ? ' disabled' : '') + '>' + esc(hl[Math.min(G.hint, hl.length - 1)]) + '</button>';
+      }
+      h += '<button class="btn small" data-ag="show">Show answer</button>';
     }
     if (gm.forms) h += '<button class="btn small' + (G.forms ? ' active' : '') + '" data-ag="forms" aria-pressed="' + G.forms + '">' + esc(G.forms ? gm.forms.hide : gm.forms.show) + '</button>';
     h += '<button class="btn small primary" data-ag="next">' + esc(gm.next || 'Next →') + '</button></div>';
@@ -137,10 +146,12 @@
     var el = document.getElementById('agGame'), d = active();
     if (el && lastApi && d) el.innerHTML = gameHTML(d, state(GT.learn), lastApi);
   }
-  function viewGame(d, api) {
+  function viewGame(d, api, requestedMode) {
     var G = state(GT.learn);
-    if (!G.mode || !modesOf(d).some(function (m) { return m.id === G.mode; })) { G.mode = modesOf(d)[0].id; G.cur = -1; G.recent = []; }
-    if (G.cur < 0 || G.cur >= gameOf(d, G).items().length) nextTask(d, G);
+    var mode = modeOf(d, requestedMode || G.mode);
+    if (mode.id !== G.mode) { G.mode = mode.id; G.cur = -1; G.recent = []; }
+    var gm = gameOf(d, G), items = gm.items();
+    if (G.cur < 0 || G.cur >= items.length || (gm.match && !gm.match(items[G.cur], G.mode))) nextTask(d, G);
     var h = api.crumbs('Language · <a href="#/' + d.route + '">' + api.esc(d.label) + '</a> · Game');
     h += '<header class="page-head"><h1>' + api.esc(d.game.title) + '</h1><p class="lead">' + d.game.lead() + '</p></header>';
     h += '<div id="agGame">' + gameHTML(d, G, api) + '</div>';
@@ -167,7 +178,13 @@
       case 'hint': if (G.revealed || G.hint >= (gm.hintLabels || [0, 0]).length) return; G.hint++; break;
       case 'forms': if (!gm.forms) return; G.forms = !G.forms; break;
       case 'next': nextTask(d, G); break;
-      case 'mode': if (G.mode !== el.dataset.v) { G.mode = el.dataset.v; G.cur = -1; G.recent = []; } nextTask(d, G); break;
+      case 'mode': {
+        var nextMode = modeOf(d, el.dataset.v);
+        if (G.mode !== nextMode.id) { G.mode = nextMode.id; G.cur = -1; G.recent = []; }
+        if (location.hash.indexOf('?mode=') >= 0) history.replaceState(history.state, '', '#/' + d.route + '/play');
+        nextTask(d, G);
+        break;
+      }
       default: return;
     }
     drawGame();
@@ -186,7 +203,7 @@
       var scrim = document.getElementById('scrim');
       if (scrim && scrim.classList.contains('open')) scrim.click();
       jumpTo(j.dataset.agJump, true);
-      try { if (lastRoute) history.replaceState(history.state, '', '#/' + lastRoute + '?s=' + j.dataset.agJump); } catch (err) {}
+      try { if (lastRoute) history.replaceState(history.state, '', '#/' + lastRoute + '?s=' + encodeURIComponent(j.dataset.agJump)); } catch (err) {}
       return;
     }
     var el = e.target.closest('[data-ag]');
@@ -222,8 +239,12 @@
       var d = active();
       if (!d || d.route !== route) return api.page('<div class="empty-state"><h3>Not in this language</h3><p>This page belongs to another language pack.</p></div>', 'mid');
       lastRoute = d.route;
-      if (sub === 'play') return viewGame(d, api);
-      api.page(api.crumbs('Language · ' + api.esc(d.label)) + d.reference(api), 'mid');
+      if (sub === 'play') return viewGame(d, api, params && params.mode);
+      var comparisons = modesOf(d).filter(comparisonMode);
+      var links = comparisons.map(function (m) {
+        return '<a class="btn" href="#/' + d.route + '/play?mode=' + encodeURIComponent(m.id) + '">Play · ' + api.esc(m.label) + '</a>';
+      }).join('');
+      api.page(api.crumbs('Language · ' + api.esc(d.label)) + d.reference(api) + (links ? '<div class="actions-row">' + links + '</div>' : ''), 'mid');
       if (params && params.s) setTimeout(function () { jumpTo(params.s, false); }, 40);
     },
     /** Consistency check for every language whose data is loaded (or one language). Must return []. */

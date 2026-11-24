@@ -42,6 +42,8 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
+  function safeDecode(s) { try { return decodeURIComponent(s); } catch (e) { return String(s || ''); } }
+  function safeHref(u) { return typeof u === 'string' && /^https?:\/\//i.test(u.trim()) ? u.trim() : ''; }
   // [[target]] -> highlighted, [slot] -> slot pill
   function rich(s) {
     return esc(s).replace(/\[\[(.+?)\]\]/g, '<mark class="hl">$1</mark>').replace(/\[([^\[\]]+?)\]/g, '<span class="slot">$1</span>');
@@ -228,11 +230,38 @@
     return GT.inTab(it, 'chunks') && (func === 'all' || GT.inTopic(it, 'chunks', func)) &&
       (!ui.chunkTag || (it.topics || []).indexOf(ui.chunkTag) >= 0);
   }
-  function itemsFor(tab, topic) {
+  function isBasicItem(it) {
+    if (!it) return false;
+    if (it.basic) return true;
+    var lv = String(it.level || '').toUpperCase();
+    return lv === 'A1' || lv === 'A2';
+  }
+  function isBasicsTab(tab) { return tab === 'words' || tab === 'it'; }
+  function rawItemsFor(tab, topic) {
     if (tab === 'chunks') return GT.items.filter(function (it) { return chunkMatches(it, topic); });
     if (tab === 'literature' && topic === 'all') return GT.items.filter(function (it) { return GT.inTab(it, 'literature'); });
     if (tab === 'all') return GT.items.slice();
     return (GT.members[tab + '.' + topic] || []).slice();
+  }
+  function itemsFor(tab, topic) {
+    var list = rawItemsFor(tab, topic);
+    if (!S.settings.hideBasics) return list;
+    if (isBasicsTab(tab)) return list.filter(function (it) { return !isBasicItem(it); });
+    if (tab === 'all') return list.filter(function (it) { return !(isBasicItem(it) && (GT.inTab(it, 'words') || GT.inTab(it, 'it'))); });
+    return list;
+  }
+  function countBasicsIn(tab, items) {
+    if (isBasicsTab(tab)) return items.filter(isBasicItem).length;
+    if (tab === 'all') return items.filter(function (it) { return isBasicItem(it) && (GT.inTab(it, 'words') || GT.inTab(it, 'it')); }).length;
+    return 0;
+  }
+  function basicsToggleHTML(basicCount, extraStyle) {
+    if (!basicCount) return '';
+    var on = !!S.settings.hideBasics;
+    var countTxt = on ? basicCount + ' hidden' : String(basicCount);
+    return '<label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--muted);user-select:none;white-space:nowrap' + (extraStyle ? ';' + extraStyle : '') + '">' +
+      '<input type="checkbox" data-act="toggle-basics"' + (on ? ' checked' : '') + ' style="width:15px;height:15px;margin:0;accent-color:var(--ice);cursor:pointer">' +
+      '<span>Hide basics <span class="mono-muted">(' + countTxt + ')</span></span></label>';
   }
   function matchFilter(it, f) {
     if (!f || f === 'all') return true;
@@ -335,6 +364,25 @@
    * Professional → Professional / B2 / B1 Workplace; Words → B1 topics / B2 themes / B2 everyday topics.
    * Groups fold open, the one you are in opens by itself. */
   function proGroups() {
+    var defs = GT.cfg('PRO_GROUPS');
+    if (defs && defs.length) {
+      var byKey = {}, out = [];
+      defs.forEach(function (g) {
+        var entry = { key: g.key, title: g.title, desc: g.desc || '', badge: g.badge || '', subs: [] };
+        byKey[g.key] = entry;
+        out.push(entry);
+      });
+      (GT.PRO_SUBS || []).forEach(function (s) {
+        var target = byKey[s.group] || out[0];
+        if (target) target.subs.push(s);
+      });
+      var px = GT.cfg('proExtra');
+      if (px && GT.topic(px.tab, px.topic)) {
+        var pxGroup = byKey[px.group || 'for-everyone'] || out[0];
+        if (pxGroup) pxGroup.subs.push({ tab: px.tab, topic: px.topic, name: px.name, desc: px.desc || '' });
+      }
+      return out.filter(function (g) { return g.subs.length; });
+    }
     var out = [], main = [], b2 = [];
     (GT.PRO_SUBS || []).forEach(function (s) {
       var st = GT.topic(s.tab, s.topic);
@@ -359,11 +407,22 @@
     if (p[0] === 'item') { var it = GT.byId[p[1]]; return !!it && it.tab === s.tab && it.topic === s.topic; }
     return tab === s.tab && cur === s.topic;
   }
+  var PRO_DROP_LABELS = { 'for-everyone': 'For Everyone', it: 'IT', bureaucracy: 'Bureaucracy', legal: 'Legal' };
   function navItemsFor(g) {
     if (g.id === 'professional') {
-      return proGroups().map(function (gr) {
-        return { label: gr.title, href: '#/professional/' + gr.key, proGroup: gr.key };
+      var groups = proGroups();
+      var proItems = groups.slice(0, 4).map(function (gr) {
+        return { label: PRO_DROP_LABELS[gr.key] || gr.title, href: '#/professional/' + gr.key, proGroup: gr.key };
       });
+      if (groups.length > 4) {
+        proItems.push({
+          label: 'Other fields inside →',
+          href: '#/professional',
+          mini: true,
+          proMore: groups.slice(4).map(function (gr) { return gr.key; })
+        });
+      }
+      return proItems;
     }
     var items = g.items || [];
     // The pack's "Which form?" section (German Articles …) is added from the shared engine, so the three NAV copies stay as they are.
@@ -373,10 +432,11 @@
   }
   function isNavItemActive(item, tab, p) {
     var cur = p[0] === 'item' && GT.byId[p[1]] ? GT.byId[p[1]].topic : p[1];
-    if (item.proGroup) {
-      if (tab === 'professional' && p[1] === item.proGroup) return true;
+    if (item.proGroup || item.proMore) {
+      var keys = item.proMore || [item.proGroup];
+      if (tab === 'professional' && keys.indexOf(p[1]) >= 0) return true;
       return proGroups().some(function (gr) {
-        return gr.key === item.proGroup && gr.subs.some(function (s) { return isSubHere(s, tab, cur, p); });
+        return keys.indexOf(gr.key) >= 0 && gr.subs.some(function (s) { return isSubHere(s, tab, cur, p); });
       });
     }
     if (item.tab && item.topic) {
@@ -403,7 +463,7 @@
     document.querySelectorAll('.tab-drop.open').forEach(function (d) { d.classList.remove('open'); });
   }
   function renderNav(active, p) {
-    p = p || location.hash.replace(/^#\/?/, '').split('?')[0].split('/').filter(Boolean).map(decodeURIComponent);
+    p = p || location.hash.replace(/^#\/?/, '').split('?')[0].split('/').filter(Boolean).map(safeDecode);
     var group = navGroupFor(active, p);
     userBtn.classList.toggle('active', group === 'user');
     if (active === 'user') userBtn.setAttribute('aria-current', 'page'); else userBtn.removeAttribute('aria-current');
@@ -418,7 +478,8 @@
         return '<div class="tab-drop">' +
           '<a class="tab' + actCls + '" href="' + g.href + '" data-nav-drop="' + g.id + '" aria-haspopup="true"><span class="num">' + pad2(i + 1) + '</span>' + esc(g.label) + '<span class="chev">' + icon('chev') + '</span></a>' +
           '<div class="tab-menu" role="menu">' + items.map(function (sub) {
-            return '<a class="tab-menu-item' + (isNavItemActive(sub, active, p) ? ' active' : '') + '" href="' + sub.href + '" role="menuitem">' + esc(sub.label) + '</a>';
+            var st = sub.mini ? ' style="border-top:1px solid var(--line-2);margin-top:4px;padding-top:9px;font-size:10.5px;letter-spacing:0.08em;text-transform:none;opacity:0.75"' : '';
+            return '<a class="tab-menu-item' + (isNavItemActive(sub, active, p) ? ' active' : '') + '" href="' + sub.href + '" role="menuitem"' + st + '>' + esc(sub.label) + '</a>';
           }).join('') + '</div></div>';
       }
       return '<a class="tab' + actCls + '" href="' + g.href + '"><span class="num">' + pad2(i + 1) + '</span>' + esc(g.label) + '</a>';
@@ -567,7 +628,7 @@
     var inExp = tab === 'expressions' || tab === 'chunks' || tab === 'literature';
     if (inPro) {
       html += '<div class="side-label">Professional</div>' +
-        sideLink('#/professional', '—', 'Key words for your profession', '', { active: tab === 'professional' && !p[1] }) +
+        sideLink('#/professional', '—', 'All professions · Start here', '', { active: tab === 'professional' && !p[1] }) +
         sideGroupsFor(proGroups(), tab, cur, p);
       html += sidePractice();
     } else if (inExp) {
@@ -654,7 +715,7 @@
       { href: '#/words', name: 'Words', ct: nWords ? nWords + ' cards' : '', desc: 'Everyday vocabulary by topic, from core B1 lists to B2 discussion themes.' },
       { href: '#/roots', name: 'Roots', ct: nRoots ? nRoots + ' families' : '', desc: 'Learn one root, prefix or suffix and recognise a whole family of words.' },
       { href: '#/grammar', name: 'Grammar', ct: nGr ? nGr + ' lessons' : '', desc: 'Short lessons with tables, typical mistakes and drills you can send to Review.' },
-      { href: '#/professional', name: 'Professional', ct: nPro ? nPro + ' cards' : '', desc: 'Language for work: office, IT, infrastructure, security and B2 career themes.' },
+      { href: '#/professional', name: 'Professional', ct: nPro ? nPro + ' cards' : '', desc: 'Start with universal workplace skills, then specialise: IT, bureaucracy, law, hospitality, finance, healthcare and operations (up to C2).' },
       { href: '#/expressions', name: 'Expressions', ct: nExp ? nExp + ' phrases' : '', desc: 'Chunks, idioms, everyday phrases and classic literary lines with breakdowns.' },
       { href: '#/practice', name: 'Practice', ct: '', desc: 'Drills on recognition, recall and word building, plus a role-play prompt for an AI chat.' },
       { href: '#/review', name: 'Review', ct: due ? due + ' due' : '', due: !!due, desc: 'Spaced repetition: come back to the cards you added when they are due.' }
@@ -1033,7 +1094,10 @@
     var c = it.cefrInfo;
     return '<details class="box"><summary class="label">Level & sources</summary><div style="margin-top:12px">' +
       '<p class="note muted">' + esc(c.summary) + '</p>' +
-      (c.sources || []).map(function (src) { return '<p class="mono-muted" style="font-size:12px;margin-top:8px">' + (src.url ? '<a href="' + esc(src.url) + '" target="_blank" rel="noopener">' + esc(src.title || src.url) + '</a>' : esc(src.title)) + '</p>'; }).join('') +
+      (c.sources || []).map(function (src) {
+        var href = safeHref(src.url);
+        return '<p class="mono-muted" style="font-size:12px;margin-top:8px">' + (href ? '<a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' + esc(src.title || href) + '</a>' : esc(src.title || src.url || '')) + '</p>';
+      }).join('') +
       '</div></details>';
   }
   function crumbsHTML(left, pct) {
@@ -1115,19 +1179,42 @@
     var groups = proGroups();
     var chosen = groupKey ? groups.find(function (g) { return g.key === groupKey; }) : null;
     var h = chosen
-      ? '<header class="page-head"><span class="eyebrow"><a href="#/professional">02 · Professional</a> · ' + esc(chosen.title) + '</span><h1>' + esc(chosen.title) + '</h1><p class="lead">' + intro('it') + '</p></header>' + reminders()
+      ? '<header class="page-head"><span class="eyebrow"><a href="#/professional">02 · Professional</a> · ' + esc(chosen.title) + '</span><h1>' + esc(chosen.title) + '</h1><p class="lead">' + esc(chosen.desc || '') + (chosen.desc ? '' : intro('it')) + '</p></header>' + reminders()
       : '<header class="page-head"><span class="eyebrow">02 · Professional</span><h1>Professional</h1><p class="lead">' + intro('it') + '</p></header>' + reminders();
+    if (!chosen && groups.length > 1) {
+      h += '<div class="box navy" style="margin-bottom:22px"><span class="label ice">Start here · Recommended path</span>' +
+        '<p class="note" style="margin-top:8px"><strong>Start with “01 · For Everyone” first.</strong> It covers the universal workplace vocabulary every job shares — emails, meetings, clients, presentations, careers and modern work — so the same essentials aren’t repeated across every profession. Once you have that core, jump into your field below (up to C1–C2).</p>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">' + groups.map(function (g, i) {
+          return '<a class="chip small" href="#/professional/' + esc(g.key) + '">' + pad2(i + 1) + ' · ' + esc(g.title) + '</a>';
+        }).join('') + '</div></div>';
+    } else if (chosen && chosen.key !== 'for-everyone' && groups.some(function (g) { return g.key === 'for-everyone'; })) {
+      h += '<div class="box" style="margin-bottom:20px;padding:12px 16px"><p class="note muted" style="margin:0">New to Professional? Start with <a href="#/professional/for-everyone"><strong>01 · For Everyone</strong></a> first — it covers meetings, emails, clients, presentations and careers needed in every field.</p></div>';
+    }
+    var pSeen = {}, pBasicN = 0;
     (chosen ? [chosen] : groups).forEach(function (g) {
-      if (!chosen) h += '<h3 class="section-title">' + esc(g.title) + '</h3>';
+      g.subs.forEach(function (s) {
+        rawItemsFor(s.tab, s.topic).forEach(function (it) {
+          if (!pSeen[it.id] && isBasicItem(it)) { pSeen[it.id] = 1; pBasicN++; }
+        });
+      });
+    });
+    if (pBasicN) h += '<div style="margin-bottom:18px">' + basicsToggleHTML(pBasicN) + '</div>';
+    (chosen ? [chosen] : groups).forEach(function (g) {
+      var gIdx = groups.indexOf(g);
+      if (!chosen) {
+        h += '<h3 class="section-title">' + pad2(gIdx + 1) + ' · ' + esc(g.title) + (g.badge ? ' <span class="tag" style="margin-left:8px;vertical-align:middle">' + esc(g.badge) + '</span>' : '') + '</h3>';
+        if (g.desc) h += '<p class="muted" style="margin:-8px 0 18px;font-size:14px;max-width:74ch">' + esc(g.desc) + '</p>';
+      }
       h += '<div class="grid">' + g.subs.map(function (s, i) {
-        var items = itemsFor(s.tab, s.topic), c = counts(items), pct = c.total ? Math.round(c.known / c.total * 100) : 0;
+        var rawN = rawItemsFor(s.tab, s.topic).length, items = itemsFor(s.tab, s.topic), c = counts(items), pct = c.total ? Math.round(c.known / c.total * 100) : 0;
         var tObj = GT.topic(s.tab, s.topic);
         var desc = s.desc || (tObj && tObj.desc) || '';
-        return '<a class="tile' + (c.total ? '' : ' empty') + '" href="#/' + s.tab + '/' + s.topic + '"><div class="tile-top"><span>' + pad2(i + 1) + '</span><span class="ct">' + (c.total ? c.known + '/' + c.total + (c.due ? ' · ' + c.due + ' due' : '') : 'soon') + '</span></div>' +
+        var badgeText = c.total ? c.known + '/' + c.total + (c.due ? ' · ' + c.due + ' due' : '') : (rawN ? 'hidden' : 'soon');
+        return '<a class="tile' + (rawN ? '' : ' empty') + '" href="#/' + s.tab + '/' + s.topic + '"><div class="tile-top"><span>' + pad2(i + 1) + '</span><span class="ct">' + badgeText + '</span></div>' +
           '<h4>' + esc(s.name) + '</h4><p>' + esc(desc) + '</p><div class="track"><i style="width:' + pct + '%"></i></div></a>';
       }).join('') + '</div>';
     });
-    h += '<div class="actions"><a class="btn primary" href="#/practice?scope=professional">Practice Professional →</a></div>';
+    h += '<div class="actions' + (chosen ? ' actions-split' : '') + '">' + (chosen ? '<a class="btn" href="#/professional">← All professions</a>' : '') + '<a class="btn primary" href="#/practice?scope=professional">Practice Professional →</a></div>';
     page(h);
   }
   function viewExpressionsLanding() {
@@ -1185,8 +1272,9 @@
     return '<div class="box" style="margin-bottom:32px"><div class="setting"><div><div class="lbl">Show phrases for</div><div class="help">Filters every chunk list and Learn session.</div></div><select data-act="chunktag" aria-label="Filter chunks by topic">' + opts + '</select></div></div>';
   }
   function tile(tab, t, n) {
-    var items = itemsFor(tab, t.id), c = counts(items), pct = c.total ? Math.round(c.known / c.total * 100) : 0;
-    return '<a class="tile' + (c.total ? '' : ' empty') + '" href="#/' + tab + '/' + t.id + '"><div class="tile-top"><span>' + pad2(n) + '</span><span class="ct">' + (c.total ? c.known + '/' + c.total + (c.due ? ' · ' + c.due + ' due' : '') : 'soon') + '</span></div>' +
+    var rawN = rawItemsFor(tab, t.id).length, items = itemsFor(tab, t.id), c = counts(items), pct = c.total ? Math.round(c.known / c.total * 100) : 0;
+    var badgeText = c.total ? c.known + '/' + c.total + (c.due ? ' · ' + c.due + ' due' : '') : (rawN ? 'hidden' : 'soon');
+    return '<a class="tile' + (rawN ? '' : ' empty') + '" href="#/' + tab + '/' + t.id + '"><div class="tile-top"><span>' + pad2(n) + '</span><span class="ct">' + badgeText + '</span></div>' +
       '<h4>' + esc(t.name) + '</h4>' + (t.desc ? '<p>' + esc(t.desc) + '</p>' : '') + '<div class="track"><i style="width:' + pct + '%"></i></div></a>';
   }
   function viewLanding(tab) {
@@ -1196,7 +1284,10 @@
     if (tab === 'literature') h += '<div class="actions actions-split"><a class="btn primary" href="#/practice?scope=literature">Practice Literary Phrases →</a>' +
       '<a class="btn" href="#/literature/all/browse">Browse all</a><button class="btn" type="button" data-act="lucky" data-v="literature">Random quote</button></div>';
     if (tab === 'chunks') h += tagFilter();
-    if (tab === 'words') h += '<div class="actions-row" style="margin-bottom:28px"><a class="btn" href="#/vocabulary">Search the whole catalogue (' + GT.items.length + ')</a></div>';
+    if (tab === 'words') {
+      var wBasicN = GT.items.filter(function (it) { return GT.inTab(it, 'words') && isBasicItem(it); }).length;
+      h += '<div class="actions-row" style="margin-bottom:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px"><a class="btn" href="#/vocabulary">Search the whole catalogue (' + itemsFor('all', 'all').length + ')</a>' + basicsToggleHTML(wBasicN) + '</div>';
+    }
     var group = null, n = 0, list = GT.TOPICS[tab].filter(visibleTopic);
     list.forEach(function (t, i) {
       if (t.group !== group) {
@@ -1221,6 +1312,10 @@
     var lvl = tab === 'words' ? (t.level === 'b2' ? 'B2' : (GT.cfg('levelName') || 'B1')) : tdef.label;
     var par = tab === 'expressions' && t.parent ? GT.topic('expressions', t.parent) : null;
     if (par) return '<a href="#/expressions">Expressions</a> · <a href="#/expressions/' + par.id + '">' + esc(par.name) + '</a> · ' + (extra ? '<a href="#/' + tab + '/' + t.id + '">' + esc(t.name) + '</a> · ' + extra : esc(t.name));
+    if (tab === 'it') {
+      var pg = proGroups().find(function (g) { return g.subs.some(function (s) { return s.tab === 'it' && s.topic === t.id; }); });
+      return '<a href="#/professional">Professional</a>' + (pg ? ' · <a href="#/professional/' + pg.key + '">' + esc(pg.title) + '</a>' : '') + ' · ' + (extra ? '<a href="#/it/' + t.id + '">' + esc(t.name) + '</a> · ' + extra : esc(t.name));
+    }
     return '<a href="#/' + tab + '">' + esc(lvl) + '</a> · ' + (extra ? '<a href="#/' + tab + '/' + t.id + '">' + esc(t.name) + '</a> · ' + extra : esc(t.name));
   }
 
@@ -1237,6 +1332,7 @@
   function viewTopic(tab, id) {
     var t = findTopic(tab, id);
     if (!t) return notFound();
+    var allItems = rawItemsFor(tab, id), basicN = countBasicsIn(tab, allItems);
     var items = itemsFor(tab, id), c = counts(items);
     var pct = c.total ? Math.round(c.known / c.total * 100) : 0;
     var h = crumbsHTML(topicCrumb(tab, t), c.total ? pct : null);
@@ -1244,7 +1340,11 @@
     if (tab === 'chunks') h += tagFilter();
     if (tab === 'expressions' && (t.section || t.parent)) h += expCatChips(t.section ? t.id : t.parent, id);
     if (!items.length) {
-      h += '<div class="empty-state"><h3>No entries yet</h3><p>' + (tab === 'chunks' && ui.chunkTag ? 'No phrases match this filter.' : 'This topic arrives in a later data batch. Drop the file into <code>data/</code> and list it in <code>data/manifest.js</code>.') + '</p></div>';
+      if (basicN > 0 && S.settings.hideBasics) {
+        h += '<div class="empty-state"><h3>All entries are hidden</h3><p>Every card in this topic is marked as basic.</p>' + basicsToggleHTML(basicN, 'margin-top:14px') + '</div>';
+      } else {
+        h += '<div class="empty-state"><h3>No entries yet</h3><p>' + (tab === 'chunks' && ui.chunkTag ? 'No phrases match this filter.' : 'This topic arrives in a later data batch. Drop the file into <code>data/</code> and list it in <code>data/manifest.js</code>.') + '</p></div>';
+      }
       return page(h, 'mid');
     }
     // Actions on top (left-aligned); the full word list below, so known words can simply be skimmed.
@@ -1252,7 +1352,9 @@
       (c.fresh ? '<a class="btn primary" href="#/' + tab + '/' + id + '/learn">Start in order →</a>' : '') +
       (c.due ? '<a class="btn" href="#/review/' + reviewFilterFor(tab, id) + '/go">Review ' + c.due + ' due</a>' : '') +
       '<button class="btn" data-act="practice-topic" data-tab="' + tab + '" data-id="' + id + '">Practice now</button></div>' +
-      '<p class="topic-stats mono-muted">' + c.fresh + ' new · ' + c.learning + ' learning · ' + c.known + ' known' + (c.due ? ' · ' + c.due + ' due' : '') + '</p></div>';
+      '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;margin-top:4px">' +
+      '<p class="topic-stats mono-muted" style="margin:0">' + c.fresh + ' new · ' + c.learning + ' learning · ' + c.known + ' known' + (c.due ? ' · ' + c.due + ' due' : '') + '</p>' +
+      basicsToggleHTML(basicN) + '</div></div>';
     if (!c.fresh) h += notice('info', 'Everything in this topic is already in your deck.', 'subtle');
     h += '<div id="practiceSlot"></div>';
     h += searchBox() + tilesHTML(items);
@@ -1282,12 +1384,14 @@
   function viewBrowse(tab, id) {
     var t = findTopic(tab, id);
     if (!t) return notFound();
+    var allItems = rawItemsFor(tab, id), basicN = countBasicsIn(tab, allItems);
     var items = itemsFor(tab, id);
     var h = crumbsHTML(topicCrumb(tab, t, 'Browse'));
     h += '<header class="page-head"><h1>' + esc(t.name) + '</h1></header>';
     if (tab === 'chunks') h += tagFilter();
+    if (basicN > 0) h += '<div style="margin-bottom:14px">' + basicsToggleHTML(basicN) + '</div>';
     h += searchBox() + rowsHTML(items);
-    if (!items.length) h += '<div class="empty-state"><p>No entries.</p></div>';
+    if (!items.length) h += '<div class="empty-state"><p>' + (basicN && S.settings.hideBasics ? 'All entries here are hidden by “Hide basics”.' : 'No entries.') + '</p></div>';
     page(h, 'mid');
   }
 
@@ -1315,6 +1419,7 @@
     }
     if (it.type === 'drill') return notFound();
     var pair = S.cardsForItem(id), now = GT.now(), list = itemsFor(it.tab, it.topic), idx = list.indexOf(it);
+    if (idx < 0) { list = rawItemsFor(it.tab, it.topic); idx = list.indexOf(it); }
     var tc = counts(list), pct = tc.total ? Math.round(tc.known / tc.total * 100) : 0;
     var actions;
     if (!pair.rec && !pair.prod) {
@@ -1915,6 +2020,7 @@
       row('Production mode', 'How production cards are asked.', sel('reviewModes', [['mix', 'Mixed'], ['meaning', 'Meaning → ' + langMeta().name + ''], ['cloze', 'Cloze sentences']])) +
       row('Typing mode', 'Type your ' + langMeta().name + ' answer on production cards before revealing it.', sw('typing')) +
       row('WHY? with medium confidence', 'Also show etymology notes marked as less certain.', sw('showMediumWhy')) +
+      row('Hide basic words', 'Hide elementary and obvious words in Words and Professional topics.', sw('hideBasics')) +
       row('Target retention', 'Higher means more reviews but fewer forgotten cards.', sel('retention', [['0.85', '85%'], ['0.9', '90% (recommended)'], ['0.95', '95%']])) +
       '</div>';
     h += '<h3 class="section-title">Look & sound</h3><div class="box">' +
@@ -1974,7 +2080,7 @@
       GT.toast(ok ? 'Prompt copied. Paste it into your AI chat.' : 'Copy failed. Open "Show prompt" and copy it manually.');
     });
   }
-  function refreshChrome(tab) { renderNav(tab); renderSidebar(tab, location.hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent)); }
+  function refreshChrome(tab) { renderNav(tab); renderSidebar(tab, curPath()); }
 
   function act(name, el) {
     el = el || { dataset: {} };
@@ -2148,7 +2254,7 @@
       case 'rd-opt': rootDrillAnswer(el.dataset.v); break;
       case 'rd-next': rd.i++; rd.answered = null; rd.given = null; drawRootDrill(); break;
       case 'rd-again': viewRootDrill(rd.rootId); break;
-      case 'reset-drills': ui.drillState = {}; viewGrammar(location.hash.split('/')[2]); break;
+      case 'reset-drills': ui.drillState = {}; viewGrammar(curPath()[1]); break;
       case 'd-opt': {
         var d = GT.byId[id], st = drillStateFor(el.dataset.ctx, id);
         st.chosen = Number(el.dataset.i); st.verdict = st.chosen === d.answer; st.revealed = true;
@@ -2259,10 +2365,11 @@
       S.setSetting(k, v);
       if (k === 'theme') { applyTheme(); refreshThemeRows(); }
       if (k === 'hideSidePractice') {
-        var curP = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
+        var curP = curPath();
         var curTab = curP[0] === 'item' && GT.byId[curP[1]] ? GT.byId[curP[1]].tab : (curP[0] || 'words');
         renderSidebar(curTab, curP);
       }
+      if (k === 'hideBasics') route({ keep: true });
       if (/^speechVoice/.test(k) || k === 'speechRate') {
         stopSpeak();
         if (/^speechVoice/.test(k)) pickVoice();
@@ -2271,6 +2378,9 @@
     } else if (el.dataset.act === 'chunktag') {
       ui.chunkTag = el.value;
       route();
+    } else if (el.dataset.act === 'toggle-basics') {
+      S.setSetting('hideBasics', !!el.checked);
+      route({ keep: true });
     } else if ((el.id === 'importFile' || el.id === 'importReplaceFile') && el.files && el.files[0]) {
       var replaceMode = el.id === 'importReplaceFile';
       var reader = new FileReader();
@@ -2955,6 +3065,7 @@
     var band = LEVEL_BANDS[opts.level] || null;
     return studioScopeItems(opts.scope).filter(function (it) {
       if (!levelOk(it, band)) return false;
+      if (S.settings.hideBasics && opts.level !== 'a' && isBasicItem(it) && (GT.inTab(it, 'words') || GT.inTab(it, 'it'))) return false;
       if (opts.studied && !S.card(GT.cardKey(it.id, 'rec')) && !S.card(GT.cardKey(it.id, 'prod'))) return false;
       return true;
     });
@@ -3893,14 +4004,14 @@
 
   /* ---------------- router ---------------- */
   function parseQuery(qs) {
-    var out = {};
+    var out = Object.create(null);
     if (!qs) return out;
     qs.split('&').forEach(function (pair) {
       if (!pair) return;
       var i = pair.indexOf('=');
-      var k = decodeURIComponent(i >= 0 ? pair.slice(0, i) : pair);
-      var v = i >= 0 ? decodeURIComponent(pair.slice(i + 1)) : '';
-      out[k] = v;
+      var k = safeDecode(i >= 0 ? pair.slice(0, i) : pair);
+      var v = i >= 0 ? safeDecode(pair.slice(i + 1)) : '';
+      if (k) out[k] = v;
     });
     return out;
   }
@@ -3931,7 +4042,7 @@
     var qIdx = raw.indexOf('?');
     var pathStr = qIdx >= 0 ? raw.slice(0, qIdx) : raw;
     var params = qIdx >= 0 ? parseQuery(raw.slice(qIdx + 1)) : {};
-    var p = pathStr.split('/').filter(Boolean).map(decodeURIComponent);
+    var p = pathStr.split('/').filter(Boolean).map(safeDecode);
     if (!p.length) { location.replace('#/start'); return; }
     var legacy = legacyRoute(p);
     if (legacy) { location.replace(legacy); return; }
@@ -3949,7 +4060,13 @@
         else if (p[2] === 'learn') viewLearn('expressions', p[1]);
         else viewTopic('expressions', p[1]);
         break;
-      case 'words': case 'it': case 'chunks': case 'literature':
+      case 'it':
+        if (!p[1]) viewProfessionalLanding();
+        else if (p[2] === 'browse') viewBrowse('it', p[1]);
+        else if (p[2] === 'learn') viewLearn('it', p[1]);
+        else viewTopic('it', p[1]);
+        break;
+      case 'words': case 'chunks': case 'literature':
         if (!p[1]) viewLanding(p[0]);
         else if (p[2] === 'browse') viewBrowse(p[0], p[1]);
         else if (p[2] === 'learn') viewLearn(p[0], p[1]);
@@ -4077,7 +4194,7 @@
     $('#langBtn').classList.remove('active');
     if (focusBtn) $('#langBtn').focus();
   }
-  function curPath() { return location.hash.replace(/^#\/?/, '').split('?')[0].split('/').filter(Boolean).map(decodeURIComponent); }
+  function curPath() { return location.hash.replace(/^#\/?/, '').split('?')[0].split('/').filter(Boolean).map(safeDecode); }
 
   /** Re-render the current screen in place (known-language change): keeps sessions, answers and scroll. */
   function redrawInPlace() {

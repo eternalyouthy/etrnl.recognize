@@ -84,7 +84,7 @@
       'v:звонить': { de: 'Deutsch: jemanden anrufen (Akkusativ). Russisch: звон+ить кому — Dativ.', en: 'English: call someone (direct object). Russian: звон+ить кому — Dative.' },
       'v:помогать': { de: '=Wie helfen + Dativ: помог+ать кому.', en: 'English: help someone (direct object). Russian: помог+ать кому — Dative.' },
       'v:нравиться': { de: '=Wie gefallen: Mir gefällt … = Мне нр+авится … (Dativ).', en: 'English: I like it. Russian turns it round: Мне нр+авится — the person is Dative, the thing is the subject.' },
-      'age': { de: 'Deutsch: Ich bin zwanzig. Russisch: Мне двадц+ать лет — die Person im Dativ.', en: 'English: I am twenty. Russian: Мне двадц+ать лет — the person is Dative.' },
+      'age': { de: 'Deutsch: Ich bin zwanzig. Russisch: Мне дв+адцать лет — die Person im Dativ.', en: 'English: I am twenty. Russian: Мне дв+адцать лет — the person is Dative.' },
       'need': { de: 'Deutsch: Ich brauche … Russisch: Мне н+ужно … — die Person im Dativ.', en: 'English: I need … Russian: Мне н+ужно … — the person is Dative.' },
       'p:у': { de: 'Deutsch: Ich habe einen Bruder. Russisch: У мен+я есть брат — у + Genitiv statt „haben“.', en: 'English: I have a brother. Russian: У мен+я есть брат — у + Genitive instead of “have”.' },
       'net': { de: 'Deutsch: kein + Akkusativ (Ich habe keine Zeit). Russisch: нет + Genitiv (нет вр+емени).', en: 'English: there is no / I have no … Russian: нет + Genitive (нет вр+емени).' },
@@ -109,6 +109,140 @@
     }
   };
 
+  Object.assign(notes.de, {
+    "p:ohne": {
+      ru: "«Без ключа» требует родительного. Немецкое ohne ставит определитель в Akkusativ, например ohne meinen Schlüssel.",
+      en: "English leaves the possessive unchanged in “without my key”. German marks the accusative on meinen in ohne meinen Schlüssel."
+    },
+    "p:für": {
+      ru: "Русскому «для моего отца» с родительным соответствует für meinen Vater с Akkusativ.",
+      en: "In “for my father”, my stays the same. In für meinen Vater, the masculine accusative adds -en."
+    },
+    "p:aus": {
+      ru: "В «из сумки» предлог требует родительного. После aus нужен Dativ, например aus meiner Tasche.",
+      en: "English “out of my bag” keeps my unchanged. In German aus takes the dative, giving aus meiner Tasche."
+    },
+    "p:seit": {
+      ru: "Для длительности русский часто обходится без предлога, например «я здесь уже месяц». По-немецки seit einem Monat, с Dativ.",
+      en: "English distinguishes “since March” from “for a month”. German uses seit for both, with the dative in seit einem Monat."
+    },
+    "t:Der Stift rollt unter ___ Sofa.": {
+      ru: "=Карандаш закатывается под диван. И в немецком, и в русском цель движения после unter или «под» выражена винительным.",
+      en: "“Under the sofa” can name a destination or a location in English. Here the pen ends up underneath it, giving unter das Sofa."
+    },
+    "t:Unter ___ Sofa liegt ein Stift.": {
+      ru: "«Под диваном» требует творительного. Для места после unter в немецком нужен Dativ, поэтому unter dem Sofa.",
+      en: "English keeps “under the sofa” unchanged. The stationary location in German takes the dative, unter dem Sofa."
+    },
+    "t:Nach ___ Probe packen wir die Instrumente ein.": {
+      ru: "В сочетании «после репетиции» нужен родительный. В nach der Probe предлог nach требует Dativ.",
+      en: "English says “after the rehearsal”. German nach requires the dative, giving nach der Probe."
+    }
+  });
+
+  Object.assign(notes.de, {
+    "p:neben+wo": {
+      ru: "Рядом с кроватью — «с» и творительный. В немецком место обозначается сочетанием neben dem Bett с Dativ.",
+      en: "“Beside the bed” describes a position. German uses the dative after neben for that reading."
+    },
+    "p:neben+wohin": {
+      ru: "«Поставить рядом с кроватью» сохраняет творительный после «рядом с». Немецкое neben обозначает здесь конечное положение и требует Akkusativ.",
+      en: "In “put it beside the bed”, beside gives the destination. German marks that reading with the accusative after neben."
+    },
+    "p:zwischen+wo": {
+      ru: "«Между стульями» требует творительного. В немецком для места после zwischen нужен Dativ, например zwischen den Stühlen.",
+      en: "English “between the chairs” does not mark case on chairs. For a position, German uses zwischen den Stühlen."
+    },
+    "p:zwischen+wohin": {
+      ru: "В «поставить между креслом и стеллажом» оба существительных стоят в творительном. В немецком цель перемещения после zwischen требует Akkusativ.",
+      en: "In “slide it between the armchair and the shelf”, between gives the destination. German uses the accusative after zwischen here."
+    },
+    "p:vor+wo": {
+      ru: "Для места в «перед ратушей» нужен творительный. По-немецки перед зданием — vor dem Rathaus, с Dativ.",
+      en: "English “in front of the town hall” gives a position. German uses vor with the dative here."
+    },
+    "p:vor+wohin": {
+      ru: "«Поставить перед шкафом» требует творительного после «перед». В немецком цель перемещения даёт Akkusativ, vor den Schrank.",
+      en: "English keeps “in front of the cupboard” after put. German marks the destination with vor den Schrank."
+    },
+    "p:hinter+wo": {
+      ru: "В «за занавесом» место выражается творительным. В немецком hinter для места требует Dativ.",
+      en: "For a position, “behind the curtain” corresponds to hinter dem Vorhang with the dative."
+    },
+    "p:hinter+wohin": {
+      ru: "=В «забежать за занавес» и в hinter den Vorhang laufen цель движения выражена винительным.",
+      en: "English “behind the curtain” can describe a destination. German uses the accusative when the cat moves to that spot."
+    },
+    "p:über+wo": {
+      ru: "В «над столом» предлог требует творительного. В немецком место над предметом выражается сочетанием über с Dativ.",
+      en: "“Above the table” gives a position. German marks it with the dative after über."
+    },
+    "p:über+wohin": {
+      ru: "По-русски «повесить лампу над столом» сохраняет творительный. В немецком при размещении лампы над столом нужен Akkusativ, über den Tisch.",
+      en: "In “hang the lamp above the table”, above gives the intended position. German uses über with the accusative for that destination."
+    }
+  });
+  Object.assign(notes.en, {
+    "t:My neighbour is ___ union representative.": {
+      ru: "В «мой сосед — представитель профсоюза» артикля нет. Здесь нужна форма a, потому что union начинается со звука /j/.",
+      de: "Bei „Mein Nachbar ist Gewerkschaftsvertreter“ steht die Berufsbezeichnung ohne Artikel. Das englische union beginnt mit /j/, daher a union representative."
+    },
+    "t:The walk takes ___ hour and ten minutes.": {
+      ru: "Английское an перед hour соответствует числу «один» в «час и десять минут». Начальное h не произносится.",
+      de: "Deutsch „eine Stunde“ hat einen Artikel mit Genusendung. In an hour entscheidet der Vokalanlaut von hour über an."
+    },
+    "t:What ___ lovely weather for a walk!": {
+      ru: "«Какая прекрасная погода!» В английском weather неисчисляемое, поэтому после what перед lovely weather артикля нет.",
+      de: "Im Deutschen ist „Was für ein schönes Wetter!“ möglich. Das englische weather ist nicht zählbar, daher What lovely weather!"
+    },
+    "t:Our choir rehearses twice ___ month.": {
+      ru: "Английскому twice a month соответствует «дважды в месяц». Частоту выражает a перед единицей времени.",
+      de: "Deutsch „zweimal im Monat“ entspricht englisch twice a month. Die Zeiteinheit steht mit a."
+    },
+    "t:I get to work by ___ tram most mornings.": {
+      ru: "«На трамвае» передаётся сочетанием by tram. Когда by обозначает способ передвижения, название транспорта стоит без артикля.",
+      de: "„Mit der Straßenbahn“ enthält den bestimmten Artikel. In by tram bezeichnet tram die Art der Fortbewegung und steht ohne Artikel."
+    },
+    "t:She plays ___ violin in a string quartet.": {
+      ru: "«Она играет на скрипке» передаётся сочетанием plays the violin, где перед инструментом стоит the.",
+      de: "Deutsch „Sie spielt Geige“ kommt ohne Artikel aus. In der hier geübten Wendung steht play the violin."
+    },
+    "t:The twins were born on ___ same day.": {
+      ru: "В выражении «в один и тот же день» нет отдельного артикля. Английское сочетание — on the same day.",
+      de: "=„Am selben Tag“ enthält den bestimmten Artikel in am. Auch im Englischen steht hier the same day."
+    }
+  });
+
+  Object.assign(notes.ru, {
+    "p:до": {
+      en: "English uses “until” for time or “as far as” for distance. Russian до takes the genitive in both uses, as in до субб+оты and до гост+иницы.",
+      de: "Deutsch unterscheidet etwa „bis Samstag“ und „bis zum Hotel“. Im Russischen verlangt до in beiden Fällen den Genitiv."
+    },
+    "p:около": {
+      en: "English “near the school” leaves school unchanged. Russian +около takes the genitive, as in +около шк+олы.",
+      de: "Deutsch sagt etwa „in der Nähe der Schule“. Im Russischen verlangt die Präposition +около unmittelbar den Genitiv."
+    },
+    "t:Сейф открыв+ается ___.": {
+      en: "“With a key” names a tool. In Russian the instrumental ending alone does that work, giving ключ+ом.",
+      de: "„Mit einem Schlüssel“ bezeichnet das Werkzeug. Russisch verwendet dafür den Instrumental ключ+ом ohne Präposition."
+    },
+    "t:Над ___ вис+ит п+олка с кн+игами.": {
+      en: "English “above the table” leaves table unchanged. Russian над takes the instrumental for this stationary location, над стол+ом.",
+      de: "Bei einer Ortsangabe steht im Deutschen „über dem Tisch“ mit Dativ. Im Russischen heißt es над стол+ом mit Instrumental."
+    },
+    "t:Мы прошл+и ч+ерез ___ двор.": {
+      en: "English “through our courtyard” keeps our unchanged. Russian ч+ерез takes the accusative. For the inanimate masculine двор the accusative looks like the nominative.",
+      de: "=„Durch unseren Hof“ und ч+ерез наш двор stehen beide im Akkusativ. Beim unbelebten Maskulinum двор ist die russische Form mit dem Nominativ identisch."
+    },
+    "t:У ___ сос+едки есть запасн+ой ключ.": {
+      en: "English makes the owner the subject of “our neighbour has a spare key”. Russian places her after у in the genitive, у н+ашей сос+едки.",
+      de: "Deutsch macht die Besitzerin zum Subjekt in „Unsere Nachbarin hat einen Ersatzschlüssel“. Russisch nennt sie mit у und Genitiv, у н+ашей сос+едки."
+    },
+    "t:Вчер+а мы говор+или об ___.": {
+      en: "English “about the exercise” keeps the dictionary form. After об the Russian prepositional of упражн+ение ends in -ии, упражн+ении.",
+      de: "Deutsch sagt „über die Übung“ mit Akkusativ. Im Russischen steht nach об der Präpositiv, hier mit der Endung -ии."
+    }
+  });
   // [article, German noun, Russian noun (stress), Russian gender, English]
   var genderTraps = [
     ['die', 'Sonne', 'с+олнце', 'n', 'sun'], ['der', 'Mond', 'лун+а', 'f', 'moon'], ['das', 'Mädchen', 'д+евочка', 'f', 'girl'],
@@ -126,6 +260,25 @@
     ['das', 'Hemd', 'руб+ашка', 'f', 'shirt'], ['das', 'Lied', 'п+есня', 'f', 'song'], ['das', 'Spiel', 'игр+а', 'f', 'game'],
     ['die', 'Rechnung', 'счёт', 'm', 'bill'], ['das', 'Kind', 'ребёнок', 'm', 'child'], ['der', 'Tee', 'чай', 'm', 'tea']
   ].filter(function (x) { return { der: 'm', die: 'f', das: 'n' }[x[0]] !== x[3]; });
+
+  genderTraps.push(
+  ["das", "Heft", "тетр+адь", "f", "exercise book"],
+  ["das", "Dach", "кр+ыша", "f", "roof"],
+  ["der", "Spiegel", "з+еркало", "n", "mirror"],
+  ["die", "Brücke", "мост", "m", "bridge"],
+  ["die", "Insel", "+остров", "m", "island"],
+  ["das", "Papier", "бум+ага", "f", "paper"],
+  ["der", "Kopf", "голов+а", "f", "head"],
+  ["das", "Auge", "глаз", "m", "eye"],
+  ["die", "Nase", "нос", "m", "nose"],
+  ["der", "Fuß", "стоп+а", "f", "foot"],
+  ["das", "Werkzeug", "инструм+ент", "m", "tool"],
+  ["das", "Licht", "свет", "m", "light"],
+  ["die", "Luft", "в+оздух", "m", "air"],
+  ["das", "Dorf", "дер+евня", "f", "village"],
+  ["der", "Stern", "звезд+а", "f", "star"],
+  ["das", "Boot", "л+одка", "f", "boat"]
+);
 
   /* ---------------- #/cases ---------------- */
   var L3 = ['de', 'ru', 'en'];

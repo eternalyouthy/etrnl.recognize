@@ -8,6 +8,11 @@
 
   function T(o) { return GT.whichForm.tx(o); }
   function b(s) { return '<b>' + s + '</b>'; }
+  function escHTML(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
   function en(s) { return '<em lang="en">' + s + '</em>'; }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
   function D() { return GT.EN_ARTICLES; }
@@ -203,7 +208,7 @@
   }
   function explainHTML(s, chosen) {
     var lines = [];
-    if (chosen && chosen !== answer(s)) lines.push(T({ ru: 'Вы выбрали ', en: 'You picked ', de: 'Du hast ' }) + b(chosen) + T({ ru: ': ', en: ': ', de: ' gewählt: ' }) + wrongHTML(s, chosen));
+    if (chosen && chosen !== answer(s)) lines.push(T({ ru: 'Вы выбрали ', en: 'You picked ', de: 'Du hast ' }) + b(escHTML(chosen)) + T({ ru: ': ', en: ': ', de: ' gewählt: ' }) + wrongHTML(s, chosen));
     lines.push(countHTML(s));
     lines.push(T(R[s.r].text));
     if (s.art === 'a') lines.push(soundHTML(nextWord(s.text)));
@@ -340,22 +345,24 @@
     kind: function () { return 'a or an · by the sound'; },
     qClass: 'ag-end-q',
     question: function (s, ctx) { return ctx.blank + ' ' + ctx.esc(s.word); },
-    hintLabels: ['Hint · sound', 'More hint · first sound'],
-    hint: function (s, level) {
+    hintLabels: ['Hint · sound'],
+    hint: function (s) {
       var si = soundInfo(s.word);
-      var parts = [T({ ru: 'произнесите вслух: важен первый звук, а не буква', en: 'say it aloud: the first sound counts, not the letter', de: 'sprich es laut: der erste Laut zählt, nicht der Buchstabe' })];
-      if (level >= 2) parts.push((si.ipa ? si.ipa + ' — ' : '') + '<b>' + T(si.v ? { ru: 'гласный звук', en: 'a vowel sound', de: 'ein Vokallaut' } : { ru: 'согласный звук', en: 'a consonant sound', de: 'ein Konsonantenlaut' }) + '</b>');
+      var parts = [T({ ru: 'Согласный звук → <b>a</b>. Гласный звук → <b>an</b>. Произнесите первое слово вслух.',
+        en: 'Consonant sound → <b>a</b>. Vowel sound → <b>an</b>. Say the first word aloud.',
+        de: 'Konsonantenlaut → <b>a</b>. Vokallaut → <b>an</b>. Sprich das erste Wort laut aus.' })];
+      parts.push((si.ipa ? si.ipa + ' — ' : '') + '<b>' + T(si.v ? { ru: 'гласный звук', en: 'a vowel sound', de: 'ein Vokallaut' } : { ru: 'согласный звук', en: 'a consonant sound', de: 'ein Konsonantenlaut' }) + '</b>');
       return parts.join(' · ');
     },
     verdict: function (s, ans, esc) { return ans + ' ' + esc(s.word); },
     explain: function (s, chosen) {
       var lines = [];
-      if (chosen && chosen !== aOrAn(s.word)) lines.push(T({ ru: 'Вы выбрали ', en: 'You picked ', de: 'Du hast ' }) + b(chosen) + T({ ru: ' — ориентир на букву, а не на звук.', en: ' — that follows the letter, not the sound.', de: ' gewählt — das folgt dem Buchstaben, nicht dem Laut.' }));
+      if (chosen && chosen !== aOrAn(s.word)) lines.push(T({ ru: 'Вы выбрали ', en: 'You picked ', de: 'Du hast ' }) + b(escHTML(chosen)) + T({ ru: ' — ориентир на букву, а не на звук.', en: ' — that follows the letter, not the sound.', de: ' gewählt — das folgt dem Buchstaben, nicht dem Laut.' }));
       lines.push(soundHTML(s.word));
       return '<ul class="ag-why">' + lines.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
     },
-    forms: { show: 'All rules', hide: 'Hide rules', html: function (s, esc) { return '<h3 class="section-title">a or an</h3>' + aanRulesHTML(esc); } },
-    keys: 'rules',
+    forms: { show: 'Patterns', hide: 'Hide patterns', html: function (s, esc) { return '<h3 class="section-title">a or an</h3>' + aanRulesHTML(esc); } },
+    keys: 'patterns',
     next: 'Next word →'
   };
 

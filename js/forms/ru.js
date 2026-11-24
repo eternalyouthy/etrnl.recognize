@@ -16,6 +16,11 @@
   function T(o) { return GT.whichForm.tx(o); }
   function D() { return GT.RU_ENDINGS; }
   function b(s) { return '<b>' + s + '</b>'; }
+  function escHTML(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
   function plain(s) { return String(s).replace(/\+/g, ''); }
   function show(s) { return String(s).replace(/\+([аеиоуыэюяАЕИОУЫЭЮЯ])/g, '$1́'); }
   function ru(s) { return '<em lang="ru">' + show(s) + '</em>'; }
@@ -159,11 +164,11 @@
     var C = cn(c);
     if (r === 'subj') return T({ ru: 'Подлежащее — кто? что? действует → ' + C + '.', en: 'The subject — who or what does it (кто? что?) → ' + C + '.', de: 'Das Subjekt — wer oder was handelt (кто? что?) → ' + C + '.' });
     if (r === 'pred') return T({ ru: 'После ' + ru('+это') + ' или тире (' + ru('Мой брат — врач') + ') — тоже ' + C + '.', en: 'After ' + ru('+это') + ' or a dash (' + ru('Мой брат — врач') + ') it is ' + C + ' too.', de: 'Nach ' + ru('+это') + ' oder einem Gedankenstrich (' + ru('Мой брат — врач') + ') ebenfalls ' + C + '.' });
-    if (r === 'net') return T({ ru: ru('нет') + ' (отсутствие) всегда требует ' + C + ': ' + ru('нет вр+емени, нет мол+ока') + '.', en: ru('нет') + ' (“there is no”) always takes the ' + C + ': ' + ru('нет вр+емени, нет мол+ока') + '.', de: ru('нет') + ' („es gibt kein“) verlangt immer den ' + C + ': ' + ru('нет вр+емени, нет мол+ока') + '.' });
+    if (r === 'net') return T({ ru: ru('нет') + ' (отсутствие) всегда требует ' + C + ': ' + ru('нет вр+емени, нет молок+а') + '.', en: ru('нет') + ' (“there is no”) always takes the ' + C + ': ' + ru('нет вр+емени, нет молок+а') + '.', de: ru('нет') + ' („es gibt kein“) verlangt immer den ' + C + ': ' + ru('нет вр+емени, нет молок+а') + '.' });
     if (r === 'poss') return T({ ru: 'Чей? Принадлежность — второе существительное в ' + C + ' и стоит после первого: ' + ru('маш+ина бр+ата') + '.', en: 'Whose? The owner goes into the ' + C + ' and comes after the thing: ' + ru('маш+ина бр+ата') + ' (“the brother’s car”).', de: 'Wessen? Der Besitzer steht im ' + C + ' nach dem Ding: ' + ru('маш+ина бр+ата') + ' („das Auto des Bruders“).' });
     if (r === 'qty') return T({ ru: ru('мн+ого, м+ало, н+есколько, ск+олько') + ' + ' + C + ' мн. ч.', en: ru('мн+ого, м+ало, н+есколько, ск+олько') + ' (much / many, few, some, how many) + ' + C + ' plural.', de: ru('мн+ого, м+ало, н+есколько, ск+олько') + ' (viel, wenig, einige, wie viel) + ' + C + ' Plural.' });
     if (r === 'iobj') return T({ ru: 'Кому? Адресат (дать, подарить, написать, показать, объяснить кому) → ' + C + '.', en: 'To whom? The person who receives (дать, подарить, написать, показать, объяснить кому) → ' + C + '.', de: 'Wem? Der Empfänger (дать, подарить, написать, показать, объяснить кому) → ' + C + '.' });
-    if (r === 'age') return T({ ru: 'Возраст: кому сколько лет → ' + C + ' (' + ru('Мне двадц+ать лет') + ').', en: 'Age: the person is in the ' + C + ' (' + ru('Мне двадц+ать лет') + ' = “to me twenty years”).', de: 'Alter: die Person steht im ' + C + ' (' + ru('Мне двадц+ать лет') + ' = „mir zwanzig Jahre“).' });
+    if (r === 'age') return T({ ru: 'Возраст: кому сколько лет → ' + C + ' (' + ru('Мне дв+адцать лет') + ').', en: 'Age: the person is in the ' + C + ' (' + ru('Мне дв+адцать лет') + ' = “to me twenty years”).', de: 'Alter: die Person steht im ' + C + ' (' + ru('Мне дв+адцать лет') + ' = „mir zwanzig Jahre“).' });
     if (r === 'need') return T({ ru: ru('н+ужно, н+адо, н+ужен') + ' — кому? → ' + C + ' (' + ru('Мне н+ужно') + ').', en: ru('н+ужно, н+адо, н+ужен') + ' (need): the person who needs is in the ' + C + ' (' + ru('Мне н+ужно') + ').', de: ru('н+ужно, н+адо, н+ужен') + ' (brauchen): wer etwas braucht, steht im ' + C + ' (' + ru('Мне н+ужно') + ').' });
     if (r === 'obj') return T({ ru: 'Прямое дополнение — кого? что? → ' + C + '.', en: 'Direct object — whom? what? (кого? что?) → ' + C + '.', de: 'Direktes Objekt — wen? was? (кого? что?) → ' + C + '.' });
     if (r === 'time') return T({ ru: 'Когда? ' + ru('в') + ' + день недели / день → ' + C + ': ' + ru('в субб+оту, в посл+едний день') + '.', en: 'When? ' + ru('в') + ' + a day → ' + C + ': ' + ru('в субб+оту, в посл+едний день') + ' (on Saturday, on the last day).', de: 'Wann? ' + ru('в') + ' + Tag → ' + C + ': ' + ru('в субб+оту, в посл+едний день') + ' (am Samstag, am letzten Tag).' });
@@ -232,7 +237,7 @@
     var low = chosen.toLowerCase(), sl = slots(s.w).filter(function (x) { return x.form.toLowerCase() === low; });
     if (!sl.length) return '';
     var seen = {}, labels = sl.map(slotLabel).filter(function (x) { if (seen[x]) return false; seen[x] = 1; return true; });
-    return T({ ru: 'Вы выбрали ', en: 'You picked ', de: 'Du hast ' }) + b(show(chosen)) + T({ ru: ' — эта форма для: ', en: ' — that form is for: ', de: ' gewählt — diese Form steht für: ' }) + labels.join(' · ') + '.';
+    return T({ ru: 'Вы выбрали ', en: 'You picked ', de: 'Du hast ' }) + b(show(escHTML(chosen))) + T({ ru: ' — эта форма для: ', en: ' — that form is for: ', de: ' gewählt — diese Form steht für: ' }) + labels.join(' · ') + '.';
   }
 
   /* ---------------- tasks ---------------- */
@@ -299,7 +304,7 @@
   function gExplain(s, chosen) {
     var r = gRule(s.noun), lines = [], gname = T(GN[s.g]);
     var ans = PRON[s.g];
-    if (chosen && chosen !== ans) lines.push(T({ ru: 'Вы выбрали ', en: 'You picked ', de: 'Du hast ' }) + b(show(chosen)) + T({ ru: '.', en: '.', de: ' gewählt.' }));
+    if (chosen && chosen !== ans) lines.push(T({ ru: 'Вы выбрали ', en: 'You picked ', de: 'Du hast ' }) + b(show(escHTML(chosen))) + T({ ru: '.', en: '.', de: ' gewählt.' }));
     lines.push(ru(s.noun) + ' — ' + gname + ': ' + ru((s.g === 'm' ? 'мой ' : s.g === 'f' ? 'мо+я ' : 'моё ') + s.noun) + '.');
     if (r.group) lines.push(show(T(GROUPS[r.group].text)));
     else if (r.g === 'soft') lines.push(T({ ru: 'На -ь бывают оба рода: ' + ru('мой день, мой слов+арь') + ' — но ' + ru('мо+я тетр+адь, мо+я дверь') + '. Подсказки: -тель, -арь, месяцы → м. р.; -ость и -жь, -шь, -чь, -щь → ж. р. Остальные учите с ' + ru('мой / мо+я') + '.',
@@ -370,7 +375,7 @@
       de: 'Der Präpositiv endet fast immer auf -е; auf -и bei Feminina auf -ь und bei Nomen auf -ия / -ие: ' + ru('в тетр+ади, в Росс+ии, в зд+ании') + '. Bei ' + ru('стол, окн+о') + ' wandert die Betonung auf die Endung.' }) + '</p>';
 
     h += title({ ru: 'Прилагательные', en: 'Adjectives', de: 'Adjektive' }, 'adj') + wordTable('н+овый', esc);
-    var types = [['х+ороший', { ru: 'основа на ж, ш, щ, ч', en: 'stem in ж, ш, щ, ч', de: 'Stamm auf ж, ш, щ, ч' }], ['р+усский', { ru: 'основа на г, к, х', en: 'stem in г, к, х', de: 'Stamm auf г, к, х' }],
+    var types = [['хор+оший', { ru: 'основа на ж, ш, щ, ч', en: 'stem in ж, ш, щ, ч', de: 'Stamm auf ж, ш, щ, ч' }], ['р+усский', { ru: 'основа на г, к, х', en: 'stem in г, к, х', de: 'Stamm auf г, к, х' }],
       ['больш+ой', { ru: 'ударное окончание', en: 'stressed ending', de: 'betonte Endung' }], ['с+иний', { ru: 'мягкая основа -ний', en: 'soft stem -ний', de: 'weicher Stamm -ний' }]];
     h += '<div class="table-wrap"><table class="ag-table"><thead><tr><th>' + esc(T({ ru: 'Тип', en: 'Type', de: 'Typ' })) + '</th><th>' + esc(T(CN.n)) + '</th><th>' + esc(T(CN.g)) + ' ' + esc(T(GS.m)) + '</th><th>' + esc(T(CN.i)) + ' ' + esc(T(GS.f)) + '</th><th>' + esc(T(GS.pl)) + '</th></tr></thead><tbody>' +
       types.map(function (t) { return '<tr><td>' + esc(T(t[1])) + '</td>' + [['n', 'm'], ['g', 'm'], ['i', 'f'], ['n', 'pl']].map(function (x) { return '<td class="de" lang="ru">' + esc(show(adjForm(t[0], x[0], x[1], false).form)) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
@@ -437,6 +442,7 @@
   };
   var genderGame = {
     items: function () { return D().genders; },
+    match: function (e) { var rule = gRule(e[0]); return rule && rule.g === e[1]; },
     task: function (e) { return { noun: e[0], g: e[1] }; },
     answer: function (s) { return PRON[s.g]; },
     options: function () { return ['он', 'он+а', 'он+о']; },
@@ -444,17 +450,20 @@
     kind: function () { return 'Pick он / она / оно · by the ending'; },
     qClass: 'ag-end-q',
     question: function (s, ctx) { return (ctx.revealed || ctx.hint ? gMarked(s.noun, ctx.esc) : ctx.esc(show(s.noun))) + ' — ' + ctx.blank; },
-    hintLabels: ['Hint · ending', 'More hint · similar words'],
-    hint: function (s, level) {
+    hintLabels: ['Hint · ending'],
+    hint: function (s) {
       var r = gRule(s.noun), parts = [];
-      parts.push(r.group ? T(GROUPS[r.group].hint) : T({ ru: 'смотрите на окончание ', en: 'look at the ending ', de: 'auf die Endung achten: ' }) + '<b>' + endLabel(r) + '</b>');
-      if (level >= 2) { var sim = gSimilar(s.noun, s.g); parts.push(sim.length ? T({ ru: 'так же: ', en: 'same as: ', de: 'genauso: ' }) + sim.map(ru).join(', ') : T({ ru: 'других примеров нет', en: 'no similar words here', de: 'keine ähnlichen Wörter' })); }
+      var clue = r.group ? T(GROUPS[r.group].hint) : b(endLabel(r));
+      var frequency = r.group || r.how === 'always' ? '' : T({ ru: 'обычно ', en: 'usually ', de: 'meistens ' });
+      parts.push(clue + ' → ' + frequency + T(GN[s.g]) + ' (' + ru(PRON[s.g]) + ')');
+      var sim = gSimilar(s.noun, s.g);
+      if (sim.length) parts.push(T({ ru: 'так же: ', en: 'same as: ', de: 'genauso: ' }) + sim.map(ru).join(', '));
       return parts.join(' · ');
     },
     verdict: function (s, ans, esc) { return esc(show(s.noun)) + ' — ' + esc(show(ans)); },
     explain: gExplain,
-    forms: { show: 'All rules', hide: 'Hide rules', html: function (s, esc) { return '<h3 class="section-title">Gender by ending</h3>' + gendersHTML(esc); } },
-    keys: 'rules',
+    forms: { show: 'Patterns', hide: 'Hide patterns', html: function (s, esc) { return '<h3 class="section-title">Gender by ending</h3>' + gendersHTML(esc); } },
+    keys: 'patterns',
     next: 'Next word →'
   };
 
@@ -557,6 +566,6 @@
     games: { 'case': caseGame, gender: genderGame, gtrap: trapGame },
     check: check
   });
-  // console helpers: GT.ruForms.noun('стол', 'p'), GT.ruForms.adj('х+ороший', 'g', 'm'), GT.ruForms.det('мой', 'd', 'f')
+  // console helpers: GT.ruForms.noun('стол', 'p'), GT.ruForms.adj('хор+оший', 'g', 'm'), GT.ruForms.det('мой', 'd', 'f')
   GT.ruForms = { noun: function (k, c) { return show(nounForm(k, c).form); }, adj: function (a, c, g, an) { return show(adjForm(a, c, g, an).form); }, det: function (w, c, g, an) { return show(detForm(w, c, g, an).form); } };
 })();

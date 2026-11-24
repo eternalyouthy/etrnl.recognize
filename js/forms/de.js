@@ -75,6 +75,11 @@
     two: ['an', 'auf', 'hinter', 'in', 'neben', 'über', 'unter', 'vor', 'zwischen']
   };
   function b(s) { return '<b>' + s + '</b>'; }
+  function escHTML(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
   function de(s) { return '<em lang="de">' + s + '</em>'; }
 
   function reasonHTML(r, c) {
@@ -165,7 +170,7 @@
     var sl = slotsOf(fam, chosen.toLowerCase());
     if (!sl.length) return '';
     var where = sl.map(function (x) { return CASE_NAME[x[0]] + ' ' + gShort(x[1]); }).join(' · ');
-    return L('Вы выбрали ' + b(chosen) + ' — эта форма подходит для: ' + where, 'You picked ' + b(chosen) + ' — that form is for: ' + where).replace(/\.?$/, '.');
+    return L('Вы выбрали ' + b(escHTML(chosen)) + ' — эта форма подходит для: ' + where, 'You picked ' + b(escHTML(chosen)) + ' — that form is for: ' + where).replace(/\.?$/, '.');
   }
 
   /* ---------------- tables ---------------- */
@@ -330,7 +335,7 @@
   }
   function endExplainHTML(s, chosen) {
     var lines = [], m = markOf(s.noun, s.g), art = DEF.n[s.g];
-    if (chosen && chosen !== art) lines.push(L('Вы выбрали ' + b(chosen) + ' — это ' + gName({ der: 'm', die: 'f', das: 'n' }[chosen]) + '.', 'You picked ' + b(chosen) + ' — that is for ' + gName({ der: 'm', die: 'f', das: 'n' }[chosen]) + ' nouns.'));
+    if (chosen && chosen !== art) lines.push(L('Вы выбрали ' + b(escHTML(chosen)) + ' — это ' + gName({ der: 'm', die: 'f', das: 'n' }[chosen]) + '.', 'You picked ' + b(escHTML(chosen)) + ' — that is for ' + gName({ der: 'm', die: 'f', das: 'n' }[chosen]) + ' nouns.'));
     lines.push(genderHTML(s.noun, s.g));
     lines.push(patternHTML(s.noun, s.g));
     var sim = similar(s.noun, s.g);
@@ -348,18 +353,19 @@
     kind: function () { return 'Pick the article · by the ending'; },
     qClass: 'ag-end-q',
     question: function (s, ctx) { return ctx.blank + ' ' + (ctx.revealed || ctx.hint ? nounMarked(s.noun, s.g, ctx.esc) : ctx.esc(s.noun)); },
-    hintLabels: ['Hint · ending', 'More hint · similar words'],
+    hintLabels: ['Hint · ending'],
     hint: function (s, level, esc) {
       var m = markOf(s.noun, s.g), parts = [];
-      parts.push(m && m.group ? L('смотрите на смысл: ', 'look at the meaning: ') + '<b>' + GROUP_HINT[m.group][ru() ? 0 : 1] + '</b>'
-        : L('смотрите на окончание ', 'look at the ending ') + '<b>' + (m ? m.label : '') + '</b>');
-      if (level >= 2) { var sim = similar(s.noun, s.g); parts.push(sim.length ? L('так же: ', 'same as: ') + de(sim.map(esc).join(', ')) : L('других примеров нет', 'no similar words here')); }
+      parts.push(m && m.group ? b(GROUP_HINT[m.group][ru() ? 0 : 1]) + ' → ' + b(DEF.n[s.g])
+        : patternHTML(s.noun, s.g));
+      var sim = similar(s.noun, s.g);
+      if (sim.length) parts.push(L('так же: ', 'same as: ') + de(sim.map(esc).join(', ')));
       return parts.join(' · ');
     },
     verdict: function (s, ans, esc) { return ans + ' ' + esc(s.noun); },
     explain: endExplainHTML,
-    forms: { show: 'All rules', hide: 'Hide rules', html: function (s, esc) { return '<h3 class="section-title">Ending patterns</h3>' + gendersHTML(esc); } },
-    keys: 'rules',
+    forms: { show: 'Patterns', hide: 'Hide patterns', html: function (s, esc) { return '<h3 class="section-title">Ending patterns</h3>' + gendersHTML(esc); } },
+    keys: 'patterns',
     next: 'Next word →'
   };
 
@@ -384,7 +390,7 @@
     verdict: function (s, ans, esc) { return ans + ' ' + esc(s.noun); },
     explain: function (s, chosen) {
       var lines = [];
-      if (chosen && chosen !== DEF.n[s.g]) lines.push(chosen === DEF.n[s.rg] ? L('Вы выбрали ' + b(chosen) + ' — так было бы по русскому роду.', 'You picked ' + b(chosen) + ' — that is the Russian gender.') : L('Вы выбрали ' + b(chosen) + '.', 'You picked ' + b(chosen) + '.'));
+      if (chosen && chosen !== DEF.n[s.g]) lines.push(chosen === DEF.n[s.rg] ? L('Вы выбрали ' + b(escHTML(chosen)) + ' — так было бы по русскому роду.', 'You picked ' + b(escHTML(chosen)) + ' — that is the Russian gender.') : L('Вы выбрали ' + b(escHTML(chosen)) + '.', 'You picked ' + b(escHTML(chosen)) + '.'));
       lines.push(genderHTML(s.noun, s.g));
       lines.push(L('По-русски ' + GT.whichForm.stressMarks(s.ru) + ' — ' + RG[s.rg] + ' род, по-немецки ' + de(DEF.n[s.g] + ' ' + s.noun) + '. Род из языка в язык не переносится.', 'In Russian ' + GT.whichForm.stressMarks(s.ru) + ' is ' + gName(s.rg) + '; in German it is ' + de(DEF.n[s.g] + ' ' + s.noun) + '. Gender does not carry over.'));
       lines.push(patternHTML(s.noun, s.g));
