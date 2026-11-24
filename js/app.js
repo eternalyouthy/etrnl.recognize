@@ -3273,9 +3273,9 @@
     return c;
   }
   /** Honest note, folded like a fortune cookie. Text follows the "I know" language. */
-  function truthHTML(open) {
+  function truthHTML() {
     var paras = String(GT.hint('studio.truth') || '').split('\n\n');
-    return '<details class="fortune"' + (open ? ' open' : '') + '><summary><span class="fortune-ico" aria-hidden="true">🥠</span><span class="fortune-sum">Crack open the truth</span></summary>' +
+    return '<details class="fortune"><summary><span class="fortune-ico" aria-hidden="true">🥠</span><span class="fortune-sum">Crack open the truth</span></summary>' +
       '<div class="fortune-body" lang="' + GT.know + '"><span class="label ice">Your fortune</span>' + paras.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + '</div></details>';
   }
   function syncStudioHelp() {
@@ -3309,7 +3309,7 @@
     var lc = levelCounts();
     var h = '<header class="page-head"><span class="eyebrow">04 · Learning Studio · ' + esc(langMeta().name) + '</span><h1>Practice</h1>' +
       '<p class="lead">Short games with words, word families, grammar and expressions. A sandbox: nothing is saved here and nothing changes your Review schedule.</p></header>';
-    h += truthHTML(false);
+    h += truthHTML();
     h += '<form class="box" data-act="studio-start">' +
       '<span class="label ice">Session settings</span>' +
       '<div class="studio-grid">' +
@@ -3739,7 +3739,6 @@
     }
     var wrong = firsts.filter(function (q) { return !(q.result === 'ok' || q.result === 'almost') && q.kind !== 'family' && q.kind !== 'blitz' && q.kind !== 'match'; });
     if (wrong.length) h += '<div class="box" style="margin-top:28px"><span class="label ice">Worth another look</span><div class="st-pairs" style="margin-top:12px">' + wrong.map(mistakeLine).join('') + '</div></div>';
-    h += '<div style="margin-top:28px">' + truthHTML(true) + '</div>';
     var items = S2.seen.map(function (id) { return GT.byId[id]; }).filter(Boolean);
     if (items.length >= 3) h += practicePanel(practiceFromItems(items), 'Now use these in a real ' + langMeta().name + ' conversation.');
     page(h, 'mid');

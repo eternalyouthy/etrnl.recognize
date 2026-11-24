@@ -111,7 +111,7 @@ Expressions = Idioms · Slang · Everyday Phrases · Chunks · Literary Phrases 
   "Almost" (counted); wrong German article is reported separately. Every typed task shows what is expected
   (computed: dictionary form vs. inflected cloze surface, part of speech, two-part answers), and **Hint** opens
   meaning → dictionary form → first letters one by one. Texts live in `GT.HINTS.<know>.studio` (`h.*`, `truth`).
-- **Honesty note:** the 🥠 "Crack open the truth" fold (`studio.truth`) says that real speaking practice beats tapping.
+- **Honesty note:** the 🥠 "Crack open the truth" fold (`studio.truth`) says that real speaking practice beats tapping. Shown folded on the Practice start page only, not on the results screen.
 
 ## Parallel work by several agents (no shared-code duplication)
 Each language is owned by its files; agents working on different languages never touch the same file.
