@@ -187,7 +187,12 @@
         { id: 'participles', name: 'Participles: читающий, прочитанный', level: 'B2' },
         { id: 'gerunds', name: 'Verbal adverbs: читая, прочитав', level: 'B2' },
         { id: 'chtoby', name: 'чтобы: purpose and wishes', level: 'B2' },
-        { id: 'word_order', name: 'Word order: theme and rheme', level: 'C1' }
+        { id: 'word_order', name: 'Word order: theme and rheme', level: 'C1' },
+        { id: 'aspect_infinitive', name: 'Aspect after нельзя, не надо, пора', level: 'C1' },
+        { id: 'government', name: 'Verb government: which case after which verb', level: 'C1' },
+        { id: 'numerals_case', name: 'Declining numerals: с пятью, около тысячи', level: 'C1' },
+        { id: 'impersonal', name: 'Impersonal sentences: мне не спится', level: 'C1' },
+        { id: 'passive_ru', name: 'The passive: -ся, short participles, “они”', level: 'C1' }
       ],
       roots: []
     },

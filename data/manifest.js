@@ -114,6 +114,10 @@ self.GT_DATA_FILES = [
   'grammar_b2_genitivpraep.js',
   'grammar_b2_konj2vergangenheit.js',
   'grammar_c1_partizipattribut.js',
+  'grammar_c1_modalpartikeln.js',
+  'grammar_c1_mittelfeld.js',
+  'grammar_c1_konnektoren.js',
+  'grammar_c1_es.js',
   'grammar_artikel.js',
   'grammar_practice.js',
   'i18n/de.en.grammar_practice.js',
@@ -170,7 +174,8 @@ self.GT_PACKS = {
       'data/en/grammar_expand_1.js',
       'data/en/grammar_expand_2.js',
       'data/en/grammar_expand_3.js',
-      'data/en/grammar_expand_4.js'
+      'data/en/grammar_expand_4.js',
+      'data/en/grammar_c1.js'
     ]
   },
   // Russian: written natively for the shared engine (target `t`, glosses en/de, explanations { en, de }).
@@ -228,6 +233,7 @@ self.GT_PACKS = {
       'grammar_reflexive.js',
       'grammar_levels_1.js',
       'grammar_levels_2.js',
+      'grammar_c1.js',
       'grammar_endings.js',
       'grammar_practice.js',
       '../i18n/ru.de.grammar_practice.js'

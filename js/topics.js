@@ -265,7 +265,11 @@
       { id: 'nominalstil', name: 'Nominal style & noun–verb collocations', level: 'B2' },
       { id: 'genitivpraep', name: 'Prepositions with the Genitiv', level: 'B2' },
       { id: 'konj2_vergangenheit', name: 'Past Konjunktiv II: hätte … sollen', level: 'B2' },
-      { id: 'partizipattribut', name: 'Extended participle attributes', level: 'C1' }
+      { id: 'partizipattribut', name: 'Extended participle attributes', level: 'C1' },
+      { id: 'modalpartikeln', name: 'Modal particles: doch, ja, mal, halt', level: 'C1' },
+      { id: 'mittelfeld', name: 'Middle field order & position of nicht', level: 'C1' },
+      { id: 'konnektoren_c1', name: 'Connectors: zumal, wohingegen, geschweige denn', level: 'C1' },
+      { id: 'es_gebrauch', name: 'Uses of es', level: 'C1' }
     ]
   };
 

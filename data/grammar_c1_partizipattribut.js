@@ -1,5 +1,5 @@
-/* German GRAMMAR · C1 (starter) · Extended participle attributes (erweiterte Partizipialattribute).
- * First C1 lesson; more C1 topics to follow. Explanations ru + en inline. */
+/* German GRAMMAR · C1 · Extended participle attributes (erweiterte Partizipialattribute).
+ * Explanations ru + en inline. */
 GT.registerGrammar({
   id: 'partizipattribut',
   level: 'C1',
@@ -91,6 +91,19 @@ GT.registerGrammar({
       options: ['Der Laden, der im Mai eröffnet wurde.', 'Der Laden, der im Mai eröffnet.', 'Der Laden, der im Mai eröffnen wird.'],
       answer: 0,
       explain: { ru: 'Partizip II → пассив, прошлое.', en: 'Partizip II → passive, past.' }
+    },
+    {
+      id: 'g-pt-d5', kind: 'gap',
+      q: 'die Kinder, die im Garten spielen → die im Garten ___ Kinder (spielen)',
+      answer: 'spielenden',
+      explain: { ru: 'Активно, одновременно → Partizip I; die + мн. ч. → -en.', en: 'Active, simultaneous → Partizip I; die + plural → -en.' }
+    },
+    {
+      id: 'g-pt-d6', kind: 'reorder',
+      q: { ru: 'Соберите фразу. «Ответы, полученные вчера, были полезными».', en: 'Build the sentence. “The answers received yesterday were useful.”' },
+      tokens: ['Die', 'gestern', 'erhaltenen', 'Antworten', 'waren', 'hilfreich.'],
+      answer: 'Die gestern erhaltenen Antworten waren hilfreich.',
+      explain: { ru: 'Всё, что относится к причастию, — между артиклем и существительным.', en: 'Everything belonging to the participle goes between article and noun.' }
     }
   ]
 });
