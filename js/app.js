@@ -547,13 +547,14 @@
     return h;
   }
 
-  /** Language section switch: Words · Grammar · Roots. */
+  /** Language section switch: Words · Roots · Grammar · Articles (German). */
   function languageSideLinks(tab, p) {
     var item = p[0] === 'item' && GT.byId[p[1]];
     return '<div class="side-label">Language</div>' +
       sideLink('#/words', '01', 'Words', '', { active: tab === 'words' && !p[1] && !item }) +
-      sideLink('#/grammar', '02', 'Grammar', '', { active: tab === 'grammar' && !p[1] }) +
-      sideLink('#/roots', '03', 'Roots', '', { active: tab === 'roots' && !p[1] });
+      sideLink('#/roots', '02', 'Roots', '', { active: tab === 'roots' && !p[1] }) +
+      sideLink('#/grammar', '03', 'Grammar', '', { active: tab === 'grammar' && !p[1] }) +
+      (hasArticles() ? sideLink('#/articles', '04', 'Articles', '', { active: tab === 'articles' }) : '');
   }
   function renderSidebar(tab, p) {
     var html = '', cur = p[1];
@@ -592,6 +593,12 @@
       html += sidePractice();
     } else if (tab === 'roots') {
       html += languageSideLinks(tab, p) + rootsSidebar(p);
+    } else if (tab === 'articles') {
+      html += languageSideLinks(tab, p) + '<div class="side-label">Articles</div>' +
+        (GT.artikel.sections || []).map(function (sc, i) {
+          return sideLink('#/articles?s=' + sc[0], pad2(i + 1), sc[1], '', {}).replace('<a ', '<a data-ag-jump="' + sc[0] + '" ');
+        }).join('');
+      html += sidePractice();
     } else if (tab === 'user' || tab === 'review' || tab === 'stats') {
       var dir = S.settings.reviewDirection || 'both';
       var dueTotal = dueKeys('all', dir).length;
@@ -634,8 +641,8 @@
     var nGr = Object.keys(GT.grammar || {}).length, nRoots = Object.keys(GT.roots || {}).length;
     return [
       { href: '#/words', name: 'Words', ct: nWords ? nWords + ' cards' : '', desc: 'Everyday vocabulary by topic, from core B1 lists to B2 discussion themes.' },
-      { href: '#/grammar', name: 'Grammar', ct: nGr ? nGr + ' lessons' : '', desc: 'Short lessons with tables, typical mistakes and drills you can send to Review.' },
       { href: '#/roots', name: 'Roots', ct: nRoots ? nRoots + ' families' : '', desc: 'Learn one root, prefix or suffix and recognise a whole family of words.' },
+      { href: '#/grammar', name: 'Grammar', ct: nGr ? nGr + ' lessons' : '', desc: 'Short lessons with tables, typical mistakes and drills you can send to Review.' },
       { href: '#/professional', name: 'Professional', ct: nPro ? nPro + ' cards' : '', desc: 'Language for work: office, IT, infrastructure, security and B2 career themes.' },
       { href: '#/expressions', name: 'Expressions', ct: nExp ? nExp + ' phrases' : '', desc: 'Chunks, idioms, everyday phrases and classic literary lines with breakdowns.' },
       { href: '#/practice', name: 'Practice', ct: '', desc: 'Drills on recognition, recall and word building, plus a role-play prompt for an AI chat.' },
@@ -1670,6 +1677,10 @@
   function tableHTML(tb) {
     return (tb.caption ? '<h3 class="section-title">' + esc(lxText(tb, 'caption')) + '</h3>' : '') + '<div class="table-wrap"><table><thead><tr>' + (lxText(tb, 'head') || []).map(function (x) { return '<th>' + esc(x) + '</th>'; }).join('') + '</tr></thead><tbody>' +
       (lxText(tb, 'rows') || []).map(function (r) { return '<tr>' + r.map(function (c, i) { return '<td' + ((tb.deCols || []).indexOf(i) >= 0 ? ' class="de" lang="' + GT.learn + '"' : '') + '>' + rich(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  }
+  function hasArticles() { return GT.learn === 'de' && !!GT.ARTIKEL && !!GT.artikel; }
+  function viewArticles(sub, params) {
+    GT.artikel.render(sub, { page: page, esc: esc, crumbs: crumbsHTML, setKeys: function (fn) { ui.keyHandler = fn; } }, params);
   }
   function viewGrammar(id) {
     var t = GT.topic('grammar', id);
@@ -2864,13 +2875,13 @@
   var STUDIO_GROUPS = [
     { label: 'Classic', modes: ['mixed', 'cloze', 'translation', 'recognition', 'derivative'] },
     { label: 'Games', modes: ['builder', 'duel', 'family', 'match', 'odd', 'dictation', 'blitz', 'gender'] },
-    { label: 'Rules', modes: ['affix', 'grammar'] }
+    { label: 'Rules', modes: ['affix', 'grammar', 'articles'] }
   ];
   var STUDIO_MODES = {
     mixed: 'Mixed practice', cloze: 'Cloze in context', translation: 'Meaning → word', recognition: 'Meaning in context',
     derivative: 'Root base → derivative', builder: 'Sentence builder', duel: 'Family duel', family: 'Family builder · 90 s',
     match: 'Match pairs', odd: 'Odd one out', dictation: 'Dictation', blitz: 'Blitz · 60 s', gender: 'Gender of nouns',
-    affix: 'Prefixes & Suffixes', grammar: 'Grammar in context'
+    affix: 'Prefixes & Suffixes', grammar: 'Grammar in context', articles: 'Articles · Which form? ↗'
   };
   var STUDIO_CLASSIC = ['recognition', 'translation', 'derivative', 'cloze', 'dictation'];
   var LEVEL_BANDS = { all: null, a: ['A1', 'A2'], b1: ['B1'], b2: ['B2'], c: ['C1', 'C2'] };
@@ -2887,6 +2898,7 @@
     if (k === 'dictation') return tts.ok;
     if (k === 'duel' || k === 'family' || k === 'odd' || k === 'derivative') return Object.keys(GT.roots).length > 0;
     if (k === 'grammar') return Object.keys(GT.grammar).length > 0;
+    if (k === 'articles') return hasArticles();
     return true;
   }
   function SH(k, vars) { return GT.hint('studio.h.' + k, vars); }
@@ -3397,12 +3409,12 @@
   function syncStudioHelp() {
     var kindEl = $('#stKind'), helpEl = $('#stHelp');
     if (!kindEl) return;
-    var k = kindEl.value, noScope = k === 'affix' || k === 'grammar';
+    var k = kindEl.value, noScope = k === 'affix' || k === 'grammar' || k === 'articles';
     ['#stLevel', '#stSection', '#stTopic', '#stStudied'].forEach(function (s) { var el = $(s); if (el) el.disabled = noScope; });
     var lim = $('#stLimit');
     if (lim) lim.disabled = k === 'blitz';
     if (helpEl) {
-      helpEl.textContent = GT.hint('studio.' + k) || '';
+      helpEl.textContent = k === 'articles' ? 'Opens the Articles game: pick der / den / meinem … in real sentences, with hints and explanations.' : GT.hint('studio.' + k) || '';
       helpEl.lang = GT.know;
       if (k === 'dictation' && !tts.ok) helpEl.textContent += ' — No speech voice in this browser.';
     }
@@ -3458,6 +3470,7 @@
   }
   function startStudioFromForm(form) {
     var f = form.elements;
+    if (f.kind.value === 'articles') { location.hash = '#/articles/play'; return; }
     var opts = {
       kind: f.kind.value,
       level: f.level.value,
@@ -3885,6 +3898,7 @@
     if (t === 'family' && p[1]) return '#/roots/' + encodeURIComponent(p[1]);
     if (t === 'prefixes' || t === 'suffixes' || t === 'classical') return '#/roots/' + t;
     if (t === 'progress') return '#/stats';
+    if (t === 'grammar' && p[1] === 'artikel') return '#/articles' + (p[2] === 'play' ? '/play' : '');
     // Work-related B2 themes moved from Words to Professional.
     if (t === 'words' && /^(b2_beruf|b2_arbeitswelt|career-paths|world-of-work|b2_work)$/.test(p[1] || '')) return '#/it/' + p.slice(1).map(encodeURIComponent).join('/');
     if (t === 'review' && /^words\.(b2_beruf|b2_arbeitswelt|career-paths|world-of-work|b2_work)$/.test(p[1] || '')) return '#/review/' + p[1].replace(/^words\./, 'it.');
@@ -3926,6 +3940,7 @@
         break;
       case 'vocabulary': case 'catalogue': viewBrowse('all', 'all'); break;
       case 'grammar': if (p[1]) viewGrammar(p[1]); else viewGrammarLanding(); break;
+      case 'articles': viewArticles(p[1], params); break;
       case 'roots':
         if (!p[1]) viewRootsLanding('families');
         else if (p[1] === 'prefixes') viewRootsLanding('prefixes');
@@ -4093,6 +4108,7 @@
   function nearestValidHash() {
     var p = curPath(), t = p[0];
     if (t === 'item') return GT.byId[p[1]] ? null : '#/words';
+    if (t === 'articles') return hasArticles() ? null : '#/grammar';
     if (t === 'professional' && p[1]) return proGroups().some(function (g) { return g.key === p[1]; }) ? null : '#/professional';
     if ((t === 'words' || t === 'it' || t === 'chunks' || t === 'expressions' || t === 'literature') && p[1]) {
       if ((t === 'chunks' || t === 'literature') && p[1] === 'all') return null;

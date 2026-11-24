@@ -10,6 +10,17 @@
         "8765"
       ],
       "port": 8765
+    },
+    {
+      "name": "wortschatz-2",
+      "runtimeExecutable": "C:\\Users\\rando\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8775"
+      ],
+      "port": 8775,
+      "autoPort": false
     }
   ]
 }

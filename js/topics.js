@@ -26,8 +26,9 @@
       id: 'language', label: 'Language', short: 'Lang', icon: 'book', href: '#/words',
       items: [
         { label: 'Words', href: '#/words', match: ['words'] },
+        { label: 'Roots', href: '#/roots', match: ['roots'] },
         { label: 'Grammar', href: '#/grammar', match: ['grammar'] },
-        { label: 'Roots', href: '#/roots', match: ['roots'] }
+        { label: 'Articles', href: '#/articles', match: ['articles'] }
       ]
     },
     {

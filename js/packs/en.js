@@ -252,7 +252,7 @@
     },
     NAV: [
       { id: 'language', label: 'Language', short: 'Lang', icon: 'book', href: '#/words',
-        items: [{ label: 'Words', href: '#/words', match: ['words'] }, { label: 'Grammar', href: '#/grammar', match: ['grammar'] }, { label: 'Roots', href: '#/roots', match: ['roots'] }] },
+        items: [{ label: 'Words', href: '#/words', match: ['words'] }, { label: 'Roots', href: '#/roots', match: ['roots'] }, { label: 'Grammar', href: '#/grammar', match: ['grammar'] }] },
       { id: 'professional', label: 'Professional', short: 'Pro', icon: 'shield', href: '#/professional',
         items: [
           { label: 'Work & Office', href: '#/it/work', tab: 'it', topic: 'work' },

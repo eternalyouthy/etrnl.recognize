@@ -51,6 +51,8 @@ js/validate.js        GT.validatePack: data checks, shown in Settings → Data
 js/fsrs.js            FSRS-5 scheduler (shared)
 js/store.js           progress per learned language + global settings, export/import
 js/app.js             all views (language-neutral), router, language switching
+js/artikel.js         German Articles section + "Which form?" game (#/articles[/play], Language menu item 4; Practice → Rules → Articles redirects there; sidebar = jump links to page sections via #/articles?s=<id>; game modes: 4 cases + separate "Gender by ending" (GT.ARTIKEL.endings), never mixed into All cases); data in data/grammar_artikel.js,
+                      answers computed from the declension tables; GT.artikel.check() lists inconsistent sentences
 js/packs/en.js        adapter: the English catalogue (english/) → shared engine
 data/manifest.js      GT_DATA_FILES (German, as before) + GT_PACKS (every language, in load order)
 data/*.js             German pack (unchanged files)

@@ -2,12 +2,12 @@
  * Strategy: precache the app shell + data files; network-first for app files
  * (fresh when online, cached copy when offline); cache-first for Google Fonts.
  * Bump VERSION when you want to force a clean cache. */
-var VERSION = 'etrnl-v94';
+var VERSION = 'etrnl-v101';
 importScripts('data/manifest.js');
 
 var SHELL = [
   './', 'index.html', 'css/app.css',
-  'js/core.js', 'js/i18n.js', 'js/topics.js', 'js/loader.js', 'js/validate.js', 'js/fsrs.js', 'js/store.js', 'js/app.js',
+  'js/core.js', 'js/i18n.js', 'js/topics.js', 'js/loader.js', 'js/validate.js', 'js/fsrs.js', 'js/store.js', 'js/artikel.js', 'js/app.js',
   'data/about.js', 'data/manifest.js', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'
 ];

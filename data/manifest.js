@@ -100,6 +100,7 @@ self.GT_DATA_FILES = [
   'grammar_relativsaetze.js',
   'grammar_konnektoren.js',
   'grammar_infinitiv.js',
+  'grammar_artikel.js',
   // Late topic memberships (must stay last)
   'memberships.js'
 ];
