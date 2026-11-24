@@ -1,3 +1,4 @@
 # Local deploy to the website (private: paths on this machine)
 .env
 deploy.ps1
+deploy.cmd
