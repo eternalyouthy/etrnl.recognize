@@ -808,7 +808,7 @@ input[type="number"] { width: 90px; }
 .bys-labels .bys-label.active { color: var(--ice); }
 .bys-head .about-languages { margin-top: 10px; }
 .bys-sticker {
-  position: absolute; right: 10px; top: 4px; z-index: 1; display: none;
+  position: absolute; right: 10px; top: 28px; z-index: 1; display: none;
   padding: 9px 16px; border: 2px solid #ff3b3b; border-radius: 6px; background: #e0201e; color: #fff;
   font: 800 15px/1.1 var(--font-body); letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
   transform: rotate(45deg); transform-origin: center;
