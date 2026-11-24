@@ -1,4 +1,4 @@
-# ETRNL · Recognize
+# Recognize
 
 **Learn languages by finding connections, not just memorizing words.**
 
