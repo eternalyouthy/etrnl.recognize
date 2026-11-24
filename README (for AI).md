@@ -95,7 +95,7 @@ Entry ids are permanent. Progress keys are `<id>#rec` / `<id>#prod` (drills: `<i
 - Folder sync (`GT.store.sync`): connects an existing or new `.json` file inside a synced desktop folder (OneDrive / Google Drive Desktop) via the File System Access API, persists the `FileSystemFileHandle` in IndexedDB (`etrnl.fs.v1`), and auto-merges + saves on changes and tab focus.
 
 ## Expressions structure
-Expressions = Idioms · Slang · Everyday Phrases · Chunks · Literary Phrases (sidebar: one collapsible group each, "All …" first, then categories). Sections and category names live once in `GT.EXP_SECTIONS` (js/core.js); every pack says which card goes where in `expressions_cats.js` (`GT.classifyExpressions`). Slang cards (`register: 'slang'`) are registered with their category as topic. Chunk functions are grouped by `GT.CHUNK_GROUPS`. `GT.setupExpressions` runs after a pack loads; unclassified or unknown ids show in Settings → Data.
+Expressions = Idioms · Slang · Chunks · Everyday Phrases · Literary Phrases (sidebar: one collapsible group each, "All …" first, then categories). Sections and category names live once in `GT.EXP_SECTIONS` (js/core.js); every pack says which card goes where in `expressions_cats.js` (`GT.classifyExpressions`). Slang cards (`register: 'slang'`) are registered with their category as topic. Chunk functions are grouped by `GT.CHUNK_GROUPS`. `GT.setupExpressions` runs after a pack loads; unclassified or unknown ids show in Settings → Data.
 
 ## Practice Studio (`#/practice`, js/app.js "PRACTICE / LEARNING STUDIO")
 - **A sandbox:** nothing is saved and nothing touches FSRS Review (no rating buttons). Wrong answers come back once
