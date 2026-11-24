@@ -37,7 +37,7 @@ The Russian pack has 278 entries, nine word families, and eight grammar pages wi
 - **Locally:** double-click `index.html`.
 - **Hosted:** drag the whole folder onto https://app.netlify.com/drop. On the phone: Add to Home Screen.
 
-Progress lives in the browser and per address; move or sync it in **User → Sync & Backup** (`#/user`, also in **Settings → Sync & Backup**): manual Export / non-destructive **Import & merge**, **Google Drive (Cloud OAuth · `appDataFolder`)** sync across desktop and mobile, or auto-sync to a local JSON file inside a **Google Drive Desktop / OneDrive** folder via File System Access API on desktop Chrome/Edge.
+Progress lives in the browser and per address. Open the **User** icon next to Settings (`#/user`) to export or merge progress, sync through **Google Drive (Cloud OAuth · `appDataFolder`)**, or auto-sync a local JSON file inside a **Google Drive Desktop / OneDrive** folder via File System Access API on desktop Chrome/Edge.
 
 ## Architecture
 ```
