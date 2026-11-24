@@ -187,6 +187,26 @@ code { font-family: var(--font-mono); font-size: 0.9em; color: var(--ice); }
 .side-link.active::after { content: ''; position: absolute; right: -1px; top: 0; bottom: 0; width: 3px; background: var(--ice); }
 .side-link.dim { color: var(--dim); }
 .side-link.sub { padding-left: 64px; font-size: 14.5px; }
+/* collapsible sidebar groups (Expressions: Idioms, Slang, Everyday, Chunks, Literary) */
+.side-group { border-top: 1px solid var(--line); }
+.side-group.last { border-bottom: 1px solid var(--line); }
+.side-group-head {
+  display: flex; align-items: baseline; gap: 14px; padding: 14px 32px; cursor: pointer;
+  list-style: none; color: var(--text); font-size: 15.5px; font-weight: 500; user-select: none;
+}
+.side-group-head::-webkit-details-marker { display: none; }
+.side-group-head:hover { background: color-mix(in srgb, var(--navy) 50%, transparent); }
+.side-group-head .n { font-family: var(--font-mono); font-size: 12px; color: var(--dim); width: 18px; flex: none; }
+.side-group-head .nm { flex: 1; min-width: 0; }
+.side-group-head .ct { font-family: var(--font-mono); font-size: 12px; color: var(--muted); flex: none; }
+.side-group-head .chev { display: inline-grid; place-items: center; align-self: center; color: var(--muted); transition: transform 0.15s; flex: none; }
+.side-group-head .chev svg { width: 13px; height: 13px; }
+.side-group[open] > .side-group-head .chev { transform: rotate(180deg); color: var(--ice); }
+.side-group.here > .side-group-head .nm, .side-group.here > .side-group-head .n { color: var(--ice); }
+.side-group-body { padding-bottom: 10px; }
+.side-group-body .side-link { padding: 9px 32px 9px 64px; font-size: 14.5px; }
+.side-group-body .side-link .n { width: 16px; }
+.side-sublabel { padding: 12px 32px 6px 64px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
 .side-practice {
   position: relative;
   margin: 32px 24px 0; padding: 20px;
@@ -452,6 +472,11 @@ mark.hl { background: none; color: var(--ice); text-decoration: underline; text-
 .chip .a-die { color: var(--die); }
 .chip .a-das { color: var(--das); }
 .chip.small { font-size: 13.5px; padding: 4px 10px; color: var(--muted); }
+.cat-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: -8px 0 28px; }
+.cat-chips .chip { color: var(--text); }
+.cat-chips .chip .mono { color: var(--dim); font-size: 12px; margin-left: 4px; }
+.cat-chips .chip:hover { border-color: var(--ice); }
+.cat-chips .chip.on { border-color: var(--ice); color: var(--ice); background: var(--navy); }
 .rulink p { font-size: 16px; line-height: 1.6; }
 .rulink.empty p { color: var(--muted); font-size: 15px; }
 
@@ -672,6 +697,9 @@ input[type="number"] { width: 90px; }
   .side-link { padding: 13px 24px; }
   .side-label { padding-left: 24px; }
   .side-link.sub { padding-left: 56px; }
+  .side-group-head { padding: 15px 24px; }
+  .side-group-body .side-link { padding-left: 48px; padding-right: 24px; }
+  .side-sublabel { padding-left: 48px; }
   .side-link.active::after { right: 0; }
   .scrim { display: block; position: fixed; inset: 0; z-index: 45; background: rgba(0, 0, 0, 0.6); opacity: 0; pointer-events: none; transition: opacity 0.25s; }
   .scrim.open { opacity: 1; pointer-events: auto; }

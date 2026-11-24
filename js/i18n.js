@@ -44,6 +44,7 @@
         formal: 'Формально: вежливая форма, учреждения, письма, незнакомые люди.',
         neutral: 'Нейтрально: подходит почти везде — на работе и в быту.',
         informal: 'Неформально: с друзьями и близкими коллегами.',
+        slang: 'Сленг: улица, друзья, соцсети. Не для работы и официальных ситуаций.',
         literary: 'Книжно-выразительно: родом из классики, но понятно носителям в живой речи, эссе и разговоре — главное, без пафоса.',
         ironic: 'Иронично: литературная формула с тонкой усмешкой — уместна в умном разговоре, статье или дружеском споре.',
         elevated: 'Возвышенно-образно: сильная литературная метафора для точных описаний, писем и глубоких разговоров.'
@@ -83,6 +84,7 @@
         formal: 'Formal: polite address, offices, letters, people you don’t know.',
         neutral: 'Neutral: fits almost everywhere — at work and in everyday life.',
         informal: 'Informal: with friends and close colleagues.',
+        slang: 'Slang: the street, friends, social media. Not for work or formal situations.',
         literary: 'Literary & expressive: born in classic literature, still understood by native speakers in essays and conversation — best used lightly, without melodrama.',
         ironic: 'Ironic: a literary turn of phrase with dry wit — natural in sharp conversation, essays or friendly debate.',
         elevated: 'Elevated & vivid: a strong literary image suited to precise descriptions, letters and thoughtful conversation.'
@@ -122,6 +124,7 @@
         formal: 'Formell: höfliche Anrede, Behörden, Briefe, fremde Menschen.',
         neutral: 'Neutral: passt fast überall — bei der Arbeit und im Alltag.',
         informal: 'Informell: mit Freunden und vertrauten Kollegen.',
+        slang: 'Slang: Straße, Freunde, Social Media. Nicht für die Arbeit oder formelle Situationen.',
         literary: 'Literarisch-ausdrucksstark: stammt aus der Klassik, ist Muttersprachlern aber heute noch vertraut — am besten ohne Pathos verwendet.',
         ironic: 'Ironisch: eine literarische Wendung mit trockenem Witz — passt in kluge Gespräche, Essays oder Debatten.',
         elevated: 'Gehoben & bildhaft: eine prägnante literarische Metapher für genaue Beschreibungen, Briefe und tiefere Gespräche.'

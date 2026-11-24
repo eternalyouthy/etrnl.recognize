@@ -357,6 +357,73 @@
       (right !== '' && right != null ? '<span class="ct' + (opts.due ? ' due' : '') + '">' + right + '</span>' : '') + '</a>';
   }
 
+  /* Expressions sidebar: one collapsible group per section (Idioms, Slang, Everyday Phrases, Chunks, Literary
+   * Phrases). Each group starts with "All …", then its categories. The group you are in opens by itself;
+   * groups you open or close by hand stay that way until the page reloads. */
+  ui.sideOpen = ui.sideOpen || {};
+  sideEl.addEventListener('toggle', function (e) {
+    var d = e.target;
+    if (d && d.classList && d.classList.contains('side-group')) ui.sideOpen[d.dataset.group] = d.open;
+  }, true);
+  function sideGroup(key, n, title, right, here, inner, last) {
+    var open = ui.sideOpen[key] != null ? ui.sideOpen[key] : here;
+    return '<details class="side-group' + (here ? ' here' : '') + (last ? ' last' : '') + '" data-group="' + key + '"' + (open ? ' open' : '') + '>' +
+      '<summary class="side-group-head"><span class="n">' + n + '</span><span class="nm">' + esc(title) + '</span>' +
+      (right ? '<span class="ct">' + right + '</span>' : '') + '<span class="chev">' + icon('chev') + '</span></summary>' +
+      '<div class="side-group-body">' + inner + '</div></details>';
+  }
+  function ctOf(items) { var c = counts(items); return items.length ? c.known + '/' + items.length : ''; }
+  function expressionsSidebar(tab, p, cur) {
+    var h = '<div class="side-label">Expressions</div>', n = 0, groups = [];
+    var onItem = p[0] === 'item';
+    var curT = tab === 'expressions' ? GT.topic('expressions', cur) : null;
+    (GT.EXP_SECTIONS || []).forEach(function (sec) {
+      if (!GT.topic('expressions', sec.id)) return;
+      var all = itemsFor('expressions', sec.id);
+      var here = !!curT && (curT.id === sec.id || curT.parent === sec.id);
+      var inner = sideLink('#/expressions/' + sec.id, '—', 'All ' + (sec.id === 'slang' ? 'slang' : sec.name.toLowerCase()), ctOf(all), { active: here && !onItem && cur === sec.id });
+      var cats = GT.TOPICS.expressions.filter(function (t) { return t.parent === sec.id; });
+      cats.forEach(function (t, i) {
+        var items = itemsFor('expressions', t.id);
+        inner += sideLink('#/expressions/' + t.id, pad2(i + 1), t.name, ctOf(items), { active: cur === t.id && tab === 'expressions', dim: !items.length });
+      });
+      groups.push([sec.id, sec.name, ctOf(all), here, inner]);
+    });
+    // Chunks: All chunks, then functions grouped (Discussion, Problems & Services, …)
+    if ((GT.TOPICS.chunks || []).length) {
+      var chAll = itemsFor('chunks', 'all'), chInner = sideLink('#/chunks/all', '—', 'All chunks', ctOf(chAll), { active: tab === 'chunks' && cur === 'all' });
+      var names = (GT.CHUNK_GROUPS || []).map(function (g) { return g.name; });
+      GT.TOPICS.chunks.forEach(function (t) { if (names.indexOf(t.group) < 0) names.push(t.group); });
+      names.forEach(function (g) {
+        var ts = GT.TOPICS.chunks.filter(function (t) { return t.group === g && visibleTopic(t); });
+        if (!ts.length) return;
+        chInner += '<div class="side-sublabel">' + esc(g) + '</div>';
+        ts.forEach(function (t, i) {
+          var items = itemsFor('chunks', t.id);
+          chInner += sideLink('#/chunks/' + t.id, pad2(i + 1), t.name, ctOf(items), { active: tab === 'chunks' && cur === t.id, dim: !items.length });
+        });
+      });
+      groups.push(['chunks', 'Chunks', ctOf(chAll), tab === 'chunks', chInner]);
+    }
+    var litTopics = (GT.TOPICS.literature || []).filter(visibleTopic);
+    if (litTopics.length) {
+      var litAll = itemsFor('literature', 'all'), litInner = sideLink('#/literature/all', '—', 'All literary phrases', ctOf(litAll), { active: tab === 'literature' && cur === 'all' });
+      litTopics.forEach(function (t, i) {
+        var items = itemsFor('literature', t.id);
+        litInner += sideLink('#/literature/' + t.id, pad2(i + 1), t.name, ctOf(items), { active: tab === 'literature' && cur === t.id, dim: !items.length });
+      });
+      groups.push(['literature', 'Literary Phrases', ctOf(litAll), tab === 'literature', litInner]);
+    }
+    // Entering a group (from another one) opens it, even if it was closed by hand earlier.
+    var hereKey = null;
+    groups.forEach(function (g) { if (g[3]) hereKey = g[0]; });
+    if (hereKey !== ui.sideHere) { if (hereKey) ui.sideOpen[hereKey] = true; ui.sideHere = hereKey; }
+    groups.forEach(function (g, i) {
+      h += sideGroup(g[0], pad2(++n), g[1], g[2], g[3], g[4], i === groups.length - 1);
+    });
+    return h;
+  }
+
   function renderSidebar(tab, p) {
     var html = '', cur = p[1];
     if (p[0] === 'item') { var it = GT.byId[p[1]]; cur = it ? it.topic : null; }
@@ -380,28 +447,7 @@
       }
       html += sidePractice();
     } else if (inExp) {
-      html += '<div class="side-label">Expressions</div>';
-      GT.TOPICS.expressions.filter(visibleTopic).forEach(function (t, i) {
-        var items = itemsFor('expressions', t.id), c = counts(items);
-        html += sideLink('#/expressions/' + t.id, pad2(i + 1), t.name, items.length ? c.known + '/' + items.length : '', { active: tab === 'expressions' && cur === t.id, dim: !items.length });
-      });
-      var litTopics = (GT.TOPICS.literature || []).filter(visibleTopic);
-      if (litTopics.length) {
-        html += '<div class="side-label">Literary Phrases</div>' +
-          sideLink('#/literature/all', '—', 'All literary', itemsFor('literature', 'all').length, { active: tab === 'literature' && cur === 'all' });
-        litTopics.forEach(function (t, i) {
-          var items = itemsFor('literature', t.id), c = counts(items);
-          html += sideLink('#/literature/' + t.id, pad2(i + 1), t.name, items.length ? c.known + '/' + items.length : '', { active: tab === 'literature' && cur === t.id, dim: !items.length });
-        });
-      }
-      html += '<div class="side-label">Chunks</div>' + sideLink('#/chunks/all', '—', 'All chunks', itemsFor('chunks', 'all').length, { active: tab === 'chunks' && cur === 'all' });
-      var groupE = null, nE = 0;
-      GT.TOPICS.chunks.forEach(function (t) {
-        if (t.group !== groupE) { groupE = t.group; nE = 0; html += '<div class="side-label">' + esc(groupE) + '</div>'; }
-        nE++;
-        var items = itemsFor('chunks', t.id), c = counts(items);
-        html += sideLink('#/chunks/' + t.id, pad2(nE), t.name, items.length ? c.known + '/' + items.length : '', { active: tab === 'chunks' && cur === t.id, dim: !items.length });
-      });
+      html += expressionsSidebar(tab, p, cur);
       html += sidePractice();
     } else if (tab === 'words' || tab === 'grammar') {
       var group = null, n = 0;
@@ -916,8 +962,8 @@
   }
   function viewExpressionsLanding() {
     var h = '<header class="page-head"><span class="eyebrow">03 · Expressions</span><h1>Expressions</h1><p class="lead">' + intro('expressions') + '</p></header>' + reminders();
-    var expTopics = GT.TOPICS.expressions.filter(visibleTopic);
-    h += '<h3 class="section-title">Idioms & Everyday Phrases</h3><div class="grid">' +
+    var expTopics = GT.TOPICS.expressions.filter(function (t) { return t.section && visibleTopic(t); });
+    h += '<h3 class="section-title">Sections</h3><div class="grid">' +
       expTopics.map(function (t, i) { return tile('expressions', t, i + 1); }).join('') +
       expressionSectionTile('chunks', 'Chunks', expTopics.length + 1) +
       expressionSectionTile('literature', 'Literary Phrases', expTopics.length + 2) + '</div>';
@@ -999,9 +1045,21 @@
   function topicCrumb(tab, t, extra) {
     var tdef = GT.TABS.find(function (x) { return x.id === tab; }) || { label: 'Catalogue' };
     var lvl = tab === 'words' ? (t.level === 'b2' ? 'B2' : (GT.cfg('levelName') || 'B1')) : tdef.label;
+    var par = tab === 'expressions' && t.parent ? GT.topic('expressions', t.parent) : null;
+    if (par) return '<a href="#/expressions">Expressions</a> · <a href="#/expressions/' + par.id + '">' + esc(par.name) + '</a> · ' + (extra ? '<a href="#/' + tab + '/' + t.id + '">' + esc(t.name) + '</a> · ' + extra : esc(t.name));
     return '<a href="#/' + tab + '">' + esc(lvl) + '</a> · ' + (extra ? '<a href="#/' + tab + '/' + t.id + '">' + esc(t.name) + '</a> · ' + extra : esc(t.name));
   }
 
+  /* Category chips under an Idioms / Slang / Everyday Phrases heading: All + each category. */
+  function expCatChips(secId, cur) {
+    var sec = GT.topic('expressions', secId);
+    if (!sec) return '';
+    var list = [sec].concat(GT.TOPICS.expressions.filter(function (t) { return t.parent === secId; }));
+    return '<div class="cat-chips">' + list.map(function (t) {
+      var n = itemsFor('expressions', t.id).length;
+      return '<a class="chip small' + (t.id === cur ? ' on' : '') + '" href="#/expressions/' + t.id + '">' + esc(t.id === secId ? 'All' : t.name) + ' <span class="mono">' + n + '</span></a>';
+    }).join('') + '</div>';
+  }
   function viewTopic(tab, id) {
     var t = findTopic(tab, id);
     if (!t) return notFound();
@@ -1010,6 +1068,7 @@
     var h = crumbsHTML(topicCrumb(tab, t), c.total ? pct : null);
     h += '<header class="page-head"><h1>' + esc(t.name) + '</h1>' + (t.desc ? '<p class="lead">' + esc(t.desc) + '</p>' : '') + '</header>';
     if (tab === 'chunks') h += tagFilter();
+    if (tab === 'expressions' && (t.section || t.parent)) h += expCatChips(t.section ? t.id : t.parent, id);
     if (!items.length) {
       h += '<div class="empty-state"><h3>No entries yet</h3><p>' + (tab === 'chunks' && ui.chunkTag ? 'No phrases match this filter.' : 'This topic arrives in a later data batch. Drop the file into <code>data/</code> and list it in <code>data/manifest.js</code>.') + '</p></div>';
       return page(h, 'mid');
