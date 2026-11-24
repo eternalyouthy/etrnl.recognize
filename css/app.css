@@ -1346,8 +1346,8 @@ body.pack-loading .main { opacity: 0.55; transition: opacity 0.15s; }
 [data-theme="holo"] :is(.lang-pop, .tab-menu) { background: var(--overlay); }
 [data-theme="holo"] .sheet.sheet-wide { background: var(--overlay); }
 [data-theme="holo"] .tile:hover { background: var(--navy-2); }
-[data-theme="holo"] .btn.primary { background: linear-gradient(90deg, #9b8cff, #5ee0d6); border-color: transparent; color: var(--ink); }
-[data-theme="holo"] .btn.primary:hover { background: linear-gradient(90deg, #ada0ff, #78e8df); }
+[data-theme="holo"] .btn.primary { background: linear-gradient(90deg, #9b8cff, #5ee0d6); border-color: transparent; background-origin: border-box; color: var(--ink); }
+[data-theme="holo"] .btn.primary:hover { background: linear-gradient(90deg, #ada0ff, #78e8df); background-origin: border-box; }
 /* Checkboxes: the native dark-scheme box renders as a flat grey square on glass */
 [data-theme="holo"] input[type="checkbox"] {
   -webkit-appearance: none; appearance: none; flex: none;
@@ -1359,7 +1359,7 @@ body.pack-loading .main { opacity: 0.55; transition: opacity 0.15s; }
 }
 [data-theme="holo"] input[type="checkbox"]:hover { border-color: var(--ice); background: var(--ice-soft); }
 [data-theme="holo"] input[type="checkbox"]:checked {
-  background: linear-gradient(135deg, #9b8cff, #5ee0d6); border-color: transparent;
+  background: linear-gradient(135deg, #9b8cff, #5ee0d6); background-origin: border-box; border-color: transparent;
   box-shadow: 0 0 10px rgba(126, 87, 255, 0.45);
 }
 [data-theme="holo"] input[type="checkbox"]:checked::after {
