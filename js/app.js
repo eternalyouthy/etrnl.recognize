@@ -1174,7 +1174,7 @@
   function viewItem(id) {
     var it = GT.byId[id];
     if (!it || it.type === 'drill') return notFound();
-    var pair = S.cardsForItem(id), now = Date.now(), list = itemsFor(it.tab, it.topic), idx = list.indexOf(it);
+    var pair = S.cardsForItem(id), now = GT.now(), list = itemsFor(it.tab, it.topic), idx = list.indexOf(it);
     var tc = counts(list), pct = tc.total ? Math.round(tc.known / tc.total * 100) : 0;
     var actions;
     if (!pair.rec && !pair.prod) {
@@ -1447,7 +1447,7 @@
     drawReview();
   }
   function rate(g) {
-    var R = rev, q = R.queue[R.i], now = Date.now();
+    var R = rev, q = R.queue[R.i], now = GT.now();
     var prev = S.card(q.key);
     var nc = F.rate(prev, g, now, S.settings.retention);
     nc.added = prev && prev.added;
@@ -1620,22 +1620,49 @@
   }
 
   /* ---------------- USER tab (#/user: Sync & Backup first, then Review & Stats) + settings ---------------- */
+  function agoText(ts) {
+    var m = Math.round((Date.now() - ts) / 60000);
+    if (m < 1) return 'just now';
+    if (m < 60) return m + ' min ago';
+    if (m < 24 * 60) return Math.round(m / 60) + ' h ago';
+    return fmtDateTime(ts);
+  }
   function gdriveBoxHTML() {
-    var gd = S.gdrive ? S.gdrive.state : { isHttp: false, connected: false };
-    var cid = S.settings.gdriveClientId || '';
-    var badge = gd.connected ? '<span class="tag outline">Connected</span>' : '<span class="tag dim">OAuth · appDataFolder</span>';
-    return '<div class="box-head" style="margin-bottom:10px"><span class="label ice" style="margin:0">Google Drive (Cloud OAuth)</span>' + badge + '</div>' +
-      '<p class="note muted">Syncs <code>etrnl-progress.json</code> into your private Google Drive <code>appDataFolder</code> across desktop and mobile (requires hosting on Netlify or <code>http://localhost</code>).</p>' +
-      '<div class="gd-row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">' +
-        '<input type="text" class="gd-input" data-set="gdriveClientId" value="' + esc(cid) + '" placeholder="Google OAuth Client ID (…apps.googleusercontent.com)" spellcheck="false" autocomplete="off" style="flex:1;min-width:240px;min-height:44px;padding:8px 12px;border:1px solid var(--line-2);background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:12.5px">' +
-        '<button class="btn primary small" type="button" data-act="gdrive-sync"' + (!gd.isHttp || gd.busy ? ' disabled' : '') + '>' + icon('repeat') + (gd.busy ? 'Syncing…' : 'Sync with Google Drive') + '</button>' +
-        (gd.connected ? '<button class="btn ghost small" type="button" data-act="gdrive-disconnect">Disconnect</button>' : '') +
-      '</div>' +
-      (gd.lastSync ? '<p class="mono-muted" style="font-size:12px;margin-top:8px">Last synced with Google Drive: ' + fmtDateTime(gd.lastSync) + '</p>' : '') +
-      (!gd.isHttp ? '<p class="note" style="color:var(--gold);margin-top:8px">Google OAuth does not work on <code>file://</code>. Host on Netlify Drop or open via <code>http://localhost:8765</code>.</p>' : '') +
-      (gd.error ? '<p class="note" style="color:var(--gold);margin-top:8px">' + esc(gd.error) + '</p>' : '') +
-      '<details style="margin-top:12px"><summary class="mono-muted" style="font-size:12px;cursor:pointer">How to get a Google OAuth Client ID (once)</summary>' +
-      '<p class="note muted" style="font-size:13.5px;margin-top:8px">1. Open Google Cloud Console → enable <b>Google Drive API</b>.<br>2. In <b>OAuth consent screen</b> add scope <code>.../auth/drive.appdata</code> and your Google email as test user.<br>3. In <b>Credentials → Create Credentials → OAuth client ID (Web application)</b> add your Netlify domain (and <code>http://localhost:8765</code>) to <b>Authorized JavaScript origins</b>, then paste the Client ID above.</p></details>';
+    var gd = S.gdrive ? S.gdrive.state : { isHttp: false };
+    var head = function (badge) {
+      return '<div class="box-head" style="margin-bottom:10px"><span class="label ice" style="margin:0">Google Drive sync</span>' + badge + '</div>';
+    };
+    var err = gd.error ? '<p class="note gd-err">' + esc(gd.error) + '</p>' : '';
+    var setup = gd.builtInClientId ? '' :
+      '<details class="gd-setup"' + (gd.hasClientId ? '' : ' open') + '><summary class="mono-muted">Setup · Google Client ID (once, by the app owner)</summary>' +
+        '<p class="note muted">1. <a href="https://console.cloud.google.com/apis/library/drive.googleapis.com" target="_blank" rel="noopener">Google Cloud Console</a> → enable <b>Google Drive API</b>.<br>' +
+        '2. <b>OAuth consent screen</b> → External → add your Gmail as test user (or Publish the app).<br>' +
+        '3. <b>Credentials → OAuth client ID → Web application</b> → Authorized JavaScript origins: <code>' + esc(location.origin) + '</code> (plus <code>http://localhost:8765</code> for local use).<br>' +
+        '4. Paste the Client ID below — or put it into <code>GD_CLIENT_ID</code> in <code>js/store.js</code> so every device only needs “Connect”.</p>' +
+        '<input type="text" class="gd-input" data-set="gdriveClientId" value="' + esc(S.settings.gdriveClientId || '') + '" placeholder="…apps.googleusercontent.com" spellcheck="false" autocomplete="off">' +
+      '</details>';
+
+    if (!gd.isHttp) {
+      return head('<span class="tag dim">Unavailable here</span>') +
+        '<p class="note muted">Google sign-in does not work when the app is opened as a file (<code>file://</code>). Open the hosted version (Netlify) or <code>http://localhost:8765</code>.</p>';
+    }
+    if (!gd.enabled) {
+      return head('<span class="tag dim">Off</span>') +
+        '<p class="note muted">Keeps progress identical on all your devices. Stored only in a hidden app folder of <b>your</b> Google Drive — no server, no database. Newer reviews always win, by a shared clock.</p>' +
+        '<div class="actions-row"><button class="btn primary" type="button" data-act="gdrive-connect"' + (gd.busy ? ' disabled' : '') + '>' +
+          icon('repeat') + (gd.busy ? 'Connecting…' : 'Connect Google Drive') + '</button></div>' + err + setup;
+    }
+    var badge, line;
+    if (gd.busy) { badge = '<span class="tag outline">Syncing…</span>'; line = 'Syncing with Google Drive…'; }
+    else if (gd.needsTap) { badge = '<span class="tag gold">Paused</span>'; line = 'Resumes on your first tap anywhere (Google needs one click per session).'; }
+    else { badge = '<span class="tag outline">Auto-sync on</span>'; line = gd.pending ? 'Changes waiting to upload…' : 'Everything saved. Syncs automatically after each change and when you return to the app.'; }
+    return head(badge) +
+      '<p class="note muted">' + (gd.email ? 'Account <b>' + esc(gd.email) + '</b>. ' : '') + esc(line) + '</p>' +
+      (gd.lastSync ? '<p class="mono-muted gd-when">Last sync: ' + esc(agoText(gd.lastSync)) + '</p>' : '') + err +
+      '<div class="actions-row actions-split">' +
+        '<button class="btn primary small" type="button" data-act="gdrive-sync"' + (gd.busy ? ' disabled' : '') + '>' + icon('repeat') + (gd.needsTap ? 'Resume' : 'Sync now') + '</button>' +
+        '<button class="btn ghost small" type="button" data-act="gdrive-disconnect">Disconnect</button>' +
+      '</div>';
   }
   function syncBoxHTML() {
     var st = S.sync ? S.sync.state : { supported: false };
@@ -1670,7 +1697,8 @@
       '<label class="btn">' + icon('upload') + 'Import & merge<input type="file" id="importFile" accept=".json,application/json" hidden></label>' +
       '<label class="btn ghost small">' + icon('upload') + 'Replace from file<input type="file" id="importReplaceFile" accept=".json,application/json" hidden></label></div>' +
       '</div>' +
-      '<div class="box" id="gdriveBox">' + gdriveBoxHTML() + '</div>' +
+      // Hidden until the owner sets a Google Client ID (GD_CLIENT_ID in store.js), so visitors never see setup steps.
+      (S.gdrive && (S.gdrive.state.hasClientId || S.gdrive.state.enabled) ? '<div class="box" id="gdriveBox">' + gdriveBoxHTML() + '</div>' : '') +
       '<div class="box" id="syncBox">' + syncBoxHTML() + '</div>';
   }
   function refreshSyncBox() {
@@ -1786,7 +1814,7 @@
 
   function act(name, el) {
     el = el || { dataset: {} };
-    var now = Date.now(), id = el.dataset.id;
+    var now = GT.now(), id = el.dataset.id;
     switch (name) {
       case 'l-later': learn.later.push(learn.queue[learn.i]); S.markLater(learn.queue[learn.i]); learn.i++; drawLearn(); break;
       case 'l-know':
@@ -1869,21 +1897,24 @@
       case 'sync-disconnect':
         S.sync.disconnect().then(function () { GT.toast('Sync file disconnected'); });
         break;
+      case 'gdrive-connect':
       case 'gdrive-sync': {
         var cidInp = document.querySelector('[data-set="gdriveClientId"]');
-        if (cidInp && cidInp.value.trim() !== (S.settings.gdriveClientId || '')) {
-          S.setSetting('gdriveClientId', cidInp.value.trim());
-        }
-        S.gdrive.syncNow({ silent: false }).then(function (msg) {
-          if (msg) GT.toast('Google Drive · ' + msg);
+        if (cidInp && cidInp.value.trim() !== (S.settings.gdriveClientId || '')) S.setSetting('gdriveClientId', cidInp.value.trim());
+        var first = name === 'gdrive-connect';
+        (first ? S.gdrive.connect() : S.gdrive.syncNow()).then(function (msg) {
+          if (first) { S.gdrive.init(); GT.toast('Google Drive connected · auto-sync on'); }
+          else if (msg) GT.toast('Google Drive · ' + msg);
         }).catch(function (err) {
-          GT.toast(err && err.message ? err.message : 'Google Drive sync failed');
+          if (err && err.message !== 'superseded') GT.toast(err.message || 'Google Drive sync failed');
         });
         break;
       }
       case 'gdrive-disconnect':
-        S.gdrive.disconnect();
-        GT.toast('Google Drive disconnected');
+        if (confirm('Disconnect Google Drive on this device? Your progress stays here and in Drive.')) {
+          S.gdrive.disconnect();
+          GT.toast('Google Drive disconnected');
+        }
         break;
       case 'reset-all':
         if (confirm('Reset ALL ' + langMeta().name + ' progress? Other languages are kept. This cannot be undone. Export first if unsure.') && confirm('Really delete all ' + langMeta().name + ' progress?')) { S.reset(); applyTheme(); route(); GT.toast('Progress reset'); }
@@ -2958,7 +2989,7 @@
   function studioRate(g) {
     var S2 = studio;
     if (!S2 || !S2.checked) return;
-    var q = S2.questions[S2.i], now = Date.now();
+    var q = S2.questions[S2.i], now = GT.now();
     if (q.cardKey) {
       var prev = S.card(q.cardKey);
       var nc = F.rate(prev, g, now, S.settings.retention);
@@ -3422,6 +3453,7 @@
       ready = true;
       route();
       if (S.sync && S.sync.init) S.sync.init();
+      if (S.gdrive && S.gdrive.init) S.gdrive.init();
     });
   })();
 })();

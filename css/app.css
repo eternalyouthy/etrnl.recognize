@@ -1140,10 +1140,18 @@ body.pack-loading .main { opacity: 0.55; transition: opacity 0.15s; }
     line-height: 1.25;
   }
 
-  /* Google Drive OAuth sync row in User */
-  .gd-row { flex-direction: column; }
-  .gd-row .gd-input { min-width: 0 !important; width: 100%; }
-  .gd-row .btn { width: 100%; }
+}
+
+/* Google Drive sync box in User */
+.gd-err { color: var(--gold); margin-top: 8px; }
+.gd-when { font-size: 12px; margin-top: 6px; }
+.gd-setup { margin-top: 14px; }
+.gd-setup summary { font-size: 12px; cursor: pointer; }
+.gd-setup .note { font-size: 13.5px; margin-top: 8px; }
+.gd-setup .gd-input {
+  width: 100%; min-height: 44px; margin-top: 10px; padding: 8px 12px;
+  border: 1px solid var(--line-2); background: var(--bg); color: var(--text);
+  font-family: var(--font-mono); font-size: 12.5px;
 }
 
 /* =====================================================================
