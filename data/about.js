@@ -129,12 +129,11 @@ GT.START_NOTES = {
       { h: 'Где хранятся твои данные', p: 'Никаких данных о тебе не собирается. Сервера с базой данных нет, потому что, честно говоря, мне было лень. Весь прогресс хранится в кэше браузера на этом устройстве. Если очистишь данные сайта, прогресс пропадёт.' },
       { h: 'Почему интерфейс полностью не на русском', p: 'Сайт переведён на русский не полностью, и это осознанно. Объяснения и переводы идут на русском, а кнопки и меню остаются на английском. Чтобы пользоваться сайтом, хватит английского на уровне A1. Мне кажется, что полностью русский интерфейс выглядел бы менее эстетично.' }
     ],
-    newsTitle: 'Последнее обновление',
+    newsTitle: 'Последние обновления',
     news: [
-      { h: 'Артикли и формы', p: 'Новый раздел в Language: справочник и игра «Which form?». Немецкие артикли по падежам, английские a / an / the, русские падежные окончания. Каждое задание сравнивается с языком, который ты знаешь. Отдельная тренировка Ending patterns учит угадывать род по окончанию, а в английском выбирать a или an по звуку.' },
-      { h: 'Professional', p: 'Теперь семь направлений. Начни с For Everyone, дальше IT, бюрократия, право, сервис, финансы и HR, медицина и производство. Добавлены сотни новых карточек вплоть до C2. Русские темы ещё в пути.' },
-      { h: 'Grammar и Roots', p: 'Новые уроки и упражнения во всех трёх языках, семьи слов стали больше. Галочка Hide basics прячет элементарные слова.' },
-      { h: 'Исправления', p: 'Поправлена вёрстка на телефоне и в темах: кнопки и галочки в Holo Glass, длинные немецкие слова в карточках больше не рвутся. Исправлены ударения, переводы и импорт прогресса.' }
+      { h: 'Артикли', p: 'В Language появился раздел с артиклями и интерактивной игрой для всех языков. Артикль не угадывается в отрыве от контекста: он выбирается прямо внутри предложения.' },
+      { h: 'Обновления разделов', p: 'Пополнились почти все разделы. Больше всего изменился Professional: его переделали, и профессий стало намного больше.' },
+      { h: 'Исправления', p: 'Крупное исправление багов, особенно на телефоне и в темах оформления.' }
     ]
   },
   en: {
@@ -143,12 +142,11 @@ GT.START_NOTES = {
       { h: 'Themes', p: 'Open the settings (the sliders icon, top right) to switch the theme. There are six of them, dark and light. Pick whatever suits your mood.' },
       { h: 'Where your data lives', p: 'Nothing about you is collected. There is no server with a database because, honestly, I couldn’t be bothered. All your progress is stored in this browser’s cache on this device. Clear the site data and your progress is gone.' }
     ],
-    newsTitle: 'Latest update',
+    newsTitle: 'Latest updates',
     news: [
-      { h: 'Articles & forms', p: 'A new Language section with a reference and the “Which form?” game: German articles by case, English a / an / the, Russian case endings. Every task is compared with the language you know. A separate Ending patterns drill teaches you to guess gender from the ending, or to pick a or an by sound in English.' },
-      { h: 'Professional', p: 'Now seven tracks. Start with For Everyone, then IT, bureaucracy, law, service, finance & HR, healthcare and operations. Hundreds of new cards, up to C2. Russian topics are on the way.' },
-      { h: 'Grammar & Roots', p: 'New lessons and drills in all three languages, and bigger word families. The Hide basics checkbox hides elementary words.' },
-      { h: 'Fixes', p: 'Phone and theme layout fixes: buttons and checkboxes in Holo Glass, and long German words no longer break inside word cards. Stress marks, translations and progress import are fixed too.' }
+      { h: 'Articles', p: 'Language now has an articles section with an interactive game for every language. You don’t guess the article out of context: you pick it inside a real sentence.' },
+      { h: 'Section updates', p: 'Almost every section got new content. Professional changed the most: it has been reworked and now covers many more professions.' },
+      { h: 'Fixes', p: 'A big round of bug fixes, especially on phones and in the themes.' }
     ]
   },
   de: {
@@ -157,12 +155,11 @@ GT.START_NOTES = {
       { h: 'Designs', p: 'In den Einstellungen (Regler-Symbol oben rechts) können Sie das Design wechseln. Es gibt sechs, dunkle und helle, ganz nach Laune.' },
       { h: 'Wo Ihre Daten liegen', p: 'Es werden keine Daten über Sie gesammelt. Es gibt keinen Server mit Datenbank, ehrlich gesagt war ich zu faul dafür. Ihr gesamter Fortschritt liegt im Browser-Cache auf diesem Gerät. Wenn Sie die Website-Daten löschen, ist der Fortschritt weg.' }
     ],
-    newsTitle: 'Letztes Update',
+    newsTitle: 'Letzte Updates',
     news: [
-      { h: 'Artikel & Formen', p: 'Neuer Bereich unter Language mit Übersicht und dem Spiel „Which form?“: deutsche Artikel nach Fall, englisch a / an / the, russische Kasusendungen. Jede Aufgabe wird mit der Sprache verglichen, die Sie können. Das Training Ending patterns übt das Genus nach der Endung, im Englischen a oder an nach dem Laut.' },
-      { h: 'Professional', p: 'Jetzt sieben Bereiche. Beginnen Sie mit For Everyone, danach IT, Behörden, Recht, Service, Finanzen & HR, Medizin und Technik & Logistik. Hunderte neue Karten bis C2. Die russischen Themen folgen.' },
-      { h: 'Grammar & Roots', p: 'Neue Lektionen und Übungen in allen drei Sprachen, größere Wortfamilien. Das Kästchen Hide basics blendet Grundwörter aus.' },
-      { h: 'Fehlerbehebungen', p: 'Layout auf dem Handy und in den Designs verbessert: Buttons und Kästchen in Holo Glass, lange deutsche Wörter brechen auf den Wortkarten nicht mehr mitten im Wort um. Auch Betonungen, Übersetzungen und der Import des Fortschritts sind korrigiert.' }
+      { h: 'Artikel', p: 'Unter Language gibt es jetzt einen Bereich zu Artikeln mit einem interaktiven Spiel für alle Sprachen. Der Artikel wird nicht ohne Kontext geraten, sondern direkt im Satz gewählt.' },
+      { h: 'Neues in den Bereichen', p: 'Fast alle Bereiche wurden erweitert. Am meisten hat sich Professional verändert: Der Bereich wurde neu aufgebaut und umfasst jetzt viel mehr Berufe.' },
+      { h: 'Fehlerbehebungen', p: 'Viele Fehler wurden behoben, vor allem auf dem Handy und in den Designs.' }
     ]
   }
 };
