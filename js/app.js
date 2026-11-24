@@ -1867,8 +1867,8 @@
     h += '<h3 class="section-title">Look & sound</h3><div class="box">' +
       row('Hide sidebar Practice box', 'Hide the "Practice now" card in the sidebar.', sw('hideSidePractice')) +
       row('' + langMeta().name + ' voice', '<span id="voiceInfo">' + (tts.ok ? 'Loading voices…' : 'Speech is not supported in this browser.') + '</span>',
-        tts.ok ? '<select id="voiceSelect" data-set="' + voiceKey() + '" style="max-width:240px"></select>' : '<span class="mono-muted">—</span>') +
-      row('Speech rate', 'Applied to all pronunciation buttons.', '<div style="display:flex;gap:8px;align-items:center">' + sel('speechRate', [['0.75', 'Slow'], ['0.9', 'Normal'], ['1', 'Fast']]) + '<button class="btn small" type="button" data-act="test-voice">Test</button></div>') +
+        tts.ok ? '<select id="voiceSelect" class="voice-select" data-set="' + voiceKey() + '"></select>' : '<span class="mono-muted">—</span>') +
+      row('Speech rate', 'Applied to all pronunciation buttons.', '<div class="setting-ctl">' + sel('speechRate', [['0.75', 'Slow'], ['0.9', 'Normal'], ['1', 'Fast']]) + '<button class="btn small" type="button" data-act="test-voice">Test</button></div>') +
       '</div>';
     var files = GT.packFiles(GT.learn), errs = GT.pack.loadErrors;
     h += '<h3 class="section-title">Data · ' + esc(langMeta().name) + '</h3><div class="box"><p class="note muted">' + plural(files.length - errs.length, 'data file') + ' loaded · ' + GT.items.length + ' words & chunks · ' + Object.keys(GT.grammar).length + ' grammar pages · ' + Object.keys(GT.roots).length + ' word families · ' + (GT.links ? GT.links.length : 0) + ' cross-language links · schema v' + d.version + '.</p>' +
@@ -2246,8 +2246,23 @@
     var wrap = e.target.closest && e.target.closest('.mtag-wrap');
     if (wrap) { wrap.classList.remove('dismissed'); positionTooltip(wrap); }
   });
+  /* Root map: nodes sit on a circle by %, so long labels on narrow screens can poke past the frame — nudge them back in. */
+  function fitRootMaps() {
+    document.querySelectorAll('.rmap').forEach(function (m) {
+      var mr = m.getBoundingClientRect(), pad = 4;
+      m.querySelectorAll('.rnode').forEach(function (n) {
+        n.style.marginLeft = '';
+        var r = n.getBoundingClientRect(), shift = 0;
+        if (r.width > mr.width - 2 * pad) return;
+        if (r.left < mr.left + pad) shift = mr.left + pad - r.left;
+        else if (r.right > mr.right - pad) shift = mr.right - pad - r.right;
+        if (shift) n.style.marginLeft = Math.round(shift) + 'px';
+      });
+    });
+  }
   window.addEventListener('resize', function () {
     document.querySelectorAll('.mtag-wrap.open').forEach(positionTooltip);
+    fitRootMaps();
   });
   document.addEventListener('keydown', function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
@@ -3906,6 +3921,7 @@
       case 'settings': viewSettings(); break;
       default: location.replace('#/words'); return;
     }
+    fitRootMaps();
     if (!opts.keep) window.scrollTo(0, 0);
   }
   window.addEventListener('hashchange', function () { route(); });

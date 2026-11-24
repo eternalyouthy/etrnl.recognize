@@ -275,13 +275,7 @@
           { label: 'Everyday Phrases', href: '#/expressions/everyday', tab: 'expressions', topic: 'everyday' },
           { label: 'Literary Phrases', href: '#/literature', match: ['literature'] }
         ] },
-      { id: 'practice', label: 'Practice', short: 'Practice', icon: 'spark', href: '#/practice' },
-      { id: 'user', label: 'User', short: 'User', icon: 'user', href: '#/user',
-        items: [
-          { label: 'Sync & Backup', href: '#/user', match: ['user'] },
-          { label: 'Review', href: '#/review', match: ['review'] },
-          { label: 'Stats', href: '#/stats', match: ['stats'] }
-        ] }
+      { id: 'practice', label: 'Practice', short: 'Practice', icon: 'spark', href: '#/practice' }
     ],
     PRO_SUBS: [
       { id: 'work', tab: 'it', topic: 'work', name: 'Work & Office', desc: DESC['it.work'] },
