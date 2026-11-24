@@ -1280,7 +1280,20 @@
 
   function viewItem(id) {
     var it = GT.byId[id];
-    if (!it || it.type === 'drill') return notFound();
+    if (!it) {
+      // Back/Forward after an "In other languages" jump lands on another pack's card: switch to that pack.
+      var owner = packForItem(id);
+      if (owner && owner !== GT.learn) { setLanguages('learn', owner, location.hash); return; }
+      notFound(true);
+      // Not in any loaded pack or link: load the other packs quietly and switch if one of them has it.
+      var here = location.hash, others = (GT.LEARN_ORDER || ['de', 'en', 'ru']).filter(function (l) { return l !== GT.learn; });
+      Promise.all(others.map(function (l) { return GT.loadPack(l).catch(function () {}); })).then(function () {
+        var l = packForItem(id);
+        if (l && l !== GT.learn && location.hash === here) setLanguages('learn', l, here);
+      });
+      return;
+    }
+    if (it.type === 'drill') return notFound();
     var pair = S.cardsForItem(id), now = GT.now(), list = itemsFor(it.tab, it.topic), idx = list.indexOf(it);
     var tc = counts(list), pct = tc.total ? Math.round(tc.known / tc.total * 100) : 0;
     var actions;
@@ -1301,8 +1314,19 @@
     page(h);
   }
 
-  function notFound() {
-    page('<div class="empty-state"><h3>Not found</h3><p>This page doesn’t exist (anymore). <a class="link-btn" href="#/words">Go to Words</a></p></div>', 'mid');
+  /** Which learn-language pack owns this item id (loaded packs first, then cross-language links), or null. */
+  function packForItem(id) {
+    var order = GT.LEARN_ORDER || ['de', 'en', 'ru'];
+    for (var i = 0; i < order.length; i++) {
+      var l = order[i];
+      if (GT.packs[l] && GT.packs[l].byId && GT.packs[l].byId[id]) return l;
+    }
+    for (var j = 0; j < order.length; j++) if (GT.linksByKey && GT.linksByKey[order[j] + ':' + id]) return order[j];
+    return null;
+  }
+  function notFound(isItem) {
+    var hint = isItem ? '<p class="muted" style="margin-top:12px">This card may belong to another language. That happens when you follow “In other languages” links and then go back. Switch what you learn with the globe button at the top.</p>' : '';
+    page('<div class="empty-state"><h3>Not found</h3><p>This page doesn’t exist (anymore). <a class="link-btn" href="#/words">Go to Words</a></p>' + hint + '</div>', 'mid');
   }
 
   /* ---------------- learn session ---------------- */
@@ -3922,9 +3946,32 @@
       default: location.replace('#/words'); return;
     }
     fitRootMaps();
+    stampPair();
     if (!opts.keep) window.scrollTo(0, 0);
   }
-  window.addEventListener('hashchange', function () { route(); });
+  /* Each history entry remembers the language pair it was shown in, so Back/Forward
+     after an "In other languages" jump also switches the language back. */
+  function stampPair() {
+    try {
+      var st = history.state || {};
+      if (st.learn !== GT.learn || st.know !== GT.know) history.replaceState(Object.assign({}, st, { learn: GT.learn, know: GT.know }), '');
+    } catch (e) {}
+  }
+  window.addEventListener('hashchange', function () {
+    var st = history.state;
+    if (st && st.learn && GT.LANGS[st.learn] && GT.LANGS[st.know] && st.know !== st.learn &&
+        (st.learn !== GT.learn || st.know !== GT.know)) {
+      var knowChanged = st.know !== GT.know;
+      GT.know = st.know;
+      S.settings.knowLang = st.know;
+      S.settings.learnLang = st.learn;
+      S.saveSettings();
+      var done = st.learn !== GT.learn ? switchLearn(st.learn, location.hash) : Promise.resolve(knowChanged ? route() : null);
+      done.then(function () { GT.toast(GT.LANGS[GT.know].name + ' → ' + GT.LANGS[GT.learn].name); });
+      return;
+    }
+    route();
+  });
 
   /* ---------------- PWA (only when served over http/https) ---------------- */
   if (/^https?:$/.test(location.protocol)) {
