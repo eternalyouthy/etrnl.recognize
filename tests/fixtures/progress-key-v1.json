@@ -1,0 +1,13 @@
+{
+  "key": "RECGZ1-en-AWVum7rqIC8_E8PsuYwrrzRJM4AY-tVKaaUlpUWpQfn5JUpW1UpliTmlqUpWSmWGSrU6SjmJxSWuFQX5RSVKVnmlOTm1TAw8EPW6KUWZOTkrmRkY5sxlBJnEwCAMM0vJSqkotSQxM0-ploGjPL8oRbkoNXk_M9P__39Wfrzkm8Tp8F_72_S7k4_LOCyYwzgbqn_-HEZWRgZGBvbyxMySzLx0BoYX8xkZGTjT8_NSlQuK8lMYGLYuYmRk4DIyMDLWNTTUNTRhZmXkrVYqTk3Oz0spVrIyrgUAbYNXEg",
+  "data": {
+    "version": 2, "language": "en", "created": 1700000000123, "resetAt": 0,
+    "cards": {
+      "future-drill": { "state": "new", "due": 1700000000124, "added": 1700000000123, "reps": 0, "lapses": 0, "future": "retain" },
+      "word#rec": { "state": "review", "s": 3.173, "d": 7.1949, "due": 1700600000123, "last": 1700000000123, "added": 1699999999999, "reps": 5, "lapses": 1 }
+    },
+    "later": { "waiting": 1700000000456 }, "deleted": { "gone#prod": 1700000000789 },
+    "log": { "2023-11-14": { "reviews": 5, "learned": 1, "seconds": 3 } },
+    "lastPractice": 1700000000123, "lastExport": null, "futureRoot": { "value": "v1" }
+  }
+}

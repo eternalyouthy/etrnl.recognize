@@ -1,0 +1,82 @@
+{
+  "key": "RECGZ2-all-AgAAbY89S8NQFIbPSSi1anFw1Ol0ELRF0zrdqUtHQfwHaXIswZgbbm9aIWRxchdxaEtFXGpHcRYnd3FwcXFyrIuTUGmqiB_b4eU874fpsji5vM1nDej0EI4ucCUm327q2kEolSYRRL5fTJVtZTvac3iqJQAAHDzjhF5I6cHD4RJMjvWYdiMdKd6RUpOIqWX7EZOglkVJ8Y99YsD89L_kKs_3ByZAt4dpIVj88iJBirXtBZTATFsqt6DYuTGN8fh98Hq_Vc9Vx2tvp0_Hd8vVsy52Pvl-FzMICNm27WkvaAC89BEh15ABF0IlXYDrc0SYLW-UKyXLKlmbZgbzMTXZkYHbJFFJVFT_PXI0xNXvYjHtMYcktIr4v30_8kdDRJhTvC9bnG4AeLxC-ABYcjMw",
+  "data": {
+    "progress": {
+      "de": {
+        "version": 2,
+        "language": "de",
+        "created": 1700000000123,
+        "cards": {},
+        "later": {},
+        "deleted": {},
+        "resetAt": 1700000001000,
+        "log": {},
+        "lastPractice": null,
+        "lastExport": null
+      },
+      "en": {
+        "version": 2,
+        "language": "en",
+        "created": 1700000000123,
+        "resetAt": 0,
+        "cards": {
+          "future-drill": {
+            "state": "new",
+            "due": 1700000000124,
+            "added": 1700000000123,
+            "reps": 0,
+            "lapses": 0,
+            "future": "retain"
+          },
+          "word#rec": {
+            "state": "review",
+            "s": 3.173,
+            "d": 7.1949,
+            "due": 1700600000123,
+            "last": 1700000000123,
+            "added": 1699999999999,
+            "reps": 5,
+            "lapses": 1
+          }
+        },
+        "later": {
+          "waiting": 1700000000456
+        },
+        "deleted": {
+          "gone#prod": 1700000000789
+        },
+        "log": {
+          "2023-11-14": {
+            "reviews": 5,
+            "learned": 1,
+            "seconds": 3
+          }
+        },
+        "lastPractice": 1700000000123,
+        "lastExport": null,
+        "futureRoot": {
+          "value": "v1"
+        }
+      },
+      "ru": {
+        "version": 2,
+        "language": "ru",
+        "created": 1700000000123,
+        "cards": {},
+        "later": {
+          "waiting": 1700000002000
+        },
+        "deleted": {
+          "removed#rec": 1700000003000
+        },
+        "resetAt": 0,
+        "log": {},
+        "lastPractice": 1700000002000,
+        "lastExport": null,
+        "future": {
+          "keep": true
+        }
+      }
+    }
+  }
+}
