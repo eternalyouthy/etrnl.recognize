@@ -580,6 +580,28 @@
     mergeLangData: mergeLangData,
     /** Reset the ACTIVE language on this device only. Saved progress keys can restore it. */
     reset: function () { datas[active] = fresh(active); store.save(); },
+    /** Reset EVERY language on this device only (settings, theme and clock stay). Saved progress keys can restore it. */
+    resetAll: function () {
+      var langs = Object.keys(Object.assign({}, KEYS, datas)).sort(), next = {}, saved = [];
+      langs.forEach(function (lang) { next[lang] = fresh(lang); });
+      try {
+        langs.forEach(function (lang) {
+          var key = keyFor(lang), raw = localStorage.getItem(key);
+          var out = lang === 'de' ? Object.assign({}, next[lang], { settings: settings }) : next[lang];
+          if (!writeJSON(key, out)) throw new Error('Storage unavailable');
+          saved.push({ key: key, raw: raw });
+        });
+      } catch (e) {
+        storageOk = false;
+        saved.reverse().forEach(function (entry) {
+          try { if (entry.raw === null) localStorage.removeItem(entry.key); else localStorage.setItem(entry.key, entry.raw); } catch (err) {}
+        });
+        throw new Error('Could not reset progress. Storage is blocked or full.');
+      }
+      langs.forEach(function (lang) { datas[lang] = next[lang]; });
+      scheduleAutoSync();
+      return langs;
+    },
     progressPrint: progressPrint
   };
 

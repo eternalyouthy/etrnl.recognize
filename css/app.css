@@ -1324,7 +1324,7 @@ body.pack-loading .main { opacity: 0.55; transition: opacity 0.15s; }
 }
 
 /* Copy/paste progress, including long keys on narrow phones. */
-.progress-key { min-width: 0; overflow-wrap: anywhere; }
+.progress-key { min-width: 0; overflow-wrap: anywhere; scroll-margin-top: calc(var(--topbar-h) + 16px); }
 .progress-key .box-head { flex-wrap: wrap; }
 .progress-key-field { margin-top: 20px; min-width: 0; }
 .progress-key-field[hidden] { display: none; }

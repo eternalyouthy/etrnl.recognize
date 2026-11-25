@@ -2053,8 +2053,8 @@
       '<p class="note muted">Progress adds up across devices. Learn new topics on your phone, then add its key on your PC to combine them with your existing progress. You can do the same from PC to phone. One key carries all your languages.</p>' +
       '<div class="actions-row progress-key-actions"><button class="btn primary" type="button" data-act="key-generate"' + (k.busy ? ' disabled' : '') + '>Generate key</button>' +
       '<button class="btn" type="button" data-act="key-open" aria-expanded="' + k.adding + '" aria-controls="progressKeyAdd">Add progress</button>' +
-      '<button class="btn danger progress-key-reset" type="button" data-act="reset-all" aria-label="Reset all ' + esc(langMeta().name) + ' progress"' + (k.busy ? ' disabled' : '') + '>Reset all</button></div>' +
-      '<p class="note muted" style="margin-top:12px"><b>Reset all</b> clears ' + esc(langMeta().name) + ' progress on this device only. Save a key first to restore it later. The reset is not sent in progress keys.</p>' +
+      '<button class="btn danger progress-key-reset" type="button" data-act="reset-all" aria-label="Reset progress in all languages"' + (k.busy ? ' disabled' : '') + '>Reset all</button></div>' +
+      '<p class="note muted" style="margin-top:12px"><b>Reset all</b> clears progress in every language on this device only. Save a key first to restore it later. The reset is not sent in progress keys.</p>' +
       (k.key ? '<div class="progress-key-field"><label for="progressKeyOutput">Your progress key</label>' +
         '<textarea id="progressKeyOutput" rows="4" readonly spellcheck="false" aria-describedby="progressKeyLength">' + esc(k.key) + '</textarea>' +
         '<div class="actions-row"><button class="btn small" type="button" data-act="key-copy">' + icon('copy') + 'Copy</button>' +
@@ -2160,6 +2160,9 @@
     function sw(key, lbl) { return '<label class="switch"><input type="checkbox" data-set="' + key + '" aria-label="' + esc(lbl || key) + '"' + (s[key] ? ' checked' : '') + '><span></span></label>'; }
     function row(label, help, control) { return '<div class="setting"><div><div class="lbl">' + label + '</div>' + (help ? '<div class="help">' + help + '</div>' : '') + '</div>' + control + '</div>'; }
     var h = '<h3 class="section-title" style="margin-top:0">Theme</h3><div class="box" id="themeBox">' + themeRowsHTML() + '</div>';
+    h += '<h3 class="section-title">Progress</h3><div class="box">' +
+      row('Share progress between devices', 'No accounts and no database: one key moves your progress for all languages, and progress from both devices adds up.',
+        '<button class="btn small" type="button" data-act="goto-progress" style="white-space:nowrap;flex-shrink:0">Go →</button>') + '</div>';
     h += '<h3 class="section-title">Learning</h3><div class="box">' +
       row('New cards per session', 'How many cards "Learn new" shows.', '<input type="number" min="1" max="50" data-set="newPerSession" aria-label="New cards per session" value="' + s.newPerSession + '">') +
       row('Review direction', 'Review recognition (' + LS() + ' → ' + KS() + '), production (' + KS() + ' → ' + LS() + '), or both.', sel('reviewDirection', [['both', 'Both'], ['rec', 'Recognition only'], ['prod', 'Production only']], 'Review direction')) +
@@ -2182,7 +2185,7 @@
       (errs.length ? '<p class="note" style="color:var(--bad);margin-top:8px">Missing files: ' + errs.map(esc).join(', ') + '</p>' : '') +
       (GT.duplicates.length ? '<p class="note" style="color:var(--gold);margin-top:8px">Duplicate ids skipped: ' + GT.duplicates.map(esc).join(', ') + '</p>' : '') +
       '<p class="note muted" style="margin-top:8px">To add a batch: copy the file into the pack folder and list it in <code>data/manifest.js</code>.</p></div>';
-    h += '<h3 class="section-title">Danger zone</h3><div class="box"><button class="btn danger" data-act="reset-all">Reset ' + esc(langMeta().name) + ' progress</button></div>';
+    h += '<h3 class="section-title">Danger zone</h3><div class="box"><button class="btn danger" data-act="reset-all">Reset all progress</button><p class="note muted" style="margin-top:10px">Clears every language on this device. Settings and theme stay.</p></div>';
     return h;
   }
   function openSettings() {
@@ -2351,8 +2354,9 @@
         }
         break;
       case 'reset-all':
-        if (confirm('Reset all ' + langMeta().name + ' progress on this device? Other languages are kept. You can restore this progress with a key saved before resetting. This reset is not sent to other devices.')) {
-          S.reset(); progressKeyUI = null; applyTheme(); route(); GT.toast('Progress reset');
+        if (confirm('Reset progress in ALL languages on this device? Settings and theme are kept. You can restore your progress with a key saved before resetting. This reset is not sent to other devices.')) {
+          try { S.resetAll(); } catch (e) { GT.toast(e.message); break; }
+          progressKeyUI = null; if (sheetEl.classList.contains('open')) closeSheet(); applyTheme(); route(); GT.toast('All progress reset');
         }
         break;
       case 'test-voice': speak(langMeta().testPhrase, el); break;
@@ -2370,6 +2374,12 @@
         else openSettings();
         break;
       case 'sheet-close': closeSheet(); break;
+      case 'goto-progress': {
+        closeSheet();
+        var toKeyBox = function () { var kb = document.getElementById('progressKeyBox'); if (kb) kb.scrollIntoView({ block: 'start', behavior: 'smooth' }); };
+        if (location.hash === '#/user') toKeyBox(); else { location.hash = '#/user'; setTimeout(toKeyBox, 150); }
+        break;
+      }
       case 'lang-close': closeLangPop(true); break;
       case 'lucky': {
         var pool = expressionPool(el.dataset.v);

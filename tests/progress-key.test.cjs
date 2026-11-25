@@ -563,10 +563,17 @@ async function main() {
     const beforeCancel = await storage(a); let resetPrompt = '';
     a.once('dialog', async dialog => { resetPrompt = dialog.message(); await dialog.dismiss(); });
     await a.locator('#progressKeyBox [data-act="reset-all"]').click();
-    assert.match(resetPrompt, /^Reset all German progress on this device\?/);
-    assert.match(resetPrompt, /restore this progress with a key saved before resetting/);
+    assert.match(resetPrompt, /^Reset progress in ALL languages on this device\?/);
+    assert.match(resetPrompt, /restore your progress with a key saved before resetting/);
     assert.deepEqual(await storage(a), beforeCancel);
-    const otherLanguages = await a.evaluate(() => JSON.stringify([GT.store.dataFor('en'), GT.store.dataFor('ru')]));
+    // Give the other languages progress too, so the all-language reset is observable.
+    await a.evaluate(() => {
+      var all = GT.store.buildKeyProgress(), de = all.de;
+      ['en', 'ru'].forEach(function (l) { localStorage.setItem(l === 'en' ? 'etrnl.progress.en.v1' : 'etrnl.progress.ru.v1', JSON.stringify(Object.assign({}, de, { language: l }))); });
+    });
+    await a.reload(); await a.waitForSelector('#progressKeyBox');
+    assert(await a.evaluate(() => Object.keys(GT.store.dataFor('en').cards).length > 0 && Object.keys(GT.store.dataFor('ru').cards).length > 0));
+    const settingsBefore = await a.evaluate(() => JSON.stringify(GT.store.settings));
     const resetDialogs = [];
     const acceptReset = async dialog => { resetDialogs.push(dialog.message()); await dialog.accept(); };
     a.on('dialog', acceptReset);
@@ -576,13 +583,15 @@ async function main() {
     const resetProgress = await snapshot(a);
     assert.equal(resetProgress.resetAt, 0);
     for (const field of ['cards', 'later', 'deleted', 'log']) assert.deepEqual(resetProgress[field], {});
-    assert.equal(await a.evaluate(() => JSON.stringify([GT.store.dataFor('en'), GT.store.dataFor('ru')])), otherLanguages);
+    for (const l of ['en', 'ru']) assert.deepEqual(await a.evaluate(l => Object.keys(GT.store.dataFor(l).cards).length, l), 0);
+    assert.equal(await a.evaluate(() => JSON.stringify(GT.store.settings)), settingsBefore);
+    assert.deepEqual(await a.evaluate(() => Object.keys(GT.store.buildKeyProgress())), []);
     assert.equal(await a.locator('#progressKeyOutput').count(), 0);
     assert.equal(await a.locator('#progressKeyInput').inputValue(), '');
     await a.reload(); await a.waitForSelector('#progressKeyBox');
     assert.equal((await snapshot(a)).resetAt, resetProgress.resetAt);
     assert.equal(await a.evaluate(() => document.documentElement.scrollWidth), 375);
-    results.push('Progress key is above file exchange, Reset all is last/rightmost; Cancel keeps storage unchanged, one confirmation resets only the current language and clears old key fields.');
+    results.push('Progress key is above file exchange, Reset all is last/rightmost; Cancel keeps storage unchanged, one confirmation resets every language (settings kept) and clears old key fields.');
 
     // PWA shell actually includes the codec and remains usable offline.
     if (!sandbox) {
