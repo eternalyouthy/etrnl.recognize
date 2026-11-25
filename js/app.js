@@ -4541,12 +4541,17 @@
       var bar = document.querySelector('.topbar'), barH = bar ? bar.getBoundingClientRect().bottom : 0;
       var nav = document.querySelector('.bottomnav'), navH = nav && getComputedStyle(nav).display !== 'none' ? nav.getBoundingClientRect().height : 0;
       var r = el.getBoundingClientRect(), room = window.innerHeight - barH - navH;
+      // Whole box visible with the page at the top: keep the page heading in view and don't scroll.
+      if (window.scrollY + r.bottom + 16 <= window.innerHeight - navH) { window.scrollTo(0, 0); return; }
       var offset = r.height + 32 >= room ? barH + 16 : barH + (room - r.height) / 2;
       window.scrollTo(0, Math.max(0, window.scrollY + r.top - offset));
     };
     place();
     // Fonts or late layout can shift the box after the first jump; settle once more on the next frame.
     requestAnimationFrame(place);
+    // One rainbow lap around the border so the eye finds the box.
+    el.classList.remove('anchor-ring'); void el.offsetWidth; el.classList.add('anchor-ring');
+    clearTimeout(el._ringT); el._ringT = setTimeout(function () { el.classList.remove('anchor-ring'); }, 2000);
   }
   /* Each history entry remembers the language pair it was shown in, so Back/Forward
      after an "In other languages" jump also switches the language back. */
