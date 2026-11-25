@@ -70,7 +70,7 @@
       ['Said about memes and situations you recognise.', 'Über Memes und Situationen, die man kennt.'],
       ['From «жизненно» (true to life), social network VKontakte around 2015.', 'Von «жизненно» (lebensnah), VKontakte um 2015.'],
       ['Teens, students, social media.', 'Teenager, Studis, soziale Medien.']),
-    S('kringe', 'slang-react', 'кр+индж', 'cringe, embarrassing', 'cringe, peinlich', [
+    S('kringe', 'slang-react', 'кр+инж', 'cringe, embarrassing', 'cringe, peinlich', [
       ['Он пел в метро? Какой [[кринж]]!', 'He sang in the metro? So cringe!', 'Er hat in der U-Bahn gesungen? Wie cringe!'],
       ['Мои старые фотки — [[кринж]].', 'My old photos are cringe.', 'Meine alten Fotos sind cringe.'],
       ['Не [[кринжуй]], всё нормально.', 'Don’t cringe, it’s fine.', 'Schäm dich nicht, ist doch okay.']],
