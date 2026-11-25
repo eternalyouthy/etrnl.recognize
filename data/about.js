@@ -125,9 +125,9 @@ GT.START_NOTES = {
   ru: {
     goodTitle: 'Полезно знать',
     good: [
-      { h: 'Темы оформления', p: 'В настройках (иконка с ползунками справа вверху) можно сменить тему. Их шесть, тёмные и светлые, выбирай под настроение.' },
-      { h: 'Где хранятся твои данные', p: 'Никаких данных о тебе не собирается. Сервера с базой данных нет, потому что, честно говоря, мне было лень. Весь прогресс хранится в кэше браузера на этом устройстве. Если очистишь данные сайта, прогресс пропадёт.' },
       { h: 'Прогресс между устройствами', p: 'Рядом с настройками есть иконка профиля: в Sync & Backup прогресс легко перенести на другое устройство одним ключом. Прогресс суммируется, так что переносить его постоянно не нужно. Прошёл новые темы на телефоне, закинул ключ на ПК, и они добавятся к старому прогрессу. И наоборот.' },
+      { h: 'Где хранятся твои данные', p: 'Никаких данных о тебе не собирается. Сервера с базой данных нет, потому что, честно говоря, мне было лень. Весь прогресс хранится в кэше браузера на этом устройстве. Если очистишь данные сайта, прогресс пропадёт.' },
+      { h: 'Темы оформления', p: 'В настройках (иконка с ползунками справа вверху) можно сменить тему. Их шесть, тёмные и светлые, выбирай под настроение.' },
       { h: 'Почему интерфейс полностью не на русском', p: 'Сайт переведён на русский не полностью, и это осознанно. Объяснения и переводы идут на русском, а кнопки и меню остаются на английском. Чтобы пользоваться сайтом, хватит английского на уровне A1. Мне кажется, что полностью русский интерфейс выглядел бы менее эстетично.' }
     ],
     newsTitle: 'Последние обновления',
@@ -162,9 +162,9 @@ GT.START_NOTES = {
   en: {
     goodTitle: 'Good to know',
     good: [
-      { h: 'Themes', p: 'Open the settings (the sliders icon, top right) to switch the theme. There are six of them, dark and light. Pick whatever suits your mood.' },
+      { h: 'Progress across devices', p: 'Next to the settings there is a profile icon: in Sync & Backup you can move your progress to another device with a single key. Progress adds up, so you don’t have to keep moving it. Learn new topics on your phone, drop the key on your PC, and they join your existing progress there. And the other way round.' },
       { h: 'Where your data lives', p: 'Nothing about you is collected. There is no server with a database because, honestly, I couldn’t be bothered. All your progress is stored in this browser’s cache on this device. Clear the site data and your progress is gone.' },
-      { h: 'Progress across devices', p: 'Next to the settings there is a profile icon: in Sync & Backup you can move your progress to another device with a single key. Progress adds up, so you don’t have to keep moving it. Learn new topics on your phone, drop the key on your PC, and they join your existing progress there. And the other way round.' }
+      { h: 'Themes', p: 'Open the settings (the sliders icon, top right) to switch the theme. There are six of them, dark and light. Pick whatever suits your mood.' }
     ],
     newsTitle: 'Latest updates',
     news: [
@@ -197,9 +197,9 @@ GT.START_NOTES = {
   de: {
     goodTitle: 'Gut zu wissen',
     good: [
-      { h: 'Designs', p: 'In den Einstellungen (Regler-Symbol oben rechts) können Sie das Design wechseln. Es gibt sechs, dunkle und helle, ganz nach Laune.' },
+      { h: 'Fortschritt zwischen Geräten', p: 'Neben den Einstellungen gibt es ein Profil-Symbol: Unter Sync & Backup lässt sich der Fortschritt mit einem einzigen Schlüssel auf ein anderes Gerät bringen. Der Fortschritt summiert sich, Sie müssen ihn also nicht ständig übertragen. Neue Themen auf dem Handy lernen, den Schlüssel auf dem PC einfügen, und sie kommen zum bisherigen Fortschritt dazu. Und umgekehrt.' },
       { h: 'Wo Ihre Daten liegen', p: 'Es werden keine Daten über Sie gesammelt. Es gibt keinen Server mit Datenbank, ehrlich gesagt war ich zu faul dafür. Ihr gesamter Fortschritt liegt im Browser-Cache auf diesem Gerät. Wenn Sie die Website-Daten löschen, ist der Fortschritt weg.' },
-      { h: 'Fortschritt zwischen Geräten', p: 'Neben den Einstellungen gibt es ein Profil-Symbol: Unter Sync & Backup lässt sich der Fortschritt mit einem einzigen Schlüssel auf ein anderes Gerät bringen. Der Fortschritt summiert sich, Sie müssen ihn also nicht ständig übertragen. Neue Themen auf dem Handy lernen, den Schlüssel auf dem PC einfügen, und sie kommen zum bisherigen Fortschritt dazu. Und umgekehrt.' }
+      { h: 'Designs', p: 'In den Einstellungen (Regler-Symbol oben rechts) können Sie das Design wechseln. Es gibt sechs, dunkle und helle, ganz nach Laune.' }
     ],
     newsTitle: 'Letzte Updates',
     news: [
