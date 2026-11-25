@@ -3,3 +3,4 @@
 deploy.ps1
 deploy.cmd
 /\!WORTS/
+/HANDOFF*.md
