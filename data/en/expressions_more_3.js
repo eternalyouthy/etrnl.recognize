@@ -788,3 +788,443 @@ GT.register({
     }
   ]
 });
+
+/* TELC B2 source expansion 2026-11-26 — data only.
+ * Source: Einfach besser! 500, B2, English word list; original examples.
+ * Permanent IDs; existing cards reused by lemma, part of speech and sense. */
+GT.register({
+  "tab": "chunks",
+  "topic": "appointments",
+  "items": [
+    {
+      "id": "en:telc26:ch-rechtzeitig-bescheid",
+      "t": "Please let us know in good time.",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 10,
+          "headword": "rechtzeitig Bescheid geben",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Bitte geben Sie uns rechtzeitig Bescheid.",
+      "ru": "Пожалуйста, сообщите нам заранее.",
+      "examples": [
+        {
+          "t": "If you cannot attend the appointment, [[please let us know in good time]].",
+          "de": "Falls Sie den Termin nicht wahrnehmen können, geben Sie uns bitte rechtzeitig Bescheid.",
+          "ru": "Если вы не сможете прийти на встречу, пожалуйста, сообщите нам заранее."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "email",
+  "items": [
+    {
+      "id": "en:telc26:ch-rechnung-begleichen",
+      "t": "I will settle the invoice by [date].",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 27,
+          "headword": "eine Rechnung begleichen",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Ich werde die Rechnung bis [Datum] begleichen.",
+      "ru": "Я оплачу счёт до [дата].",
+      "examples": [
+        {
+          "t": "[[I will settle the invoice by]] Friday.",
+          "de": "Ich werde die Rechnung bis Freitag begleichen.",
+          "ru": "Я оплачу счёт до пятницы."
+        }
+      ]
+    },
+    {
+      "id": "en:telc26:ch-schriftform",
+      "t": "[X] must be in writing.",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 35,
+          "headword": "etwas bedarf der Schriftform",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "[X] bedarf der Schriftform.",
+      "ru": "Для [X] требуется письменная форма.",
+      "examples": [
+        {
+          "t": "According to the draft, an amendment [[must be in writing]].",
+          "de": "Laut Entwurf bedarf eine Änderung der Vereinbarung der Schriftform.",
+          "ru": "Согласно проекту, для изменения соглашения требуется письменная форма."
+        }
+      ],
+      "note": {
+        "de": "Formelle Konstruktion: bedürfen + Genitiv. Im Beispiel wird eine Vorgabe aus einem Vertragsentwurf wiedergegeben.",
+        "ru": "Формальная конструкция bedürfen + Genitiv: der Schriftform. Пример передаёт условие из проекта документа, а не универсальное юридическое правило."
+      }
+    },
+    {
+      "id": "en:telc26:ch-ab-werk",
+      "t": "ex works",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 25,
+          "headword": "ab Werk",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "ab Werk",
+      "ru": "с завода",
+      "examples": [
+        {
+          "t": "The quote is [[ex works]] at the supplier’s premises.",
+          "de": "Das Angebot gilt ab Werk des Lieferanten.",
+          "ru": "В предложении указана отгрузка с завода поставщика."
+        }
+      ],
+      "note": {
+        "de": "Kaufmännische Lieferangabe. Die konkreten Kosten und Pflichten ergeben sich aus den vereinbarten Bedingungen.",
+        "ru": "Коммерческая формулировка для предложения об отгрузке с предприятия поставщика. Точное распределение расходов и обязанностей определяется конкретными условиями."
+      }
+    },
+    {
+      "id": "en:telc26:ch-nachfrage",
+      "t": "On request, we can send you [X].",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 12,
+          "headword": "auf Nachfrage",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Auf Nachfrage senden wir Ihnen [X].",
+      "ru": "По запросу мы можем направить вам [X].",
+      "examples": [
+        {
+          "t": "[[On request, we can send you]] the complete datasheet.",
+          "de": "Auf Nachfrage senden wir Ihnen das vollständige Datenblatt.",
+          "ru": "По запросу мы можем направить вам полное техническое описание."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "it-meeting",
+  "items": [
+    {
+      "id": "en:telc26:ch-gegenvorschlag",
+      "t": "I’d like to make a counterproposal.",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 21,
+          "headword": "einen Gegenvorschlag machen",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Ich möchte einen Gegenvorschlag machen.",
+      "ru": "Я хотел(а) бы предложить встречный вариант.",
+      "examples": [
+        {
+          "t": "[[I’d like to make a counterproposal]]: let’s test a smaller solution first.",
+          "de": "Ich möchte einen Gegenvorschlag machen: Wir testen zuerst eine kleinere Lösung.",
+          "ru": "Я хотел бы предложить встречный вариант: сначала проверим более простое решение."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "complain",
+  "items": [
+    {
+      "id": "en:telc26:ch-verstaendnis",
+      "t": "We ask for your understanding.",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 29,
+          "headword": "um Verständnis bitten",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Wir bitten um Ihr Verständnis.",
+      "ru": "Просим отнестись с пониманием.",
+      "examples": [
+        {
+          "t": "The delivery is delayed by one day. [[We ask for your understanding]].",
+          "de": "Die Lieferung verzögert sich um einen Tag. Wir bitten um Ihr Verständnis.",
+          "ru": "Доставка задерживается на один день. Просим отнестись с пониманием."
+        }
+      ]
+    }
+  ]
+});
+
+GT.packs.en.byId["en:care:n:main"].examples.push({
+  "t": "The patients’ [[care]] is well organised.",
+  "de": "Die Betreuung der Patienten ist gut organisiert.",
+  "ru": "Уход за пациентами хорошо организован.",
+  "sense": {
+    "ru": "уход",
+    "de": "die Betreuung"
+  }
+});
+
+(GT.packs.en.byId["en:care:n:main"].sourceRefs || (GT.packs.en.byId["en:care:n:main"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 1,
+  "headword": "Betreuung",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.en.byId["en:it4:salary-expectation"].examples.push({
+  "t": "During the interview, she explained her [[salary expectation]].",
+  "de": "Im Gespräch erklärte sie ihre Gehaltsvorstellung.",
+  "ru": "На собеседовании она объяснила свои зарплатные ожидания.",
+  "sense": {
+    "ru": "зарплатные ожидания",
+    "de": "die Gehaltsvorstellung"
+  }
+});
+
+(GT.packs.en.byId["en:it4:salary-expectation"].sourceRefs || (GT.packs.en.byId["en:it4:salary-expectation"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 8,
+  "headword": "Gehaltsvorstellung",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.en.byId["en:it4:salary-expectation"].plural = "salary expectations";
+
+GT.packs.en.byId["en:maintenance:n:main"].examples.push({
+  "t": "The machine is unavailable during [[maintenance]].",
+  "de": "Die Maschine ist während der Wartung nicht verfügbar.",
+  "ru": "Во время технического обслуживания станок недоступен.",
+  "sense": {
+    "ru": "техническое обслуживание",
+    "de": "die Wartung"
+  }
+});
+
+(GT.packs.en.byId["en:maintenance:n:main"].sourceRefs || (GT.packs.en.byId["en:maintenance:n:main"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 23,
+  "headword": "Wartung",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.en.byId["en:it2:core-hours"].examples.push({
+  "t": "The [[core hours]] are shown in the team calendar.",
+  "de": "Die Kernzeit wird im Teamkalender angezeigt.",
+  "ru": "Обязательные часы присутствия указаны в календаре команды.",
+  "sense": {
+    "ru": "обязательные часы присутствия",
+    "de": "die Kernzeit"
+  }
+});
+
+(GT.packs.en.byId["en:it2:core-hours"].sourceRefs || (GT.packs.en.byId["en:it2:core-hours"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 19,
+  "headword": "Kernzeit",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.en.byId["en:request:n:main"].examples.push({
+  "t": "He politely explained his [[request]] on the phone.",
+  "de": "Er schilderte sein Anliegen höflich am Telefon.",
+  "ru": "Он вежливо изложил свою просьбу по телефону.",
+  "sense": {
+    "ru": "просьба",
+    "de": "das Anliegen"
+  }
+});
+
+(GT.packs.en.byId["en:request:n:main"].sourceRefs || (GT.packs.en.byId["en:request:n:main"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 16,
+  "headword": "Anliegen",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.en.byId["en:request:n:main"].plural = "requests";
+
+GT.packs.en.byId["en:it2:agenda-item"].examples.push({
+  "t": "The delivery problems are the first [[agenda item]].",
+  "de": "Die Lieferprobleme sind der erste Tagesordnungspunkt.",
+  "ru": "Проблемы с доставкой — первый пункт повестки дня.",
+  "sense": {
+    "ru": "пункт повестки дня",
+    "de": "der Tagesordnungspunkt"
+  }
+});
+
+(GT.packs.en.byId["en:it2:agenda-item"].sourceRefs || (GT.packs.en.byId["en:it2:agenda-item"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 30,
+  "headword": "Tagesordnungspunkt",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.en.byId["en:it2:agenda-item"].plural = "agenda items";
+
+GT.packs.en.byId["en:agree:v:main"].examples.push({
+  "t": "She [[agrees]] to the proposed schedule.",
+  "de": "Sie stimmt dem vorgeschlagenen Zeitplan zu.",
+  "ru": "Она соглашается с предложенным графиком.",
+  "sense": {
+    "ru": "соглашаться",
+    "de": "zustimmen"
+  }
+});
+
+(GT.packs.en.byId["en:agree:v:main"].sourceRefs || (GT.packs.en.byId["en:agree:v:main"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 31,
+  "headword": "zustimmen",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.addMember("en:care:n:main", "it", "med_clinical");
+
+GT.addMember("en:telc26:lehrgang", "it", "career-paths");
+
+GT.addMember("en:telc26:vorkenntnisse", "it", "career-paths");
+
+GT.addMember("en:telc26:zulassung", "it", "career-paths");
+
+GT.addMember("en:telc26:fachwortschatz", "it", "career-paths");
+
+GT.addMember("en:it4:salary-expectation", "it", "fin_hr");
+
+GT.addMember("en:telc26:arbeitsablauf", "it", "ops_trades");
+
+GT.addMember("en:telc26:qualitaetssicherung", "it", "dev");
+
+GT.addMember("en:telc26:richtlinie", "it", "security");
+
+GT.addMember("en:telc26:datenblatt", "it", "ops_trades");
+
+GT.addMember("en:maintenance:n:main", "it", "ops_trades");
+
+GT.addMember("en:telc26:eilzuschlag", "it", "clients");
+
+GT.addMember("en:telc26:nettopreis", "it", "clients");
+
+GT.addMember("en:telc26:bruttopreis", "it", "clients");
+
+GT.addMember("en:telc26:skonto", "it", "clients");
+
+GT.addMember("en:telc26:vorauszahlung", "it", "clients");
+
+GT.addMember("en:it2:core-hours", "it", "legal_labour");
+
+GT.addMember("en:telc26:nebentaetigkeit", "it", "career-paths");
+
+GT.addMember("en:telc26:buchungsbestaetigung", "it", "svc_hotel");
+
+GT.addMember("en:telc26:fahrgemeinschaft", "it", "svc_hotel");
+
+GT.addMember("en:telc26:handwerklich", "it", "career-paths");
+
+GT.addMember("en:telc26:belastbar", "it", "career-paths");
+
+GT.addMember("en:telc26:lernbereit", "it", "career-paths");
+
+GT.addMember("en:telc26:fehlerhaft", "words", "digital-life");
+
+GT.addMember("en:telc26:angemessen", "it", "work");
+
+GT.addMember("en:telc26:absolvieren", "it", "career-paths");
+
+GT.addMember("en:agree:v:main", "it", "work");
+
+GT.addMember("en:telc26:verallgemeinern", "it", "presentations");
+
+GT.addMember("en:telc26:bedingungen", "it", "clients");
+
+GT.addMember("en:telc26:ch-rechtzeitig-bescheid", "it", "work");
+
+GT.addMember("en:telc26:ch-rechnung-begleichen", "it", "fin_accounting");
+
+GT.addMember("en:telc26:ch-schriftform", "it", "legal_contracts");
+
+GT.addMember("en:telc26:ch-ab-werk", "it", "ops_logistics");
+
+GT.addMember("en:telc26:ch-nachfrage", "it", "clients");
+
+GT.addMember("en:telc26:ch-gegenvorschlag", "it", "work");
+
+GT.addMember("en:telc26:ch-verstaendnis", "it", "clients");
+
+GT.packs.en.byId["en:care:n:main"].note = {
+  "de": "Unzählbar; take care of — sich kümmern um.\n\nIn dieser Bedeutung meist unzählbar.",
+  "ru": "Неисчисляемое; take care of — заботиться.\n\nВ этом значении обычно неисчисляемое."
+};
+
+GT.packs.en.byId["en:maintenance:n:main"].note = {
+  "de": "Der Wortstamm ändert sich; meist nicht zählbar. Scheduled maintenance — geplante Wartung.\n\nIn dieser Bedeutung meist unzählbar.",
+  "ru": "Изменяется основа; обычно неисчисляемое. Scheduled maintenance — плановое обслуживание.\n\nВ этом значении обычно неисчисляемое."
+};
+
+GT.packs.en.byId["en:it2:core-hours"].note = {
+  "de": "Immer Plural (anders als dt. Singular Kernarbeitszeit); Gleitzeit = flexitime.\n\nIn dieser Bedeutung meist unzählbar.",
+  "ru": "Во множественном числе (в отличие от нем. ед. ч. Kernarbeitszeit); гибкий график — flexitime.\n\nВ этом значении обычно неисчисляемое."
+};

@@ -2703,3 +2703,1493 @@ GT.link([
     ]
   }
 ]);
+
+/* TELC B2 source expansion 2026-11-26 — data only.
+ * Source: Einfach besser! 500, B2, English word list; original examples.
+ * Permanent IDs; existing cards reused by lemma, part of speech and sense. */
+GT.link([
+  {
+    "ru": [
+      "ru-telc26-beratung",
+      "консульт+ация"
+    ],
+    "en": [
+      "en:telc26:beratung",
+      "consultation"
+    ],
+    "de": [
+      "telc26-beratung",
+      "die Beratung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-betreuung",
+      "ух+од"
+    ],
+    "en": [
+      "en:care:n:main",
+      "care"
+    ],
+    "de": [
+      "telc26-betreuung",
+      "die Betreuung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-branche",
+      "+отрасль"
+    ],
+    "en": [
+      "en:telc26:branche",
+      "industry"
+    ],
+    "de": [
+      "telc26-branche",
+      "die Branche"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-einzelhandel",
+      "р+озничная торг+овля"
+    ],
+    "en": [
+      "en:telc26:einzelhandel",
+      "retail"
+    ],
+    "de": [
+      "telc26-einzelhandel",
+      "der Einzelhandel"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-maschinenbau",
+      "машиностро+ение"
+    ],
+    "en": [
+      "en:telc26:maschinenbau",
+      "mechanical engineering"
+    ],
+    "de": [
+      "telc26-maschinenbau",
+      "der Maschinenbau"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-lehrgang",
+      "уч+ебный курс"
+    ],
+    "en": [
+      "en:telc26:lehrgang",
+      "training course"
+    ],
+    "de": [
+      "b2-m3-lehrgang",
+      "der Lehrgang"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-vorkenntnisse",
+      "предвар+ительные зн+ания"
+    ],
+    "en": [
+      "en:telc26:vorkenntnisse",
+      "prior knowledge"
+    ],
+    "de": [
+      "b2-bildung-vorkenntnisse",
+      "die Vorkenntnisse"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-zulassung",
+      "д+опуск к обуч+ению"
+    ],
+    "en": [
+      "en:telc26:zulassung",
+      "admission"
+    ],
+    "de": [
+      "telc26-zulassung",
+      "die Zulassung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-fachwortschatz",
+      "профессион+альная л+ексика"
+    ],
+    "en": [
+      "en:telc26:fachwortschatz",
+      "specialist vocabulary"
+    ],
+    "de": [
+      "b2-m3-fachwortschatz",
+      "der Fachwortschatz"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-beglaubigte-uebersetzung",
+      "зав+еренный перев+од"
+    ],
+    "en": [
+      "en:telc26:beglaubigte-uebersetzung",
+      "certified translation"
+    ],
+    "de": [
+      "telc26-beglaubigte-uebersetzung",
+      "die beglaubigte Übersetzung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-einzelunternehmer",
+      "индивиду+альный предприним+атель"
+    ],
+    "en": [
+      "en:telc26:einzelunternehmer",
+      "sole proprietor"
+    ],
+    "de": [
+      "telc26-einzelunternehmer",
+      "der Einzelunternehmer"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-stellengesuch",
+      "объявл+ение о п+оиске раб+оты"
+    ],
+    "en": [
+      "en:telc26:stellengesuch",
+      "job-seeking advertisement"
+    ],
+    "de": [
+      "telc26-stellengesuch",
+      "das Stellengesuch"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-gehaltsvorstellung",
+      "зарпл+атные ожид+ания"
+    ],
+    "en": [
+      "en:it4:salary-expectation",
+      "salary expectation"
+    ],
+    "de": [
+      "pro-m4-gehaltsvorstellung",
+      "die Gehaltsvorstellung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-arbeitsverhaeltnis",
+      "трудов+ые отнош+ения"
+    ],
+    "en": [
+      "en:telc26:arbeitsverhaeltnis",
+      "employment relationship"
+    ],
+    "de": [
+      "telc26-arbeitsverhaeltnis",
+      "das Arbeitsverhältnis"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-lohnfortzahlung",
+      "сохран+ение з+аработной пл+аты"
+    ],
+    "en": [
+      "en:telc26:lohnfortzahlung",
+      "continued payment of wages"
+    ],
+    "de": [
+      "telc26-lohnfortzahlung",
+      "die Lohnfortzahlung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-verschwiegenheitspflicht",
+      "об+язанность сохран+ять конфиденци+альность"
+    ],
+    "en": [
+      "en:telc26:verschwiegenheitspflicht",
+      "duty of confidentiality"
+    ],
+    "de": [
+      "b2-m3-verschwiegenheitspflicht",
+      "die Verschwiegenheitspflicht"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-arbeitsablauf",
+      "раб+очий проц+есс"
+    ],
+    "en": [
+      "en:telc26:arbeitsablauf",
+      "workflow"
+    ],
+    "de": [
+      "telc26-arbeitsablauf",
+      "der Arbeitsablauf"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-anweisung",
+      "указ+ание"
+    ],
+    "en": [
+      "en:telc26:anweisung",
+      "instruction"
+    ],
+    "de": [
+      "telc26-anweisung",
+      "die Anweisung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-verbesserungsvorschlag",
+      "предлож+ение по улучш+ению"
+    ],
+    "en": [
+      "en:telc26:verbesserungsvorschlag",
+      "suggestion for improvement"
+    ],
+    "de": [
+      "telc26-verbesserungsvorschlag",
+      "der Verbesserungsvorschlag"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-gefahrenstelle",
+      "оп+асный уч+асток"
+    ],
+    "en": [
+      "en:telc26:gefahrenstelle",
+      "hazardous area"
+    ],
+    "de": [
+      "telc26-gefahrenstelle",
+      "die Gefahrenstelle"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-stromschlag",
+      "уд+ар электр+ическим т+оком"
+    ],
+    "en": [
+      "en:telc26:stromschlag",
+      "electric shock"
+    ],
+    "de": [
+      "telc26-stromschlag",
+      "der Stromschlag"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-ersthelfer",
+      "сотр+удник, об+ученный п+ервой п+омощи"
+    ],
+    "en": [
+      "en:telc26:ersthelfer",
+      "first aider"
+    ],
+    "de": [
+      "telc26-ersthelfer",
+      "der Ersthelfer"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-evakuierung",
+      "эваку+ация"
+    ],
+    "en": [
+      "en:telc26:evakuierung",
+      "evacuation"
+    ],
+    "de": [
+      "telc26-evakuierung",
+      "die Evakuierung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-fluchtweg",
+      "путь эваку+ации"
+    ],
+    "en": [
+      "en:telc26:fluchtweg",
+      "escape route"
+    ],
+    "de": [
+      "telc26-fluchtweg",
+      "der Fluchtweg"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-gehoerschutz",
+      "ср+едства защ+иты сл+уха"
+    ],
+    "en": [
+      "en:telc26:gehoerschutz",
+      "hearing protection"
+    ],
+    "de": [
+      "b2-m3-gehoerschutz",
+      "der Gehörschutz"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-notausgang",
+      "авар+ийный в+ыход"
+    ],
+    "en": [
+      "en:telc26:notausgang",
+      "emergency exit"
+    ],
+    "de": [
+      "telc26-notausgang",
+      "der Notausgang"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-rutschgefahr",
+      "оп+асность поскользн+уться"
+    ],
+    "en": [
+      "en:telc26:rutschgefahr",
+      "slip hazard"
+    ],
+    "de": [
+      "telc26-rutschgefahr",
+      "die Rutschgefahr"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-sammelstelle",
+      "м+есто сб+ора"
+    ],
+    "en": [
+      "en:telc26:sammelstelle",
+      "assembly point"
+    ],
+    "de": [
+      "telc26-sammelstelle",
+      "die Sammelstelle"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-schutzbrille",
+      "защ+итные очк+и"
+    ],
+    "en": [
+      "en:telc26:schutzbrille",
+      "safety goggles"
+    ],
+    "de": [
+      "telc26-schutzbrille",
+      "die Schutzbrille"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-schutzhelm",
+      "защ+итная к+аска"
+    ],
+    "en": [
+      "en:telc26:schutzhelm",
+      "hard hat"
+    ],
+    "de": [
+      "telc26-schutzhelm",
+      "der Schutzhelm"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-qualitaetssicherung",
+      "обесп+ечение к+ачества"
+    ],
+    "en": [
+      "en:telc26:qualitaetssicherung",
+      "quality assurance"
+    ],
+    "de": [
+      "telc26-qualitaetssicherung",
+      "die Qualitätssicherung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-richtlinie",
+      "руковод+ящий пр+инцип"
+    ],
+    "en": [
+      "en:telc26:richtlinie",
+      "guideline"
+    ],
+    "de": [
+      "it-sec-richtlinie",
+      "die Richtlinie"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-vorgehen",
+      "пор+ядок д+ействий"
+    ],
+    "en": [
+      "en:telc26:vorgehen",
+      "procedure"
+    ],
+    "de": [
+      "telc26-vorgehen",
+      "das Vorgehen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-datenblatt",
+      "техн+ическое опис+ание"
+    ],
+    "en": [
+      "en:telc26:datenblatt",
+      "datasheet"
+    ],
+    "de": [
+      "b2-m3-datenblatt",
+      "das Datenblatt"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-muster",
+      "образ+ец"
+    ],
+    "en": [
+      "en:telc26:muster",
+      "sample"
+    ],
+    "de": [
+      "telc26-muster",
+      "das Muster"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-aussteller",
+      "уч+астник в+ыставки"
+    ],
+    "en": [
+      "en:telc26:aussteller",
+      "exhibitor"
+    ],
+    "de": [
+      "telc26-aussteller",
+      "der Aussteller"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-grosshaendler",
+      "опт+овый продав+ец"
+    ],
+    "en": [
+      "en:telc26:grosshaendler",
+      "wholesaler"
+    ],
+    "de": [
+      "telc26-grosshaendler",
+      "der Großhändler"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-wettbewerber",
+      "конкур+ент"
+    ],
+    "en": [
+      "en:telc26:wettbewerber",
+      "competitor"
+    ],
+    "de": [
+      "telc26-wettbewerber",
+      "der Wettbewerber"
+    ]
+  },
+  {
+    "ru": [
+      "ru-content26-trade-maintenance",
+      "техни́ческое обслу́живание"
+    ],
+    "en": [
+      "en:maintenance:n:main",
+      "maintenance"
+    ],
+    "de": [
+      "it-infra-wartung",
+      "die Wartung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-preisnachlass",
+      "сниж+ение цен+ы"
+    ],
+    "en": [
+      "en:telc26:preisnachlass",
+      "price reduction"
+    ],
+    "de": [
+      "b2-m3-preisnachlass",
+      "der Preisnachlass"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-eilzuschlag",
+      "допл+ата за ср+очность"
+    ],
+    "en": [
+      "en:telc26:eilzuschlag",
+      "express surcharge"
+    ],
+    "de": [
+      "b2-m3-eilzuschlag",
+      "der Eilzuschlag"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-nettopreis",
+      "цен+а без НДС"
+    ],
+    "en": [
+      "en:telc26:nettopreis",
+      "net price"
+    ],
+    "de": [
+      "telc26-nettopreis",
+      "der Nettopreis"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-bruttopreis",
+      "цен+а с НДС"
+    ],
+    "en": [
+      "en:telc26:bruttopreis",
+      "gross price"
+    ],
+    "de": [
+      "telc26-bruttopreis",
+      "der Bruttopreis"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-sonderwunsch",
+      "ос+обое пожел+ание"
+    ],
+    "en": [
+      "en:telc26:sonderwunsch",
+      "special request"
+    ],
+    "de": [
+      "telc26-sonderwunsch",
+      "der Sonderwunsch"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-skonto",
+      "ск+идка за доср+очную опл+ату"
+    ],
+    "en": [
+      "en:telc26:skonto",
+      "early payment discount"
+    ],
+    "de": [
+      "telc26-skonto",
+      "das Skonto"
+    ]
+  },
+  {
+    "ru": [
+      "ru-pro4-predoplata",
+      "предопла́та"
+    ],
+    "en": [
+      "en:telc26:vorauszahlung",
+      "advance payment"
+    ],
+    "de": [
+      "pro-new-vorauszahlung",
+      "die Vorauszahlung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-w3-rabochiy-den",
+      "рабо́чий день"
+    ],
+    "en": [
+      "en:telc26:werktag",
+      "working day"
+    ],
+    "de": [
+      "telc26-werktag",
+      "der Werktag"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-versand",
+      "отпр+авка"
+    ],
+    "en": [
+      "en:telc26:versand",
+      "dispatch"
+    ],
+    "de": [
+      "telc26-versand",
+      "der Versand"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-artikelnummer",
+      "арт+икул"
+    ],
+    "en": [
+      "en:telc26:artikelnummer",
+      "item number"
+    ],
+    "de": [
+      "telc26-artikelnummer",
+      "die Artikelnummer"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-artikelbezeichnung",
+      "наименов+ание тов+ара"
+    ],
+    "en": [
+      "en:telc26:artikelbezeichnung",
+      "item description"
+    ],
+    "de": [
+      "telc26-artikelbezeichnung",
+      "die Artikelbezeichnung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-bestandskunde",
+      "д+ействующий кли+ент"
+    ],
+    "en": [
+      "en:telc26:bestandskunde",
+      "existing customer"
+    ],
+    "de": [
+      "telc26-bestandskunde",
+      "der Bestandskunde"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-kundennummer",
+      "н+омер кли+ента"
+    ],
+    "en": [
+      "en:telc26:kundennummer",
+      "customer number"
+    ],
+    "de": [
+      "telc26-kundennummer",
+      "die Kundennummer"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-neukunde",
+      "н+овый кли+ент"
+    ],
+    "en": [
+      "en:telc26:neukunde",
+      "new customer"
+    ],
+    "de": [
+      "telc26-neukunde",
+      "der Neukunde"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-mahnung",
+      "тр+ебование об опл+ате"
+    ],
+    "en": [
+      "en:telc26:mahnung",
+      "payment demand"
+    ],
+    "de": [
+      "pro-b6-mahnung",
+      "die Mahnung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-lastschrift",
+      "прям+ое спис+ание"
+    ],
+    "en": [
+      "en:telc26:lastschrift",
+      "direct debit"
+    ],
+    "de": [
+      "telc26-lastschrift",
+      "die Lastschrift"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-zahlungserinnerung",
+      "напомин+ание об опл+ате"
+    ],
+    "en": [
+      "en:telc26:zahlungserinnerung",
+      "payment reminder"
+    ],
+    "de": [
+      "telc26-zahlungserinnerung",
+      "die Zahlungserinnerung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-nettoverdienst",
+      "з+аработок п+осле в+ычетов"
+    ],
+    "en": [
+      "en:telc26:nettoverdienst",
+      "net earnings"
+    ],
+    "de": [
+      "telc26-nettoverdienst",
+      "der Nettoverdienst"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-bruttoverguetung",
+      "вознагражд+ение до в+ычетов"
+    ],
+    "en": [
+      "en:telc26:bruttoverguetung",
+      "gross remuneration"
+    ],
+    "de": [
+      "telc26-bruttoverguetung",
+      "die Bruttovergütung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-rentenversicherung",
+      "пенси+онное страхов+ание"
+    ],
+    "en": [
+      "en:telc26:rentenversicherung",
+      "pension insurance"
+    ],
+    "de": [
+      "telc26-rentenversicherung",
+      "die Rentenversicherung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-pflegeversicherung",
+      "страхов+ание на сл+учай потр+ебности в ух+оде"
+    ],
+    "en": [
+      "en:telc26:pflegeversicherung",
+      "long-term care insurance"
+    ],
+    "de": [
+      "b2-m3-pflegeversicherung",
+      "die Pflegeversicherung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-kernzeit",
+      "обяз+ательные час+ы прис+утствия"
+    ],
+    "en": [
+      "en:it2:core-hours",
+      "core hours"
+    ],
+    "de": [
+      "telc26-kernzeit",
+      "die Kernzeit"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-wechselschicht",
+      "раб+ота в черед+ующиеся см+ены"
+    ],
+    "en": [
+      "en:telc26:wechselschicht",
+      "rotating shift"
+    ],
+    "de": [
+      "telc26-wechselschicht",
+      "die Wechselschicht"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-freistellung",
+      "освобожд+ение от раб+оты"
+    ],
+    "en": [
+      "en:telc26:freistellung",
+      "leave of absence"
+    ],
+    "de": [
+      "telc26-freistellung",
+      "die Freistellung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-pro5-otgul",
+      "отгу́л"
+    ],
+    "en": [
+      "en:telc26:freizeitausgleich",
+      "time off in lieu"
+    ],
+    "de": [
+      "telc26-freizeitausgleich",
+      "der Freizeitausgleich"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-werkvertrag",
+      "догов+ор подр+яда"
+    ],
+    "en": [
+      "en:telc26:werkvertrag",
+      "contract for work and services"
+    ],
+    "de": [
+      "b2-m3-werkvertrag",
+      "der Werkvertrag"
+    ]
+  },
+  {
+    "ru": [
+      "ru-w2-podrabotka",
+      "подрабо́тка"
+    ],
+    "en": [
+      "en:telc26:nebentaetigkeit",
+      "secondary employment"
+    ],
+    "de": [
+      "pro-m3-nebentaetigkeit",
+      "die Nebentätigkeit"
+    ]
+  },
+  {
+    "ru": [
+      "ru-r-pros-prosba",
+      "про́сьба"
+    ],
+    "en": [
+      "en:request:n:main",
+      "request"
+    ],
+    "de": [
+      "telc26-anliegen",
+      "das Anliegen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-entgegenkommen",
+      "гот+овность пойт+и навстр+ечу"
+    ],
+    "en": [
+      "en:telc26:entgegenkommen",
+      "goodwill"
+    ],
+    "de": [
+      "telc26-entgegenkommen",
+      "das Entgegenkommen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-buchungsbestaetigung",
+      "подтвержд+ение брон+ирования"
+    ],
+    "en": [
+      "en:telc26:buchungsbestaetigung",
+      "booking confirmation"
+    ],
+    "de": [
+      "b2-reisen-buchungsbestaetigung",
+      "die Buchungsbestätigung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-fahrgemeinschaft",
+      "совм+естные по+ездки на маш+ине"
+    ],
+    "en": [
+      "en:telc26:fahrgemeinschaft",
+      "carpool"
+    ],
+    "de": [
+      "b2-m3-fahrgemeinschaft",
+      "die Fahrgemeinschaft"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-besprechungsraum",
+      "перегов+орная к+омната"
+    ],
+    "en": [
+      "en:telc26:besprechungsraum",
+      "meeting room"
+    ],
+    "de": [
+      "telc26-besprechungsraum",
+      "der Besprechungsraum"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-gewerbegebiet",
+      "пром+ышленная з+она"
+    ],
+    "en": [
+      "en:telc26:gewerbegebiet",
+      "industrial estate"
+    ],
+    "de": [
+      "telc26-gewerbegebiet",
+      "das Gewerbegebiet"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-tagesordnungspunkt",
+      "пункт пов+естки дня"
+    ],
+    "en": [
+      "en:it2:agenda-item",
+      "agenda item"
+    ],
+    "de": [
+      "pro-m2-tagesordnungspunkt",
+      "der Tagesordnungspunkt"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-ergebnisprotokoll",
+      "проток+ол пр+инятых реш+ений"
+    ],
+    "en": [
+      "en:telc26:ergebnisprotokoll",
+      "decision minutes"
+    ],
+    "de": [
+      "telc26-ergebnisprotokoll",
+      "das Ergebnisprotokoll"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-verlaufsprotokoll",
+      "проток+ол х+ода обсужд+ения"
+    ],
+    "en": [
+      "en:telc26:verlaufsprotokoll",
+      "discussion minutes"
+    ],
+    "de": [
+      "telc26-verlaufsprotokoll",
+      "das Verlaufsprotokoll"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-vorbesprechung",
+      "предвар+ительное обсужд+ение"
+    ],
+    "en": [
+      "en:telc26:vorbesprechung",
+      "preliminary meeting"
+    ],
+    "de": [
+      "telc26-vorbesprechung",
+      "die Vorbesprechung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-abdeckung",
+      "защ+итная кр+ышка"
+    ],
+    "en": [
+      "en:telc26:abdeckung",
+      "protective cover"
+    ],
+    "de": [
+      "telc26-abdeckung",
+      "die Abdeckung"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-usb-anschluss",
+      "USB-порт"
+    ],
+    "en": [
+      "en:telc26:usb-anschluss",
+      "USB port"
+    ],
+    "de": [
+      "telc26-usb-anschluss",
+      "der USB-Anschluss"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-handwerklich",
+      "рем+есленный"
+    ],
+    "en": [
+      "en:telc26:handwerklich",
+      "manual"
+    ],
+    "de": [
+      "b2-m3-handwerklich",
+      "handwerklich"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-belastbar",
+      "стрессоуст+ойчивый"
+    ],
+    "en": [
+      "en:telc26:belastbar",
+      "resilient"
+    ],
+    "de": [
+      "telc26-belastbar",
+      "belastbar"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-lernbereit",
+      "гот+овый уч+иться"
+    ],
+    "en": [
+      "en:telc26:lernbereit",
+      "willing to learn"
+    ],
+    "de": [
+      "telc26-lernbereit",
+      "lernbereit"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-teamfaehig",
+      "ум+еющий раб+отать в ком+анде"
+    ],
+    "en": [
+      "en:telc26:teamfaehig",
+      "able to work in a team"
+    ],
+    "de": [
+      "telc26-teamfaehig",
+      "teamfähig"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-verhandlungssicher",
+      "своб+одно влад+еющий язык+ом"
+    ],
+    "en": [
+      "en:telc26:verhandlungssicher",
+      "business fluent"
+    ],
+    "de": [
+      "telc26-verhandlungssicher",
+      "verhandlungssicher"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-gewissenhaft",
+      "доброс+овестный"
+    ],
+    "en": [
+      "en:telc26:gewissenhaft",
+      "conscientious"
+    ],
+    "de": [
+      "telc26-gewissenhaft",
+      "gewissenhaft"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-faellig",
+      "подлеж+ащий опл+ате"
+    ],
+    "en": [
+      "en:telc26:faellig",
+      "due"
+    ],
+    "de": [
+      "telc26-faellig",
+      "fällig"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-fehlerhaft",
+      "ош+ибочный"
+    ],
+    "en": [
+      "en:telc26:fehlerhaft",
+      "faulty"
+    ],
+    "de": [
+      "telc26-fehlerhaft",
+      "fehlerhaft"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-angemessen",
+      "ум+естный"
+    ],
+    "en": [
+      "en:telc26:angemessen",
+      "appropriate"
+    ],
+    "de": [
+      "telc26-angemessen",
+      "angemessen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-absolvieren",
+      "пройт+и"
+    ],
+    "en": [
+      "en:telc26:absolvieren",
+      "complete"
+    ],
+    "de": [
+      "b2-m3-absolvieren",
+      "absolvieren"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-protokollieren",
+      "протокол+ировать"
+    ],
+    "en": [
+      "en:telc26:protokollieren",
+      "take minutes"
+    ],
+    "de": [
+      "it-sec-protokollieren",
+      "protokollieren"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-nachvollziehen",
+      "пон+ять"
+    ],
+    "en": [
+      "en:telc26:nachvollziehen",
+      "follow the reasoning"
+    ],
+    "de": [
+      "b2-m3-nachvollziehen",
+      "nachvollziehen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-widersprechen",
+      "противор+ечить"
+    ],
+    "en": [
+      "en:telc26:widersprechen",
+      "contradict"
+    ],
+    "de": [
+      "r-sprechen-widersprechen",
+      "widersprechen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-zustimmen",
+      "соглаш+аться"
+    ],
+    "en": [
+      "en:agree:v:main",
+      "agree"
+    ],
+    "de": [
+      "b2-recht-zustimmen",
+      "zustimmen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-w4-retain",
+      "удержа́ть"
+    ],
+    "en": [
+      "en:telc26:einbehalten",
+      "withhold"
+    ],
+    "de": [
+      "b2-m3-einbehalten",
+      "einbehalten"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-abbuchen",
+      "сп+исывать со счёта"
+    ],
+    "en": [
+      "en:telc26:abbuchen",
+      "debit"
+    ],
+    "de": [
+      "telc26-abbuchen",
+      "abbuchen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-begleichen",
+      "оплат+ить"
+    ],
+    "en": [
+      "en:telc26:begleichen",
+      "settle"
+    ],
+    "de": [
+      "telc26-begleichen",
+      "begleichen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-einrasten",
+      "защёлкиваться"
+    ],
+    "en": [
+      "en:telc26:einrasten",
+      "click into place"
+    ],
+    "de": [
+      "telc26-einrasten",
+      "einrasten"
+    ]
+  },
+  {
+    "ru": [
+      "ru-r-da-peredavat",
+      "передава́ть"
+    ],
+    "en": [
+      "en:telc26:ausrichten",
+      "pass on"
+    ],
+    "de": [
+      "telc26-ausrichten",
+      "ausrichten"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-verallgemeinern",
+      "обобщ+ать"
+    ],
+    "en": [
+      "en:telc26:verallgemeinern",
+      "generalise"
+    ],
+    "de": [
+      "telc26-verallgemeinern",
+      "verallgemeinern"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-bedingungen",
+      "усл+овия пост+авки и опл+аты"
+    ],
+    "en": [
+      "en:telc26:bedingungen",
+      "terms of delivery and payment"
+    ],
+    "de": [
+      "telc26-bedingungen",
+      "die Liefer- und Zahlungsbedingungen"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-ch-rechtzeitig-bescheid",
+      "Пож+алуйста, сообщ+ите нам зар+анее."
+    ],
+    "en": [
+      "en:telc26:ch-rechtzeitig-bescheid",
+      "Please let us know in good time."
+    ],
+    "de": [
+      "telc26-ch-rechtzeitig-bescheid",
+      "Bitte geben Sie uns rechtzeitig Bescheid."
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-ch-rechnung-begleichen",
+      "Я оплач+у счёт до [д+ата]."
+    ],
+    "en": [
+      "en:telc26:ch-rechnung-begleichen",
+      "I will settle the invoice by [date]."
+    ],
+    "de": [
+      "telc26-ch-rechnung-begleichen",
+      "Ich werde die Rechnung bis [Datum] begleichen."
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-ch-schriftform",
+      "Для [X] тр+ебуется п+исьменная ф+орма."
+    ],
+    "en": [
+      "en:telc26:ch-schriftform",
+      "[X] must be in writing."
+    ],
+    "de": [
+      "telc26-ch-schriftform",
+      "[X] bedarf der Schriftform."
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-ch-ab-werk",
+      "с зав+ода"
+    ],
+    "en": [
+      "en:telc26:ch-ab-werk",
+      "ex works"
+    ],
+    "de": [
+      "telc26-ch-ab-werk",
+      "ab Werk"
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-ch-nachfrage",
+      "По запр+осу мы м+ожем напр+авить вам [X]."
+    ],
+    "en": [
+      "en:telc26:ch-nachfrage",
+      "On request, we can send you [X]."
+    ],
+    "de": [
+      "telc26-ch-nachfrage",
+      "Auf Nachfrage senden wir Ihnen [X]."
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-ch-gegenvorschlag",
+      "Я хот+ел(а) бы предлож+ить встр+ечный вар+иант."
+    ],
+    "en": [
+      "en:telc26:ch-gegenvorschlag",
+      "I’d like to make a counterproposal."
+    ],
+    "de": [
+      "telc26-ch-gegenvorschlag",
+      "Ich möchte einen Gegenvorschlag machen."
+    ]
+  },
+  {
+    "ru": [
+      "ru-telc26-ch-verstaendnis",
+      "Пр+осим отнест+ись с поним+анием."
+    ],
+    "en": [
+      "en:telc26:ch-verstaendnis",
+      "We ask for your understanding."
+    ],
+    "de": [
+      "telc26-ch-verstaendnis",
+      "Wir bitten um Ihr Verständnis."
+    ]
+  }
+]);

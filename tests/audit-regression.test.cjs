@@ -158,7 +158,7 @@ function createHarness(opts = {}) {
     'js/core.js', 'js/i18n.js', 'js/topics.js', 'data/about.js', 'data/manifest.js',
     'data/links/cross.js', 'data/links/families.js', 'data/links/forms_cross.js',
     'js/loader.js', 'js/validate.js', 'js/fsrs.js', 'js/store.js',
-    'js/progress-key.js', 'js/whichform.js', 'js/forms/de.js', 'js/forms/en.js', 'js/forms/ru.js'
+    'js/progress-key.js', 'js/whichform.js', 'js/roulette.js', 'js/forms/de.js', 'js/forms/en.js', 'js/forms/ru.js'
   ];
   boot.forEach(run);
 
@@ -505,6 +505,33 @@ async function testAppAndSW() {
       if (lang === 'en' && kind === 'gender') continue;
       assert(st && st.questions.length > 0, `empty studio ${lang} ${kind}`);
     }
+  }
+
+  // Root roulette renders a task across all 3 languages without touching Review store
+  for (const lang of ['de', 'en', 'ru']) {
+    await GT.setLanguages('learn', lang);
+    const beforeCards = JSON.stringify(GT.store.data.cards);
+    triggerHash('#/roots/roulette');
+    assert(elements.main.innerHTML.includes('id="rrGame"'), `roulette missing in ${lang}`);
+    assert(elements.main.innerHTML.includes('class="drill ag-card"'), `roulette card missing in ${lang}`);
+    assert.equal(JSON.stringify(GT.store.data.cards), beforeCards, `roulette mutated store in ${lang}`);
+    triggerHash('#/practice');
+    assert(elements.main.innerHTML.includes('Root roulette'), `practice Games missing Root roulette in ${lang}`);
+  }
+
+  // Feature flag OFF hides Root roulette entry points and redirects #/roots/roulette -> #/roots
+  await GT.setLanguages('learn', 'de');
+  GT.pack.config.features.rootRoulette = false;
+  try {
+    triggerHash('#/roots');
+    assert(!elements.main.innerHTML.includes('Play Root roulette'), 'roots button shown when flag off');
+    assert(!elements.sidebar.innerHTML.includes('#/roots/roulette'), 'sidebar link shown when flag off');
+    triggerHash('#/practice');
+    assert(!elements.main.innerHTML.includes('#/roots/roulette'), 'practice card shown when flag off');
+    triggerHash('#/roots/roulette');
+    assert.equal(ctx.location.hash, '#/roots', 'disabled roulette did not redirect to #/roots');
+  } finally {
+    GT.pack.config.features.rootRoulette = true;
   }
 
   // Review landing respects filter for "next card"

@@ -1277,3 +1277,251 @@ GT.addMember("ru-r-stav-dostavka", "it", "ops_logistics");
 GT.addMember("ru-r-voz-perevozka", "it", "ops_logistics");
 GT.addMember("ru-pro4-smeta", "it", "ops_trades");
 GT.addMember("ru-pro5-akt-priyomki", "it", "ops_trades");
+
+/* TELC B2 source expansion 2026-11-26 — data only.
+ * Source: Einfach besser! 500, B2, English word list; original examples.
+ * Permanent IDs; existing cards reused by lemma, part of speech and sense. */
+GT.packs.ru.byId["ru-content26-trade-maintenance"].examples.push({
+  "t": "Во вр+емя [[техн+ического обсл+уживания]] стан+ок недост+упен.",
+  "de": "Die Maschine ist während der Wartung nicht verfügbar.",
+  "en": "The machine is unavailable during maintenance.",
+  "sense": {
+    "en": "maintenance",
+    "de": "die Wartung"
+  }
+});
+
+(GT.packs.ru.byId["ru-content26-trade-maintenance"].sourceRefs || (GT.packs.ru.byId["ru-content26-trade-maintenance"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 23,
+  "headword": "Wartung",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.ru.byId["ru-pro4-predoplata"].examples.push({
+  "t": "[[Предопл+ата]] б+удет учтен+а в оконч+ательном счёте.",
+  "de": "Die Vorauszahlung wird mit der Schlussrechnung verrechnet.",
+  "en": "The advance payment will be offset against the final invoice.",
+  "sense": {
+    "en": "advance payment",
+    "de": "die Vorauszahlung"
+  }
+});
+
+(GT.packs.ru.byId["ru-pro4-predoplata"].sourceRefs || (GT.packs.ru.byId["ru-pro4-predoplata"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 25,
+  "headword": "Vorauszahlung",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.ru.byId["ru-pro4-predoplata"].plural = "предопл+аты";
+
+GT.packs.ru.byId["ru-w3-rabochiy-den"].examples.push({
+  "t": "В предлож+ении срок дост+авки ук+азан в [[раб+очих днях]].",
+  "de": "Die Lieferzeit wird im Angebot in Werktagen angegeben.",
+  "en": "The quote states the delivery time in working days.",
+  "sense": {
+    "en": "working day",
+    "de": "der Werktag"
+  }
+});
+
+(GT.packs.ru.byId["ru-w3-rabochiy-den"].sourceRefs || (GT.packs.ru.byId["ru-w3-rabochiy-den"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 25,
+  "headword": "Werktag",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.ru.byId["ru-w3-rabochiy-den"].plural = "раб+очие дни";
+
+GT.packs.ru.byId["ru-pro5-otgul"].examples.push({
+  "t": "В пл+ане учтён [[отг+ул]] за отраб+отанные сверхур+очные час+ы.",
+  "de": "Die geleisteten Überstunden werden im Plan als Freizeitausgleich berücksichtigt.",
+  "en": "The plan accounts for the overtime as time off in lieu.",
+  "sense": {
+    "en": "time off in lieu",
+    "de": "der Freizeitausgleich"
+  }
+});
+
+(GT.packs.ru.byId["ru-pro5-otgul"].sourceRefs || (GT.packs.ru.byId["ru-pro5-otgul"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 33,
+  "headword": "Freizeitausgleich",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.ru.byId["ru-pro5-otgul"].plural = "отг+улы";
+
+GT.packs.ru.byId["ru-w2-podrabotka"].examples.push({
+  "t": "Она обсужд+ает план+ируемую [[подраб+отку]] с отд+елом к+адров.",
+  "de": "Sie bespricht ihre geplante Nebentätigkeit mit der Personalabteilung.",
+  "en": "She is discussing her planned secondary employment with HR.",
+  "sense": {
+    "en": "secondary employment",
+    "de": "die Nebentätigkeit"
+  }
+});
+
+(GT.packs.ru.byId["ru-w2-podrabotka"].sourceRefs || (GT.packs.ru.byId["ru-w2-podrabotka"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 35,
+  "headword": "Nebentätigkeit",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.ru.byId["ru-w2-podrabotka"].plural = "подраб+отки";
+
+GT.packs.ru.byId["ru-r-pros-prosba"].examples.push({
+  "t": "Он в+ежливо излож+ил сво+ю [[пр+осьбу]] по телеф+ону.",
+  "de": "Er schilderte sein Anliegen höflich am Telefon.",
+  "en": "He politely explained his request on the phone.",
+  "sense": {
+    "en": "request",
+    "de": "das Anliegen"
+  }
+});
+
+(GT.packs.ru.byId["ru-r-pros-prosba"].sourceRefs || (GT.packs.ru.byId["ru-r-pros-prosba"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 16,
+  "headword": "Anliegen",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.ru.byId["ru-r-pros-prosba"].plural = "пр+осьбы";
+
+GT.packs.ru.byId["ru-w4-retain"].examples.push({
+  "t": "Банк [[удерж+ал]] ком+иссию.",
+  "de": "Die Bank behielt eine Gebühr ein.",
+  "en": "The bank withheld a fee.",
+  "sense": {
+    "en": "withhold",
+    "de": "einbehalten"
+  }
+});
+
+(GT.packs.ru.byId["ru-w4-retain"].sourceRefs || (GT.packs.ru.byId["ru-w4-retain"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 36,
+  "headword": "einbehalten",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.packs.ru.byId["ru-r-da-peredavat"].examples.push({
+  "t": "Колл+ега [[передаёт]] в+аше сообщ+ение.",
+  "de": "Die Kollegin richtet Ihre Nachricht aus.",
+  "en": "The colleague passes on your message.",
+  "sense": {
+    "en": "pass on",
+    "de": "ausrichten"
+  }
+});
+
+(GT.packs.ru.byId["ru-r-da-peredavat"].sourceRefs || (GT.packs.ru.byId["ru-r-da-peredavat"].sourceRefs = [])).push({
+  "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+  "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+  "page": 26,
+  "headword": "ausrichten",
+  "selection": "telc-b2-2026-11-26"
+});
+
+GT.addMember("ru-telc26-lehrgang", "it", "b2_work");
+
+GT.addMember("ru-telc26-vorkenntnisse", "it", "b2_work");
+
+GT.addMember("ru-telc26-zulassung", "it", "b2_work");
+
+GT.addMember("ru-telc26-fachwortschatz", "it", "b2_work");
+
+GT.addMember("ru-telc26-gehaltsvorstellung", "it", "fin_hr");
+
+GT.addMember("ru-telc26-arbeitsablauf", "it", "ops_trades");
+
+GT.addMember("ru-telc26-qualitaetssicherung", "it", "dev");
+
+GT.addMember("ru-telc26-richtlinie", "it", "security");
+
+GT.addMember("ru-telc26-datenblatt", "it", "ops_trades");
+
+GT.addMember("ru-content26-trade-maintenance", "it", "infra");
+
+GT.addMember("ru-telc26-eilzuschlag", "it", "clients");
+
+GT.addMember("ru-telc26-nettopreis", "it", "clients");
+
+GT.addMember("ru-telc26-bruttopreis", "it", "clients");
+
+GT.addMember("ru-telc26-skonto", "it", "clients");
+
+GT.addMember("ru-pro4-predoplata", "it", "fin_accounting");
+
+GT.addMember("ru-w3-rabochiy-den", "it", "ops_logistics");
+
+GT.addMember("ru-pro5-otgul", "it", "legal_labour");
+
+GT.addMember("ru-w2-podrabotka", "it", "legal_labour");
+
+GT.addMember("ru-r-pros-prosba", "it", "workcomm");
+
+GT.addMember("ru-telc26-buchungsbestaetigung", "it", "svc_hotel");
+
+GT.addMember("ru-telc26-fahrgemeinschaft", "it", "svc_hotel");
+
+GT.addMember("ru-telc26-handwerklich", "it", "b2_work");
+
+GT.addMember("ru-telc26-belastbar", "it", "b2_work");
+
+GT.addMember("ru-telc26-lernbereit", "it", "b2_work");
+
+GT.addMember("ru-telc26-fehlerhaft", "words", "b2_media");
+
+GT.addMember("ru-telc26-angemessen", "it", "workcomm");
+
+GT.addMember("ru-telc26-absolvieren", "it", "b2_work");
+
+GT.addMember("ru-w4-retain", "it", "bureau_tax");
+
+GT.addMember("ru-r-da-peredavat", "it", "workcomm");
+
+GT.addMember("ru-telc26-verallgemeinern", "it", "presentations");
+
+GT.addMember("ru-telc26-bedingungen", "it", "clients");
+
+GT.addMember("ru-telc26-ch-rechtzeitig-bescheid", "it", "workcomm");
+
+GT.addMember("ru-telc26-ch-rechnung-begleichen", "it", "fin_accounting");
+
+GT.addMember("ru-telc26-ch-schriftform", "it", "legal_contracts");
+
+GT.addMember("ru-telc26-ch-ab-werk", "it", "ops_logistics");
+
+GT.addMember("ru-telc26-ch-nachfrage", "it", "clients");
+
+GT.addMember("ru-telc26-ch-gegenvorschlag", "it", "workcomm");
+
+GT.addMember("ru-telc26-ch-verstaendnis", "it", "clients");
+
+GT.packs.ru.byId["ru-content26-trade-maintenance"].note = {
+  "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein.\n\nIn dieser Bedeutung meist im Singular.",
+  "en": "Normally used in the singular in this sense; other senses may differ.\n\nNormally singular in this sense."
+};
+
+GT.packs.ru.byId["ru-w3-rabochiy-den"].note = {
+  "de": "Flüchtiges e fällt im Genitiv weg: в конце́ рабо́чего дня.\n\nHier bezeichnet Werktag eine Einheit der Lieferfrist, nicht die Dauer einer Schicht. Welche Tage zählen, ergibt sich aus den konkreten Bedingungen.",
+  "en": "Fleeting е drops in oblique cases: в тече́ние рабо́чего дня (during the workday).\n\nHere a working day is used to state a delivery period, not the length of a shift. Read the actual terms for which days count."
+};
+
+GT.packs.ru.byId["ru-r-da-peredavat"].note = {
+  "de": "Hier bedeutet ausrichten, jemandem eine Nachricht weiterzugeben.",
+  "en": "Here ausrichten means to pass a message on to someone."
+};

@@ -2109,3 +2109,412 @@ GT.register({
     }
   ]
 });
+
+/* TELC B2 source expansion 2026-11-26 — data only.
+ * Source: Einfach besser! 500, B2, English word list; original examples.
+ * Permanent IDs; existing cards reused by lemma, part of speech and sense. */
+GT.register({
+  "tab": "words",
+  "topic": "b2_education",
+  "items": [
+    {
+      "id": "ru-telc26-lehrgang",
+      "t": "уч+ебный курс",
+      "pos": "noun",
+      "gender": "m",
+      "plural": "уч+ебные к+урсы",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 5,
+          "headword": "Lehrgang",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "training course",
+      "de": "der Lehrgang",
+      "examples": [
+        {
+          "t": "[[Уч+ебный курс]] зак+анчивается практ+ическим экз+аменом.",
+          "de": "Der Lehrgang endet mit einer praktischen Prüfung.",
+          "en": "The training course ends with a practical examination.",
+          "sense": {
+            "en": "training course",
+            "de": "der Lehrgang"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ru-telc26-vorkenntnisse",
+      "t": "предвар+ительные зн+ания",
+      "pos": "noun",
+      "gender": "pl",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 5,
+          "headword": "Vorkenntnisse",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "prior knowledge",
+      "de": "die Vorkenntnisse",
+      "examples": [
+        {
+          "t": "Для +этого к+урса не н+ужны [[предвар+ительные зн+ания]].",
+          "de": "Für diesen Kurs brauchen Sie keine Vorkenntnisse.",
+          "en": "You do not need any prior knowledge for this course.",
+          "sense": {
+            "en": "prior knowledge",
+            "de": "die Vorkenntnisse"
+          }
+        }
+      ],
+      "note": {
+        "en": "Plural-only expression in this sense.",
+        "de": "In dieser Bedeutung nur im Plural gebräuchlich."
+      },
+      "plural": "предвар+ительные зн+ания"
+    },
+    {
+      "id": "ru-telc26-zulassung",
+      "t": "д+опуск к обуч+ению",
+      "pos": "noun",
+      "gender": "m",
+      "plural": "д+опуски к обуч+ению",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 5,
+          "headword": "Zulassung",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "admission",
+      "de": "die Zulassung",
+      "examples": [
+        {
+          "t": "[[Д+опуск к обуч+ению]] на к+урсе подтверд+или п+исьменно.",
+          "de": "Die Zulassung zum Lehrgang wurde schriftlich bestätigt.",
+          "en": "Admission to the training course was confirmed in writing.",
+          "sense": {
+            "en": "admission",
+            "de": "die Zulassung"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ru-telc26-fachwortschatz",
+      "t": "профессион+альная л+ексика",
+      "pos": "noun",
+      "gender": "f",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 5,
+          "headword": "Fachwortschatz",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "specialist vocabulary",
+      "de": "der Fachwortschatz",
+      "examples": [
+        {
+          "t": "Во вр+емя пр+актики она расшир+яет сво+ю [[профессион+альную л+ексику]].",
+          "de": "Im Praktikum erweitert sie ihren Fachwortschatz.",
+          "en": "She is expanding her specialist vocabulary during the placement.",
+          "sense": {
+            "en": "specialist vocabulary",
+            "de": "der Fachwortschatz"
+          }
+        }
+      ],
+      "note": {
+        "en": "Normally singular in this sense.",
+        "de": "In dieser Bedeutung meist im Singular."
+      }
+    },
+    {
+      "id": "ru-telc26-handwerklich",
+      "t": "рем+есленный",
+      "pos": "adj",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 1,
+          "headword": "handwerklich",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "manual",
+      "de": "handwerklich",
+      "examples": [
+        {
+          "t": "Для +этой зад+ачи н+ужны [[рем+есленные]] нав+ыки.",
+          "de": "Diese Aufgabe erfordert handwerkliche Fähigkeiten.",
+          "en": "This task requires manual skills.",
+          "sense": {
+            "en": "manual",
+            "de": "handwerklich"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ru-telc26-lernbereit",
+      "t": "гот+овый уч+иться",
+      "pos": "adj",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 4,
+          "headword": "lernbereit",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "willing to learn",
+      "de": "lernbereit",
+      "examples": [
+        {
+          "t": "Мы +ищем люд+ей, кот+орые любозн+ательны и [[гот+овы уч+иться]].",
+          "de": "Wir suchen Menschen, die neugierig und lernbereit sind.",
+          "en": "We are looking for people who are curious and willing to learn.",
+          "sense": {
+            "en": "willing to learn",
+            "de": "lernbereit"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ru-telc26-absolvieren",
+      "t": "пройт+и",
+      "pos": "verb",
+      "aspect": "pf",
+      "forms": {
+        "praes": "пройд+у, пройдёшь",
+        "praet": "прошёл",
+        "perf": "impf. проход+ить"
+      },
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 15,
+          "headword": "absolvieren",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "complete",
+      "de": "absolvieren",
+      "examples": [
+        {
+          "t": "Она [[прошл+а]] курс по бухг+алтерскому учёту.",
+          "de": "Sie hat einen Lehrgang zur Buchhaltung absolviert.",
+          "en": "She has completed a bookkeeping course.",
+          "sense": {
+            "en": "complete",
+            "de": "absolvieren"
+          }
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "words",
+  "topic": "b2_travel",
+  "items": [
+    {
+      "id": "ru-telc26-buchungsbestaetigung",
+      "t": "подтвержд+ение брон+ирования",
+      "pos": "noun",
+      "gender": "n",
+      "plural": "подтвержд+ения брон+ирования",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 19,
+          "headword": "Buchungsbestätigung",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "booking confirmation",
+      "de": "die Buchungsbestätigung",
+      "examples": [
+        {
+          "t": "[[Подтвержд+ение брон+ирования]] содерж+ит +адрес гост+иницы для конфер+енции.",
+          "de": "Die Buchungsbestätigung enthält die Adresse des Tagungshotels.",
+          "en": "The booking confirmation contains the conference hotel’s address.",
+          "sense": {
+            "en": "booking confirmation",
+            "de": "die Buchungsbestätigung"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ru-telc26-fahrgemeinschaft",
+      "t": "совм+естные по+ездки на маш+ине",
+      "pos": "noun",
+      "gender": "pl",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 19,
+          "headword": "Fahrgemeinschaft",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "carpool",
+      "de": "die Fahrgemeinschaft",
+      "examples": [
+        {
+          "t": "Для по+ездки на в+ыставку мы организ+уем [[совм+естные по+ездки на маш+ине]].",
+          "de": "Für die Fahrt zur Messe bilden wir eine Fahrgemeinschaft.",
+          "en": "We are forming a carpool for the trip to the trade fair.",
+          "sense": {
+            "en": "carpool",
+            "de": "die Fahrgemeinschaft"
+          }
+        }
+      ],
+      "note": {
+        "en": "Plural-only expression in this sense.",
+        "de": "In dieser Bedeutung nur im Plural gebräuchlich."
+      },
+      "plural": "совм+естные по+ездки на маш+ине"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "words",
+  "topic": "b2_psyche",
+  "items": [
+    {
+      "id": "ru-telc26-belastbar",
+      "t": "стрессоуст+ойчивый",
+      "pos": "adj",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 4,
+          "headword": "belastbar",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "resilient",
+      "de": "belastbar",
+      "examples": [
+        {
+          "t": "Д+аже в напр+яжённые пери+оды она остаётся [[стрессоуст+ойчивой]].",
+          "de": "Auch in hektischen Phasen bleibt sie belastbar.",
+          "en": "She remains resilient even during hectic periods.",
+          "sense": {
+            "en": "resilient",
+            "de": "belastbar"
+          }
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "words",
+  "topic": "b2_relations",
+  "items": [
+    {
+      "id": "ru-telc26-angemessen",
+      "t": "ум+естный",
+      "pos": "adj",
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 15,
+          "headword": "angemessen",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "appropriate",
+      "de": "angemessen",
+      "examples": [
+        {
+          "t": "В +этой ситу+ации спок+ойный отв+ет [[ум+естен]].",
+          "de": "In dieser Situation ist eine ruhige Antwort angemessen.",
+          "en": "In this situation, a calm reply is appropriate.",
+          "sense": {
+            "en": "appropriate",
+            "de": "angemessen"
+          }
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "words",
+  "topic": "b2_science",
+  "items": [
+    {
+      "id": "ru-telc26-verallgemeinern",
+      "t": "обобщ+ать",
+      "pos": "verb",
+      "aspect": "impf",
+      "forms": {
+        "praes": "обобщ+аю, обобщ+аешь",
+        "praet": "обобщ+ал",
+        "perf": "pf. обобщ+ить"
+      },
+      "level": "B2",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 28,
+          "headword": "verallgemeinern",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "en": "generalise",
+      "de": "verallgemeinern",
+      "examples": [
+        {
+          "t": "Не ст+оит ср+азу [[обобщ+ать]] отд+ельные сл+учаи.",
+          "de": "Wir sollten einzelne Erfahrungen nicht sofort verallgemeinern.",
+          "en": "We should not immediately generalise from individual experiences.",
+          "sense": {
+            "en": "generalise",
+            "de": "verallgemeinern"
+          }
+        }
+      ]
+    }
+  ]
+});

@@ -665,3 +665,224 @@ GT.register({
     }
   ]
 });
+
+/* TELC B2 source expansion 2026-11-26 — data only.
+ * Source: Einfach besser! 500, B2, English word list; original examples.
+ * Permanent IDs; existing cards reused by lemma, part of speech and sense. */
+GT.register({
+  "tab": "chunks",
+  "topic": "appointments",
+  "items": [
+    {
+      "id": "ru-telc26-ch-rechtzeitig-bescheid",
+      "t": "Пож+алуйста, сообщ+ите нам зар+анее.",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 10,
+          "headword": "rechtzeitig Bescheid geben",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Bitte geben Sie uns rechtzeitig Bescheid.",
+      "en": "Please let us know in good time.",
+      "examples": [
+        {
+          "t": "Если вы не см+ожете прийт+и на встр+ечу, [[пож+алуйста, сообщ+ите нам зар+анее]].",
+          "de": "Falls Sie den Termin nicht wahrnehmen können, geben Sie uns bitte rechtzeitig Bescheid.",
+          "en": "If you cannot attend the appointment, please let us know in good time."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "email",
+  "items": [
+    {
+      "id": "ru-telc26-ch-rechnung-begleichen",
+      "t": "Я оплач+у счёт до [д+ата].",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 27,
+          "headword": "eine Rechnung begleichen",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Ich werde die Rechnung bis [Datum] begleichen.",
+      "en": "I will settle the invoice by [date].",
+      "examples": [
+        {
+          "t": "[[Я оплач+у счёт до]] п+ятницы.",
+          "de": "Ich werde die Rechnung bis Freitag begleichen.",
+          "en": "I will settle the invoice by Friday."
+        }
+      ]
+    },
+    {
+      "id": "ru-telc26-ch-schriftform",
+      "t": "Для [X] тр+ебуется п+исьменная ф+орма.",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 35,
+          "headword": "etwas bedarf der Schriftform",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "[X] bedarf der Schriftform.",
+      "en": "[X] must be in writing.",
+      "examples": [
+        {
+          "t": "Согл+асно про+екту, для измен+ения соглаш+ения [[тр+ебуется п+исьменная ф+орма]].",
+          "de": "Laut Entwurf bedarf eine Änderung der Vereinbarung der Schriftform.",
+          "en": "According to the draft, an amendment must be in writing."
+        }
+      ],
+      "note": {
+        "de": "Formelle Konstruktion: bedürfen + Genitiv. Im Beispiel wird eine Vorgabe aus einem Vertragsentwurf wiedergegeben.",
+        "en": "Formal German: bedürfen takes the genitive, der Schriftform. The example reports a clause in a draft document; it does not establish a legal rule."
+      }
+    },
+    {
+      "id": "ru-telc26-ch-ab-werk",
+      "t": "с зав+ода",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 25,
+          "headword": "ab Werk",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "ab Werk",
+      "en": "ex works",
+      "examples": [
+        {
+          "t": "В предлож+ении ук+азана отгр+узка [[с зав+ода]] поставщ+ика.",
+          "de": "Das Angebot gilt ab Werk des Lieferanten.",
+          "en": "The quote is ex works at the supplier’s premises."
+        }
+      ],
+      "note": {
+        "de": "Kaufmännische Lieferangabe. Die konkreten Kosten und Pflichten ergeben sich aus den vereinbarten Bedingungen.",
+        "en": "A commercial delivery expression used in quotations. The actual allocation of costs and duties belongs in the agreed terms."
+      }
+    },
+    {
+      "id": "ru-telc26-ch-nachfrage",
+      "t": "По запр+осу мы м+ожем напр+авить вам [X].",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 12,
+          "headword": "auf Nachfrage",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Auf Nachfrage senden wir Ihnen [X].",
+      "en": "On request, we can send you [X].",
+      "examples": [
+        {
+          "t": "[[По запр+осу мы м+ожем напр+авить вам]] п+олное техн+ическое опис+ание.",
+          "de": "Auf Nachfrage senden wir Ihnen das vollständige Datenblatt.",
+          "en": "On request, we can send you the complete datasheet."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "it_meeting",
+  "items": [
+    {
+      "id": "ru-telc26-ch-gegenvorschlag",
+      "t": "Я хот+ел(а) бы предлож+ить встр+ечный вар+иант.",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 21,
+          "headword": "einen Gegenvorschlag machen",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Ich möchte einen Gegenvorschlag machen.",
+      "en": "I’d like to make a counterproposal.",
+      "examples": [
+        {
+          "t": "[[Я хот+ел бы предлож+ить встр+ечный вар+иант]]: снач+ала пров+ерим б+олее прост+ое реш+ение.",
+          "de": "Ich möchte einen Gegenvorschlag machen: Wir testen zuerst eine kleinere Lösung.",
+          "en": "I’d like to make a counterproposal: let’s test a smaller solution first."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "complain",
+  "items": [
+    {
+      "id": "ru-telc26-ch-verstaendnis",
+      "t": "Пр+осим отнест+ись с поним+анием.",
+      "type": "chunk",
+      "pos": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "sourceRefs": [
+        {
+          "title": "Einfach besser! 500 Deutsch für Berufssprachkurse B2",
+          "file": "Einfach_besser_500_Wortschatzliste_Englisch.pdf",
+          "page": 29,
+          "headword": "um Verständnis bitten",
+          "selection": "telc-b2-2026-11-26"
+        }
+      ],
+      "de": "Wir bitten um Ihr Verständnis.",
+      "en": "We ask for your understanding.",
+      "examples": [
+        {
+          "t": "Дост+авка зад+ерживается на один день. [[Пр+осим отнест+ись с поним+анием]].",
+          "de": "Die Lieferung verzögert sich um einen Tag. Wir bitten um Ihr Verständnis.",
+          "en": "The delivery is delayed by one day. We ask for your understanding."
+        }
+      ]
+    }
+  ]
+});

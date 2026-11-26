@@ -2980,6 +2980,7 @@
     if (groups.length) h += '<div class="side-label">Roots</div>';
     groups.forEach(function (g, i) { h += sideGroup(g[0], pad2(i + 1), g[1], g[2], g[3], g[4], i === groups.length - 1); });
     h += '<div class="side-label">Trainer</div>' +
+      (GT.feature('rootRoulette') ? sideLink('#/roots/roulette', null, 'Root roulette', '', { active: cur === 'roulette' }) : '') +
       (GT.feature('prefixDrill') ? sideLink('#/roots/drill', null, PW() + ' drill', '', { active: cur === 'drill' }) : '') +
       sideLink('#/practice?scope=roots', null, 'Practice Studio →', '', {});
     return h + sidePractice();
@@ -3025,6 +3026,7 @@
   function viewRootsLanding(section) {
     section = section || 'families';
     var h = '<header class="page-head"><span class="eyebrow">Language · Roots</span><h1>Roots & Word Formation</h1><p class="lead">' + intro('roots') + '</p></header>';
+    if (GT.feature('rootRoulette')) h += '<div class="roots-play-row"><a class="btn small" href="#/roots/roulette">Play Root roulette →</a></div>';
     h += rootsSubTabs(section);
     if (section === 'families') {
       var groupIntro = GT.cfg('rootGroupIntro') || {};
@@ -4040,6 +4042,40 @@
       '<p class="note muted" id="stHelp" lang="' + GT.know + '" style="margin-top:10px"></p>' +
       '<div class="actions" style="margin-top:24px;justify-content:center"><button class="btn primary" type="submit">Start →</button></div>' +
       '</form><div id="studioMsg"></div>';
+    var wf = wfDef(), games = [];
+    if (GT.feature('rootRoulette')) {
+      games.push({
+        href: '#/roots/roulette',
+        tag: 'Roots',
+        title: 'Root roulette',
+        desc: 'Spin a ' + PW().toLowerCase() + ' onto a root — guess the meaning or build the word.'
+      });
+    }
+    if (GT.feature('prefixDrill')) {
+      games.push({
+        href: '#/roots/drill',
+        tag: 'Roots',
+        title: PW() + ' drill',
+        desc: 'Pick the right ' + PW().toLowerCase() + ' or explain its meaning in a real sentence.'
+      });
+    }
+    if (wf) {
+      var wfLead = String((wf.game && wf.game.lead && wf.game.lead()) || '').replace(/<[^>]+>/g, '').trim();
+      var wfDesc = (wfLead.match(/^.+?[.!?](?=\s|$)/) || [wfLead])[0];
+      games.push({
+        href: '#/' + wf.route + '/play',
+        tag: wf.label,
+        title: wf.label + ' · ' + (wf.game && wf.game.title ? wf.game.title : 'Game'),
+        desc: wfDesc,
+        lang: GT.know
+      });
+    }
+    if (games.length) {
+      h += '<h3 class="section-title">Games</h3><div class="grid">' + games.map(function (g, i) {
+        return '<a class="tile" href="' + g.href + '"><div class="tile-top"><span>' + pad2(i + 1) + '</span><span class="ct">' + esc(g.tag) + '</span></div>' +
+          '<h4>' + esc(g.title) + '</h4><p' + (g.lang ? ' lang="' + esc(g.lang) + '"' : '') + '>' + esc(g.desc) + '</p></a>';
+      }).join('') + '</div>';
+    }
     page(h, 'mid');
     syncStudioHelp();
   }
@@ -4527,6 +4563,10 @@
         else if (p[1] === 'prefixes') viewRootsLanding('prefixes');
         else if (p[1] === 'suffixes') viewRootsLanding('suffixes');
         else if (p[1] === 'classical') viewRootsLanding('classical');
+        else if (p[1] === 'roulette') {
+          if (!GT.feature('rootRoulette') || !GT.roulette) { location.replace('#/roots'); return; }
+          GT.roulette.render({ page: page, esc: esc, crumbs: crumbsHTML, setKeys: function (fn) { ui.keyHandler = fn; } });
+        }
         else if (p[1] === 'drill') viewRootDrill(p[2] || '');
         else if (p[1].indexOf('p-') === 0 && (GT.prefixes[p[1].slice(2)] || GT.PREFIX_PLAN.indexOf(p[1].slice(2)) >= 0)) viewPrefix(p[1].slice(2));
         else if (p[1].indexOf('s-') === 0 && GT.suffixes[p[1].slice(2)]) viewSuffix(p[1].slice(2));
@@ -4837,7 +4877,7 @@
       return GT.topic(t, p[1]) ? null : '#/' + t;
     }
     if (t === 'grammar' && p[1]) return GT.topic('grammar', p[1]) ? null : '#/grammar';
-    if (t === 'roots' && p[1] && ['prefixes', 'suffixes', 'classical', 'drill'].indexOf(p[1]) < 0) {
+    if (t === 'roots' && p[1] && ['prefixes', 'suffixes', 'classical', 'drill', 'roulette'].indexOf(p[1]) < 0) {
       var id = p[1];
       if (/^p-/.test(id)) return GT.prefixes[id.slice(2)] ? null : '#/roots/prefixes';
       if (/^s-/.test(id)) return GT.suffixes[id.slice(2)] ? null : '#/roots/suffixes';
@@ -4845,6 +4885,7 @@
       return GT.roots[id] || GT.ROOT_PLAN.indexOf(id) >= 0 ? null : '#/roots';
     }
     if (t === 'roots' && p[1] === 'drill' && !GT.feature('prefixDrill')) return '#/roots';
+    if (t === 'roots' && p[1] === 'roulette' && !GT.feature('rootRoulette')) return '#/roots';
     if (t === 'practice' && /scope=root(:|%3A)/.test(location.hash)) return '#/practice';
     return null;
   }
