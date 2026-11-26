@@ -3,7 +3,7 @@
  * (fresh when online, cached copy when offline); cache-first for Google Fonts.
  * Bump VERSION when you want to force a clean cache. */
 var CACHE_PREFIX = 'etrnl-recognize-';
-var VERSION = CACHE_PREFIX + '164';
+var VERSION = CACHE_PREFIX + '165';
 importScripts('data/manifest.js');
 
 var SHELL = [
@@ -51,12 +51,12 @@ self.addEventListener('fetch', function (e) {
   // App files: network first (so updates show up immediately), cache as offline fallback.
   // cache: 'no-cache' revalidates with the server, so a new deploy is never hidden by the HTTP cache.
   e.respondWith(fetch(req, { cache: 'no-cache' }).then(function (res) {
-    if (res && res.ok) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); }
+    if (res && res.status === 200) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }).catch(function () {}); }
     return res;
   }).catch(function () {
     return caches.open(VERSION).then(function (cache) {
       return cache.match(req, { ignoreSearch: true }).then(function (hit) {
-        return hit || (req.mode === 'navigate' ? cache.match('./') : undefined);
+        return hit || (req.mode === 'navigate' ? cache.match('./') : null) || Response.error();
       });
     });
   }));
