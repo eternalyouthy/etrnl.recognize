@@ -64,3 +64,7 @@ I started ETRNL mainly for myself, but decided to make it available to anyone wh
 **Compare. Recognize. Understand.**
 
 *Don't just memorize words. Try to understand how they work.*
+
+## License
+
+RECGZ is free software under the [GNU Affero General Public License v3.0](LICENSE) (AGPL-3.0). You may use, change and share it, but any product built on this code — including one offered as a website or online service — must be released under the same licence with its full source code available to its users.
