@@ -261,3 +261,274 @@
       ex('After the fall, she had the [[laceration]] on her forehead examined.', 'После падения она попросила врача осмотреть рваную рану на лбу.', 'Nach dem Sturz ließ sie die Platzwunde an der Stirn untersuchen.'))
   ]);
 })();
+
+/* RECGZ content expansion 2026-11-26 — content only.
+ * Editorial learning targets; original examples; permanent IDs. */
+GT.packs.en.config.TOPICS.words.push({
+  "id": "c1_argumentation",
+  "name": "Evidence & Nuance",
+  "level": "c1",
+  "group": "C1 topics",
+  "desc": "Precise language for assumptions, qualifications and reasoned conclusions.",
+  "scenario": {
+    "ru": "Мы проверяем предложение, обсуждаем исходные допущения и уточняем выводы. Ты мой коллега.",
+    "de": "Wir prüfen einen Vorschlag, hinterfragen die Annahmen und präzisieren Schlussfolgerungen. Du bist ein Kollege."
+  }
+});
+
+GT.register({
+  "tab": "words",
+  "topic": "c1_argumentation",
+  "items": [
+    {
+      "id": "en:content26:c1-premise",
+      "t": "premise",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "предпосылка",
+      "de": "die Prämisse",
+      "examples": [
+        {
+          "t": "The argument rests on a false [[premise]].",
+          "ru": "Рассуждение основано на ложной предпосылке.",
+          "de": "Die Argumentation beruht auf einer falschen Prämisse."
+        }
+      ],
+      "plural": "premises"
+    },
+    {
+      "id": "en:content26:c1-assumption",
+      "t": "assumption",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "допущение, предположение",
+      "de": "die Annahme",
+      "examples": [
+        {
+          "t": "We should test this [[assumption]] before proceeding.",
+          "ru": "Нам следует проверить это допущение, прежде чем продолжать.",
+          "de": "Wir sollten diese Annahme prüfen, bevor wir fortfahren."
+        }
+      ],
+      "plural": "assumptions"
+    },
+    {
+      "id": "en:content26:c1-justification",
+      "t": "justification",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "обоснование",
+      "de": "die Begründung",
+      "examples": [
+        {
+          "t": "The proposal needs a clearer [[justification]].",
+          "ru": "Предложению нужно более чёткое обоснование.",
+          "de": "Der Vorschlag braucht eine klarere Begründung."
+        }
+      ],
+      "plural": "justifications"
+    },
+    {
+      "id": "en:content26:c1-ambiguity",
+      "t": "ambiguity",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "двусмысленность, неоднозначность",
+      "de": "die Mehrdeutigkeit",
+      "examples": [
+        {
+          "t": "This wording introduces an unnecessary [[ambiguity]].",
+          "ru": "Эта формулировка создаёт ненужную двусмысленность.",
+          "de": "Diese Formulierung erzeugt eine unnötige Mehrdeutigkeit."
+        }
+      ],
+      "plural": "ambiguities"
+    },
+    {
+      "id": "en:content26:c1-contradiction",
+      "t": "contradiction",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "противоречие",
+      "de": "der Widerspruch",
+      "examples": [
+        {
+          "t": "There is a [[contradiction]] between the summary and the data.",
+          "ru": "Между резюме и данными есть противоречие.",
+          "de": "Zwischen der Zusammenfassung und den Daten besteht ein Widerspruch."
+        }
+      ],
+      "plural": "contradictions"
+    },
+    {
+      "id": "en:content26:c1-consistency",
+      "t": "consistency",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "согласованность, непротиворечивость",
+      "de": "die Konsistenz",
+      "examples": [
+        {
+          "t": "We checked the [[consistency]] of the terminology.",
+          "ru": "Мы проверили согласованность терминологии.",
+          "de": "Wir haben die Konsistenz der Terminologie geprüft."
+        }
+      ]
+    },
+    {
+      "id": "en:content26:c1-caveat",
+      "t": "caveat",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "оговорка, существенное уточнение",
+      "de": "der Vorbehalt",
+      "examples": [
+        {
+          "t": "I support the plan with one important [[caveat]].",
+          "ru": "Я поддерживаю план с одной важной оговоркой.",
+          "de": "Ich unterstütze den Plan mit einem wichtigen Vorbehalt."
+        }
+      ],
+      "plural": "caveats"
+    },
+    {
+      "id": "en:content26:c1-scope",
+      "t": "scope of application",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "область применения",
+      "de": "der Anwendungsbereich",
+      "examples": [
+        {
+          "t": "The rule has a limited [[scope of application]].",
+          "ru": "У правила ограниченная область применения.",
+          "de": "Die Regel hat einen begrenzten Anwendungsbereich."
+        }
+      ],
+      "plural": "scopes of application"
+    },
+    {
+      "id": "en:content26:c1-nuance",
+      "t": "nuance",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "нюанс",
+      "de": "die Nuance",
+      "examples": [
+        {
+          "t": "The translation misses a subtle [[nuance]].",
+          "ru": "В переводе потерян тонкий нюанс.",
+          "de": "In der Übersetzung geht eine feine Nuance verloren."
+        }
+      ],
+      "plural": "nuances"
+    },
+    {
+      "id": "en:content26:c1-generalisation",
+      "t": "generalisation",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "обобщение",
+      "de": "die Verallgemeinerung",
+      "examples": [
+        {
+          "t": "That is a broad [[generalisation]] based on one case.",
+          "ru": "Это широкое обобщение на основании одного случая.",
+          "de": "Das ist eine weitreichende Verallgemeinerung anhand eines einzigen Falls."
+        }
+      ],
+      "plural": "generalisations"
+    },
+    {
+      "id": "en:content26:c1-justified",
+      "t": "justified",
+      "level": "C1",
+      "pos": "adj",
+      "ru": "обоснованный",
+      "de": "begründet",
+      "examples": [
+        {
+          "t": "Her concern about the missing evidence was [[justified]].",
+          "ru": "Её беспокойство из-за отсутствующих доказательств было обоснованным.",
+          "de": "Ihre Sorge wegen der fehlenden Belege war begründet."
+        }
+      ]
+    },
+    {
+      "id": "en:content26:c1-coherent",
+      "t": "coherent",
+      "level": "C1",
+      "pos": "adj",
+      "ru": "последовательный, связный",
+      "de": "schlüssig",
+      "examples": [
+        {
+          "t": "The report presents a [[coherent]] argument.",
+          "ru": "В отчёте представлена последовательная аргументация.",
+          "de": "Der Bericht enthält eine schlüssige Argumentation."
+        }
+      ]
+    },
+    {
+      "id": "en:content26:c1-convincing",
+      "t": "convincing",
+      "level": "C1",
+      "pos": "adj",
+      "ru": "убедительный",
+      "de": "überzeugend",
+      "examples": [
+        {
+          "t": "The explanation was clear but not entirely [[convincing]].",
+          "ru": "Объяснение было ясным, но не вполне убедительным.",
+          "de": "Die Erklärung war klar, aber nicht ganz überzeugend."
+        }
+      ]
+    },
+    {
+      "id": "en:content26:c1-arbitrary",
+      "t": "arbitrary",
+      "level": "C1",
+      "pos": "adj",
+      "ru": "произвольный",
+      "de": "willkürlich",
+      "examples": [
+        {
+          "t": "The threshold should be evidence-based rather than [[arbitrary]].",
+          "ru": "Порог должен опираться на данные, а не быть произвольным.",
+          "de": "Der Schwellenwert sollte auf Belegen beruhen, statt willkürlich zu sein."
+        }
+      ]
+    },
+    {
+      "id": "en:content26:c1-indirect",
+      "t": "indirect",
+      "level": "C1",
+      "pos": "adj",
+      "ru": "косвенный",
+      "de": "indirekt",
+      "examples": [
+        {
+          "t": "This is only [[indirect]] evidence of a connection.",
+          "ru": "Это лишь косвенное свидетельство связи.",
+          "de": "Das ist nur ein indirekter Beleg für einen Zusammenhang."
+        }
+      ]
+    },
+    {
+      "id": "en:content26:c1-ratio",
+      "t": "ratio",
+      "level": "C1",
+      "pos": "noun",
+      "ru": "соотношение",
+      "de": "das Verhältnis",
+      "examples": [
+        {
+          "t": "We need a better [[ratio]] of benefit to cost.",
+          "ru": "Нам нужно лучшее соотношение пользы и затрат.",
+          "de": "Wir brauchen ein besseres Verhältnis von Nutzen zu Kosten."
+        }
+      ],
+      "plural": "ratios"
+    }
+  ]
+});

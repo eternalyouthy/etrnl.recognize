@@ -110,3 +110,558 @@
       ex('Перед в+ыбором базы д+анных [[дав+айте взв+есим плю́сы и м+инусы]].', 'Before choosing a database, let’s weigh up the pros and cons.', 'Vor der Wahl der Datenbank lasst uns Vor- und Nachteile abwägen.'))
   ] });
 })();
+
+/* RECGZ content expansion 2026-11-26 — content only.
+ * Editorial learning targets; original examples; permanent IDs. */
+GT.register({
+  "tab": "chunks",
+  "topic": "opinion",
+  "items": [
+    {
+      "id": "ru-content26-ch-judge",
+      "t": "Наск+олько я мог+у суд+ить, [X].",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "As far as I can judge, [X].",
+      "de": "Soweit ich das beurteilen kann, [X].",
+      "examples": [
+        {
+          "t": "[[Наск+олько я мог+у суд+ить]], план реалист+ичен.",
+          "en": "As far as I can judge, the plan is realistic.",
+          "de": "Soweit ich das beurteilen kann, ist der Plan realistisch."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-rule-out",
+      "t": "Я бы не стал(а) исключ+ать [X].",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "C1",
+      "register": "neutral",
+      "en": "I wouldn’t rule out [X].",
+      "de": "Ich würde [X] nicht ausschließen.",
+      "examples": [
+        {
+          "t": "[[Я бы не стал исключ+ать]] зад+ержку.",
+          "en": "I wouldn’t rule out a delay.",
+          "de": "Ich würde eine Verzögerung nicht ausschließen."
+        }
+      ],
+      "note": {
+        "en": "A qualified possibility, not a prediction that it will happen.",
+        "de": "Eine vorsichtig formulierte Möglichkeit, keine Vorhersage."
+      }
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "agree",
+  "items": [
+    {
+      "id": "ru-content26-ch-hard-to-argue",
+      "t": "С +этим тр+удно посп+орить.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "It’s hard to argue with that.",
+      "de": "Dagegen lässt sich schwer etwas einwenden.",
+      "examples": [
+        {
+          "t": "[[С +этим тр+удно посп+орить]], но расх+оды т+оже важн+ы.",
+          "en": "It’s hard to argue with that, but costs matter too.",
+          "de": "Dagegen lässt sich schwer etwas einwenden, aber die Kosten sind auch wichtig."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-aim-method",
+      "t": "Я согл+асен (согл+асна) с ц+елью, но не с м+етодом.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "C1",
+      "register": "neutral",
+      "en": "I agree with the aim, but not the method.",
+      "de": "Ich stimme dem Ziel zu, aber nicht der Methode.",
+      "examples": [
+        {
+          "t": "[[Я согл+асен с ц+елью, но не с м+етодом]]. Дав+айте рассм+отрим друг+ой подх+од.",
+          "en": "I agree with the aim, but not the method. Let’s consider another approach.",
+          "de": "Ich stimme dem Ziel zu, aber nicht der Methode. Betrachten wir einen anderen Ansatz."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "clarify",
+  "items": [
+    {
+      "id": "ru-content26-ch-talking-about",
+      "t": "Речь идёт о [X] или о [Y]?",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B1",
+      "register": "neutral",
+      "en": "Are we talking about [X] or [Y]?",
+      "de": "Geht es um [X] oder um [Y]?",
+      "examples": [
+        {
+          "t": "[[Речь идёт о]] цен+е [[или о]] ср+оках?",
+          "en": "Are we talking about the price or the deadlines?",
+          "de": "Geht es um den Preis oder um die Termine?"
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-include",
+      "t": "Что +именно вы отн+осите к [X]?",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "What exactly do you include in [X]?",
+      "de": "Was genau zählen Sie zu [X]?",
+      "examples": [
+        {
+          "t": "[[Что +именно вы отн+осите к]] дополн+ительным расх+одам?",
+          "en": "What exactly do you include in additional costs?",
+          "de": "Was genau zählen Sie zu den zusätzlichen Kosten?"
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "complain",
+  "items": [
+    {
+      "id": "ru-content26-ch-resolution",
+      "t": "Прош+у сообщ+ить, как вы план+ируете реш+ить +эту пробл+ему.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "en": "Please explain how you intend to resolve this.",
+      "de": "Bitte erläutern Sie, wie Sie dieses Problem lösen wollen.",
+      "examples": [
+        {
+          "t": "[[Прош+у сообщ+ить, как вы план+ируете реш+ить +эту пробл+ему]]. Отопл+ения нет уж+е тр+етий день.",
+          "en": "Please explain how you intend to resolve this. The heating has been off for three days.",
+          "de": "Bitte erläutern Sie, wie Sie dieses Problem lösen wollen. Die Heizung ist seit drei Tagen ausgefallen."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-deadline-passed",
+      "t": "К сожал+ению, соглас+ованный срок уж+е истёк.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "en": "Unfortunately, the agreed deadline has passed.",
+      "de": "Leider ist die vereinbarte Frist bereits abgelaufen.",
+      "examples": [
+        {
+          "t": "[[К сожал+ению, соглас+ованный срок уж+е истёк]], а отв+ета я не получ+ил.",
+          "en": "Unfortunately, the agreed deadline has passed, and I have not received a reply.",
+          "de": "Leider ist die vereinbarte Frist bereits abgelaufen, und ich habe keine Antwort erhalten."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "problem",
+  "items": [
+    {
+      "id": "ru-content26-ch-even-though",
+      "t": "Не получ+ается [X], хот+я [Y].",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B1",
+      "register": "neutral",
+      "en": "I can’t [X], even though [Y].",
+      "de": "Ich kann [X] nicht, obwohl [Y].",
+      "examples": [
+        {
+          "t": "[[Не получ+ается]] войт+и, [[хот+я]] пар+оль в+ерный.",
+          "en": "I can’t log in, even though the password is correct.",
+          "de": "Ich kann mich nicht anmelden, obwohl das Passwort richtig ist."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-only-affects",
+      "t": "Пробл+ема затр+агивает т+олько [X].",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "The issue only affects [X].",
+      "de": "Das Problem betrifft nur [X].",
+      "examples": [
+        {
+          "t": "[[Пробл+ема затр+агивает т+олько]] моб+ильную в+ерсию.",
+          "en": "The issue only affects the mobile version.",
+          "de": "Das Problem betrifft nur die mobile Version."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "appointments",
+  "items": [
+    {
+      "id": "ru-content26-ch-earlier",
+      "t": "М+ожно ли сдв+инуть встр+ечу на час р+аньше?",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "Could we bring the meeting forward by an hour?",
+      "de": "Könnten wir das Treffen um eine Stunde vorverlegen?",
+      "examples": [
+        {
+          "t": "[[М+ожно ли сдв+инуть встр+ечу на час р+аньше]]? Мне н+ужно усп+еть на п+оезд.",
+          "en": "Could we bring the meeting forward by an hour? I need to catch a train.",
+          "de": "Könnten wir das Treffen um eine Stunde vorverlegen? Ich muss einen Zug erreichen."
+        }
+      ],
+      "note": {
+        "en": "Сдвинуть на час раньше means move earlier (e.g. 15:00 to 14:00). State the new time explicitly.",
+        "de": "Сдвинуть на час раньше bedeutet vorverlegen (z. B. 15 Uhr auf 14 Uhr). Die neue Uhrzeit ausdrücklich nennen."
+      }
+    },
+    {
+      "id": "ru-content26-ch-local-time",
+      "t": "Подтверд+ите, пож+алуйста, м+естное вр+емя встр+ечи.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "Please confirm the local time of the meeting.",
+      "de": "Bitte bestätigen Sie die Ortszeit des Treffens.",
+      "examples": [
+        {
+          "t": "[[Подтверд+ите, пож+алуйста, м+естное вр+емя встр+ечи]]: у нас р+азные часов+ые пояс+а.",
+          "en": "Please confirm the local time of the meeting: we are in different time zones.",
+          "de": "Bitte bestätigen Sie die Ortszeit des Treffens: Wir sind in verschiedenen Zeitzonen."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "phone",
+  "items": [
+    {
+      "id": "ru-content26-ch-prefer-email",
+      "t": "Мне уд+обнее, +если вы нап+ишете по электр+онной п+очте.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "I’d prefer it if you emailed me.",
+      "de": "Mir wäre es lieber, wenn Sie mir eine E-Mail schreiben würden.",
+      "examples": [
+        {
+          "t": "[[Мне уд+обнее, +если вы нап+ишете по электр+онной п+очте]]. Я смог+у прилож+ить докум+енты.",
+          "en": "I’d prefer it if you emailed me. I can then attach the documents.",
+          "de": "Mir wäre es lieber, wenn Sie mir eine E-Mail schreiben würden. Dann kann ich die Dokumente anhängen."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-stay-line",
+      "t": "Остав+айтесь, пож+алуйста, на л+инии.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B1",
+      "register": "neutral",
+      "en": "Please stay on the line.",
+      "de": "Bitte bleiben Sie in der Leitung.",
+      "examples": [
+        {
+          "t": "[[Остав+айтесь, пож+алуйста, на л+инии]], я уточн+ю информ+ацию.",
+          "en": "Please stay on the line while I check the information.",
+          "de": "Bitte bleiben Sie in der Leitung, während ich die Information prüfe."
+        }
+      ],
+      "note": {
+        "en": "Polite service phrase; the caller should keep the call connected.",
+        "de": "Höfliche Serviceformel: Der Anrufer soll nicht auflegen."
+      }
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "email",
+  "items": [
+    {
+      "id": "ru-content26-ch-following",
+      "t": "В продолж+ение н+ашего разгов+ора направл+яю [X].",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "en": "Following our conversation, I’m sending [X].",
+      "de": "Im Anschluss an unser Gespräch sende ich Ihnen [X].",
+      "examples": [
+        {
+          "t": "[[В продолж+ение н+ашего разгов+ора направл+яю]] обновлённую см+ету.",
+          "en": "Following our conversation, I’m sending the updated estimate.",
+          "de": "Im Anschluss an unser Gespräch sende ich Ihnen den aktualisierten Kostenvoranschlag."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-please-note",
+      "t": "Прош+у прин+ять к св+едению, что [X].",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "formal",
+      "en": "Please note that [X].",
+      "de": "Bitte beachten Sie, dass [X].",
+      "examples": [
+        {
+          "t": "[[Прош+у прин+ять к св+едению, что]] срок под+ачи продлён.",
+          "en": "Please note that the submission deadline has been extended.",
+          "de": "Bitte beachten Sie, dass die Einreichungsfrist verlängert wurde."
+        }
+      ],
+      "note": {
+        "en": "Formal phrase used in official letters and notices.",
+        "de": "Formelle Wendung für offizielle Schreiben und Mitteilungen."
+      }
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "smalltalk",
+  "items": [
+    {
+      "id": "ru-content26-ch-settling-in",
+      "t": "Как ты здесь осв+аиваешься?",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B1",
+      "register": "informal",
+      "en": "How are you settling in?",
+      "de": "Wie lebst du dich hier ein?",
+      "examples": [
+        {
+          "t": "[[Как ты здесь осв+аиваешься]]? Уж+е познак+омился с сос+едями?",
+          "en": "How are you settling in? Have you met the neighbours yet?",
+          "de": "Wie lebst du dich hier ein? Hast du die Nachbarn schon kennengelernt?"
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-lined-up",
+      "t": "Есть как+ие-нибудь интер+есные пл+аны?",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "informal",
+      "en": "Got anything interesting lined up?",
+      "de": "Hast du etwas Interessantes vor?",
+      "examples": [
+        {
+          "t": "На выходн+ые [[есть как+ие-нибудь интер+есные пл+аны]]?",
+          "en": "Got anything interesting lined up for the weekend?",
+          "de": "Hast du am Wochenende etwas Interessantes vor?"
+        }
+      ],
+      "note": {
+        "en": "Casual way to ask about someone's upcoming plans.",
+        "de": "Lockere Frage nach den kommenden Plänen."
+      }
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "it_standup",
+  "items": [
+    {
+      "id": "ru-content26-ch-waiting-confirmation",
+      "t": "Жду подтвержд+ения от [X], чт+обы прод+олжить.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "I’m waiting for confirmation from [X] before I can continue.",
+      "de": "Ich warte auf die Bestätigung von [X], bevor ich weitermachen kann.",
+      "examples": [
+        {
+          "t": "[[Жду подтвержд+ения от]] зак+азчика, [[чт+обы прод+олжить]].",
+          "en": "I’m waiting for confirmation from the client before I can continue.",
+          "de": "Ich warte auf die Bestätigung des Kunden, bevor ich weitermachen kann."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-end-day",
+      "t": "К конц+у дня рассч+итываю заверш+ить [X].",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "I expect to finish [X] by the end of the day.",
+      "de": "Ich rechne damit, [X] bis Tagesende abzuschließen.",
+      "examples": [
+        {
+          "t": "[[К конц+у дня рассч+итываю заверш+ить]] пров+ерку.",
+          "en": "I expect to finish the review by the end of the day.",
+          "de": "Ich rechne damit, die Prüfung bis Tagesende abzuschließen."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "it_bug",
+  "items": [
+    {
+      "id": "ru-content26-ch-no-repro",
+      "t": "С +этими д+анными ош+ибка не воспроизв+одится.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "I can’t reproduce the issue with this data.",
+      "de": "Mit diesen Daten kann ich den Fehler nicht reproduzieren.",
+      "examples": [
+        {
+          "t": "[[С +этими д+анными ош+ибка не воспроизв+одится]]. Н+ужен друг+ой прим+ер.",
+          "en": "I can’t reproduce the issue with this data. I need another example.",
+          "de": "Mit diesen Daten kann ich den Fehler nicht reproduzieren. Ich brauche ein anderes Beispiel."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-previous-version",
+      "t": "На предыд+ущей в+ерсии +этого не б+ыло.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B1",
+      "register": "neutral",
+      "en": "This didn’t happen in the previous version.",
+      "de": "In der vorherigen Version ist das nicht passiert.",
+      "examples": [
+        {
+          "t": "[[На предыд+ущей в+ерсии +этого не б+ыло]]: п+оиск раб+отал б+ыстро.",
+          "en": "This didn’t happen in the previous version: the search was fast.",
+          "de": "In der vorherigen Version ist das nicht passiert: Die Suche war schnell."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "it_help",
+  "items": [
+    {
+      "id": "ru-content26-ch-check-assumption",
+      "t": "М+ожешь пров+ерить моё предполож+ение?",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "informal",
+      "en": "Could you check my assumption?",
+      "de": "Könntest du meine Annahme überprüfen?",
+      "examples": [
+        {
+          "t": "[[М+ожешь пров+ерить моё предполож+ение]]? К+ажется, пробл+ема в к+эше.",
+          "en": "Could you check my assumption? I think the cache is the problem.",
+          "de": "Könntest du meine Annahme überprüfen? Ich glaube, das Problem liegt im Cache."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-where-start",
+      "t": "Покаж+и, пож+алуйста, с чег+о нач+ать.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B1",
+      "register": "informal",
+      "en": "Could you show me where to start?",
+      "de": "Könntest du mir zeigen, wo ich anfangen soll?",
+      "examples": [
+        {
+          "t": "[[Покаж+и, пож+алуйста, с чег+о нач+ать]]: я ещё не раб+отал с +этой сист+емой.",
+          "en": "Could you show me where to start? I haven’t worked with this system before.",
+          "de": "Könntest du mir zeigen, wo ich anfangen soll? Ich habe noch nicht mit diesem System gearbeitet."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "chunks",
+  "topic": "it_meeting",
+  "items": [
+    {
+      "id": "ru-content26-ch-criteria",
+      "t": "Предлаг+аю снач+ала согласов+ать крит+ерии.",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "C1",
+      "register": "neutral",
+      "en": "I suggest we agree on the criteria first.",
+      "de": "Ich schlage vor, dass wir zuerst die Kriterien abstimmen.",
+      "examples": [
+        {
+          "t": "[[Предлаг+аю снач+ала согласов+ать крит+ерии]], а пот+ом ср+авнивать вари+анты.",
+          "en": "I suggest we agree on the criteria first and then compare the options.",
+          "de": "Ich schlage vor, dass wir zuerst die Kriterien abstimmen und dann die Optionen vergleichen."
+        }
+      ]
+    },
+    {
+      "id": "ru-content26-ch-responsibility",
+      "t": "Кто возьмёт на себ+я отв+етственность за [X]?",
+      "pos": "chunk",
+      "type": "chunk",
+      "level": "B2",
+      "register": "neutral",
+      "en": "Who will take responsibility for [X]?",
+      "de": "Wer übernimmt die Verantwortung für [X]?",
+      "examples": [
+        {
+          "t": "[[Кто возьмёт на себ+я отв+етственность за]] пров+ерку результ+ата?",
+          "en": "Who will take responsibility for checking the result?",
+          "de": "Wer übernimmt die Verantwortung für die Überprüfung des Ergebnisses?"
+        }
+      ]
+    }
+  ]
+});

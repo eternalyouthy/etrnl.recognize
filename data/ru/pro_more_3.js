@@ -268,3 +268,2042 @@
       ['A self-employed freelancer is самоз+анятый (adj./noun); very common tax status in Russia.', 'Selbstständige Person = самоз+анятый; verbreiteter Freelancer-Status.'])
   ]);
 })();
+
+/* RECGZ content expansion 2026-11-26 — content only.
+ * Editorial learning targets; original examples; permanent IDs. */
+GT.register({
+  "tab": "it",
+  "topic": "bureau_offices",
+  "items": [
+    {
+      "id": "ru-content26-office-razreshenie",
+      "t": "разреш+ение",
+      "level": "B2",
+      "pos": "noun",
+      "en": "permit",
+      "de": "die Genehmigung",
+      "examples": [
+        {
+          "t": "Для +этих раб+от тр+ебуется [[разреш+ение]].",
+          "en": "A permit is required for this work.",
+          "de": "Für diese Arbeiten ist eine Genehmigung erforderlich."
+        }
+      ],
+      "gender": "n",
+      "plural": "разреш+ения"
+    },
+    {
+      "id": "ru-content26-office-vedomstvo",
+      "t": "в+едомство",
+      "level": "B2",
+      "pos": "noun",
+      "en": "public authority",
+      "de": "die Behörde",
+      "examples": [
+        {
+          "t": "+Это [[в+едомство]] отвеч+ает за в+ыдачу разреш+ений.",
+          "en": "This public authority is responsible for issuing permits.",
+          "de": "Diese Behörde ist für die Erteilung von Genehmigungen zuständig."
+        }
+      ],
+      "gender": "n",
+      "plural": "в+едомства"
+    },
+    {
+      "id": "ru-content26-office-zayavitel",
+      "t": "заяв+итель",
+      "level": "B2",
+      "pos": "noun",
+      "en": "applicant",
+      "de": "der Antragsteller",
+      "examples": [
+        {
+          "t": "[[Заяв+итель]] д+олжен подпис+ать ф+орму л+ично.",
+          "en": "The applicant must sign the form in person.",
+          "de": "Der Antragsteller muss das Formular persönlich unterschreiben."
+        }
+      ],
+      "gender": "m",
+      "plural": "заяв+ители"
+    },
+    {
+      "id": "ru-content26-office-polnomochie",
+      "t": "полном+очие",
+      "level": "C1",
+      "pos": "noun",
+      "en": "authority to act",
+      "de": "die Befugnis",
+      "examples": [
+        {
+          "t": "У +этого отд+ела есть [[полном+очие]] приним+ать реш+ение.",
+          "en": "This department has the authority to make the decision.",
+          "de": "Diese Abteilung hat die Befugnis, die Entscheidung zu treffen."
+        }
+      ],
+      "gender": "n",
+      "plural": "полном+очия"
+    },
+    {
+      "id": "ru-content26-office-reshenie",
+      "t": "администрат+ивное реш+ение",
+      "level": "B2",
+      "pos": "noun",
+      "en": "administrative decision",
+      "de": "der Verwaltungsakt",
+      "examples": [
+        {
+          "t": "[[Администрат+ивное реш+ение]] напр+авили заяв+ителю п+очтой.",
+          "en": "The administrative decision was sent to the applicant by post.",
+          "de": "Der Verwaltungsakt wurde dem Antragsteller per Post zugestellt."
+        }
+      ],
+      "gender": "n",
+      "plural": "администрат+ивные реш+ения"
+    },
+    {
+      "id": "ru-content26-office-obzhalovanie",
+      "t": "обж+алование",
+      "level": "C1",
+      "pos": "noun",
+      "en": "administrative appeal",
+      "de": "der Widerspruch",
+      "examples": [
+        {
+          "t": "Срок для [[обж+алования]] ук+азан в докум+енте.",
+          "en": "The deadline for an administrative appeal is stated in the document.",
+          "de": "Die Frist für den Widerspruch steht im Dokument."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "bureau_tax",
+  "items": [
+    {
+      "id": "ru-content26-tax-deklaraciya",
+      "t": "нал+оговая деклар+ация",
+      "level": "B2",
+      "pos": "noun",
+      "en": "tax return",
+      "de": "die Steuererklärung",
+      "examples": [
+        {
+          "t": "Мо+я [[нал+оговая деклар+ация]] уж+е гот+ова.",
+          "en": "My tax return is ready.",
+          "de": "Meine Steuererklärung ist bereits fertig."
+        }
+      ],
+      "gender": "f",
+      "plural": "нал+оговые деклар+ации"
+    },
+    {
+      "id": "ru-content26-tax-vychet",
+      "t": "нал+оговый в+ычет",
+      "level": "B2",
+      "pos": "noun",
+      "en": "tax deduction",
+      "de": "der Steuerabzug",
+      "examples": [
+        {
+          "t": "Бухг+алтер пров+ерит, примен+им ли +этот [[нал+оговый в+ычет]].",
+          "en": "The accountant will check whether this tax deduction applies.",
+          "de": "Der Buchhalter prüft, ob dieser Steuerabzug anwendbar ist."
+        }
+      ],
+      "gender": "m",
+      "plural": "нал+оговые в+ычеты"
+    },
+    {
+      "id": "ru-content26-tax-baza",
+      "t": "нал+оговая б+аза",
+      "level": "B2",
+      "pos": "noun",
+      "en": "tax base",
+      "de": "die Bemessungsgrundlage",
+      "examples": [
+        {
+          "t": "[[Нал+оговая б+аза]] ук+азана в расчёте.",
+          "en": "The tax base is stated in the calculation.",
+          "de": "Die Bemessungsgrundlage ist in der Berechnung angegeben."
+        }
+      ],
+      "gender": "f",
+      "plural": "нал+оговые б+азы"
+    },
+    {
+      "id": "ru-content26-tax-podohodny",
+      "t": "подох+одный нал+ог",
+      "level": "B2",
+      "pos": "noun",
+      "en": "income tax",
+      "de": "die Einkommensteuer",
+      "examples": [
+        {
+          "t": "В расчёте отд+ельно ук+азан [[подох+одный нал+ог]].",
+          "en": "Income tax is shown separately in the calculation.",
+          "de": "Die Einkommensteuer ist in der Berechnung gesondert ausgewiesen."
+        }
+      ],
+      "gender": "m",
+      "plural": "подох+одные нал+оги"
+    },
+    {
+      "id": "ru-content26-tax-vznos",
+      "t": "страхов+ой взнос",
+      "level": "B2",
+      "pos": "noun",
+      "en": "social security contribution",
+      "de": "der Sozialversicherungsbeitrag",
+      "examples": [
+        {
+          "t": "[[Страхов+ой взнос]] отражён в расчётном листк+е.",
+          "en": "The social security contribution is shown on the payslip.",
+          "de": "Der Sozialversicherungsbeitrag steht auf der Gehaltsabrechnung."
+        }
+      ],
+      "gender": "m",
+      "plural": "страхов+ые взн+осы"
+    },
+    {
+      "id": "ru-content26-tax-period",
+      "t": "нал+оговый пер+иод",
+      "level": "B2",
+      "pos": "noun",
+      "en": "tax period",
+      "de": "der Besteuerungszeitraum",
+      "examples": [
+        {
+          "t": "Для расчёта в+ажно пр+авильно указ+ать [[нал+оговый пер+иод]].",
+          "en": "It is important to state the correct tax period for the calculation.",
+          "de": "Für die Berechnung muss der richtige Besteuerungszeitraum angegeben werden."
+        }
+      ],
+      "gender": "m",
+      "plural": "нал+оговые пер+иоды"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "bureau_docs",
+  "items": [
+    {
+      "id": "ru-content26-docs-pismo",
+      "t": "заказн+ое письм+о",
+      "level": "B2",
+      "pos": "noun",
+      "en": "registered letter",
+      "de": "das Einschreiben",
+      "examples": [
+        {
+          "t": "Мы отпр+авили [[заказн+ое письм+о]] и сохран+или квит+анцию.",
+          "en": "We sent a registered letter and kept the receipt.",
+          "de": "Wir haben ein Einschreiben verschickt und den Beleg aufbewahrt."
+        }
+      ],
+      "gender": "n",
+      "plural": "заказн+ые п+исьма"
+    },
+    {
+      "id": "ru-content26-docs-uvedomlenie",
+      "t": "уведомл+ение о вруч+ении",
+      "level": "B2",
+      "pos": "noun",
+      "en": "acknowledgement of receipt",
+      "de": "die Empfangsbestätigung",
+      "examples": [
+        {
+          "t": "[[Уведомл+ение о вруч+ении]] подтвержд+ает получ+ение письм+а.",
+          "en": "The acknowledgement of receipt confirms that the letter was received.",
+          "de": "Die Empfangsbestätigung bestätigt den Erhalt des Briefes."
+        }
+      ],
+      "gender": "n",
+      "plural": "уведомл+ения о вруч+ении"
+    },
+    {
+      "id": "ru-content26-docs-hranenie",
+      "t": "срок хран+ения",
+      "level": "B2",
+      "pos": "noun",
+      "en": "retention period",
+      "de": "die Aufbewahrungsfrist",
+      "examples": [
+        {
+          "t": "Для докум+ентов устан+овлен [[срок хран+ения]].",
+          "en": "A retention period has been set for the documents.",
+          "de": "Für die Dokumente ist eine Aufbewahrungsfrist festgelegt."
+        }
+      ],
+      "gender": "m",
+      "plural": "ср+оки хран+ения"
+    },
+    {
+      "id": "ru-content26-docs-nomer",
+      "t": "регистраци+онный н+омер",
+      "level": "B2",
+      "pos": "noun",
+      "en": "reference number",
+      "de": "das Aktenzeichen",
+      "examples": [
+        {
+          "t": "Укаж+ите [[регистраци+онный н+омер]] в отв+ете.",
+          "en": "Please quote the reference number in your reply.",
+          "de": "Bitte geben Sie in Ihrer Antwort das Aktenzeichen an."
+        }
+      ],
+      "gender": "m",
+      "plural": "регистраци+онные номер+а"
+    },
+    {
+      "id": "ru-content26-docs-vypiska",
+      "t": "в+ыписка из ре+естра",
+      "level": "B2",
+      "pos": "noun",
+      "en": "register extract",
+      "de": "der Registerauszug",
+      "examples": [
+        {
+          "t": "К заявл+ению прилож+или [[в+ыписку из ре+естра]].",
+          "en": "A register extract was attached to the application.",
+          "de": "Dem Antrag wurde ein Registerauszug beigefügt."
+        }
+      ],
+      "gender": "f",
+      "plural": "в+ыписки из ре+естра"
+    },
+    {
+      "id": "ru-content26-docs-zaverenie",
+      "t": "нотари+альное завер+ение",
+      "level": "B2",
+      "pos": "noun",
+      "en": "notarisation",
+      "de": "die notarielle Beglaubigung",
+      "examples": [
+        {
+          "t": "Для к+опии потр+ебовалось [[нотари+альное завер+ение]].",
+          "en": "The copy required notarisation.",
+          "de": "Für die Kopie war eine notarielle Beglaubigung erforderlich."
+        }
+      ],
+      "gender": "n",
+      "plural": "нотари+альные завер+ения"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "legal_contracts",
+  "items": [
+    {
+      "id": "ru-content26-contract-uslovie",
+      "t": "усл+овие догов+ора",
+      "level": "B2",
+      "pos": "noun",
+      "en": "contractual clause",
+      "de": "die Vertragsklausel",
+      "examples": [
+        {
+          "t": "+Это [[усл+овие догов+ора]] н+ужно обсуд+ить до подпис+ания.",
+          "en": "This contractual clause needs to be discussed before signing.",
+          "de": "Diese Vertragsklausel muss vor der Unterschrift besprochen werden."
+        }
+      ],
+      "gender": "n",
+      "plural": "усл+овия догов+ора"
+    },
+    {
+      "id": "ru-content26-contract-narushenie",
+      "t": "наруш+ение догов+ора",
+      "level": "B2",
+      "pos": "noun",
+      "en": "breach of contract",
+      "de": "die Vertragsverletzung",
+      "examples": [
+        {
+          "t": "В письм+е оп+исано предполаг+аемое [[наруш+ение догов+ора]].",
+          "en": "The letter describes an alleged breach of contract.",
+          "de": "Im Brief wird eine mutmaßliche Vertragsverletzung beschrieben."
+        }
+      ],
+      "gender": "n",
+      "plural": "наруш+ения догов+ора"
+    },
+    {
+      "id": "ru-content26-contract-otvetstvennost",
+      "t": "отв+етственность",
+      "level": "B2",
+      "pos": "noun",
+      "en": "liability",
+      "de": "die Haftung",
+      "examples": [
+        {
+          "t": "В догов+оре отд+ельно оговорен+а [[отв+етственность]] стор+он.",
+          "en": "The parties' liability is addressed separately in the contract.",
+          "de": "Die Haftung der Parteien ist im Vertrag gesondert geregelt."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-contract-neustoyka",
+      "t": "неуст+ойка",
+      "level": "C1",
+      "pos": "noun",
+      "en": "contractual penalty",
+      "de": "die Vertragsstrafe",
+      "examples": [
+        {
+          "t": "За проср+очку в догов+оре предусм+отрена [[неуст+ойка]].",
+          "en": "The contract provides for a contractual penalty for delay.",
+          "de": "Der Vertrag sieht bei Verzug eine Vertragsstrafe vor."
+        }
+      ],
+      "gender": "f",
+      "plural": "неуст+ойки"
+    },
+    {
+      "id": "ru-content26-contract-ushcherb",
+      "t": "возмещ+ение ущ+ерба",
+      "level": "B2",
+      "pos": "noun",
+      "en": "damages",
+      "de": "der Schadensersatz",
+      "examples": [
+        {
+          "t": "Стор+оны обсужд+ают [[возмещ+ение ущ+ерба]].",
+          "en": "The parties are discussing damages.",
+          "de": "Die Parteien besprechen den Schadensersatz."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-contract-davnost",
+      "t": "срок исков+ой д+авности",
+      "level": "C1",
+      "pos": "noun",
+      "en": "limitation period",
+      "de": "die Verjährungsfrist",
+      "examples": [
+        {
+          "t": "Юр+ист пров+ерит примен+имый [[срок исков+ой д+авности]].",
+          "en": "The lawyer will check the applicable limitation period.",
+          "de": "Der Anwalt prüft die anwendbare Verjährungsfrist."
+        }
+      ],
+      "gender": "m",
+      "plural": "ср+оки исков+ой д+авности"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "legal_ip",
+  "items": [
+    {
+      "id": "ru-content26-ip-copyright",
+      "t": "+авторское пр+аво",
+      "level": "B2",
+      "pos": "noun",
+      "en": "copyright",
+      "de": "das Urheberrecht",
+      "examples": [
+        {
+          "t": "В лиц+ензии уточн+яется, ком+у принадлеж+ит [[+авторское пр+аво]].",
+          "en": "The licence clarifies who owns the copyright.",
+          "de": "In der Lizenz wird geklärt, wem das Urheberrecht zusteht."
+        }
+      ],
+      "gender": "n",
+      "plural": "+авторские прав+а"
+    },
+    {
+      "id": "ru-content26-ip-trademark",
+      "t": "тов+арный знак",
+      "level": "B2",
+      "pos": "noun",
+      "en": "trademark",
+      "de": "die Marke",
+      "examples": [
+        {
+          "t": "[[Тов+арный знак]] зарегистр+ирован на комп+анию.",
+          "en": "The trademark is registered to the company.",
+          "de": "Die Marke ist auf das Unternehmen eingetragen."
+        }
+      ],
+      "gender": "m",
+      "plural": "тов+арные зн+аки"
+    },
+    {
+      "id": "ru-content26-ip-patent",
+      "t": "пат+ент",
+      "level": "B2",
+      "pos": "noun",
+      "en": "patent",
+      "de": "das Patent",
+      "examples": [
+        {
+          "t": "Инжен+еры п+одали за+явку на [[пат+ент]].",
+          "en": "The engineers filed a patent application.",
+          "de": "Die Ingenieure haben ein Patent angemeldet."
+        }
+      ],
+      "gender": "m",
+      "plural": "пат+енты"
+    },
+    {
+      "id": "ru-content26-ip-royalty",
+      "t": "лицензи+онный сбор",
+      "level": "B2",
+      "pos": "noun",
+      "en": "licence fee",
+      "de": "die Lizenzgebühr",
+      "examples": [
+        {
+          "t": "[[Лицензи+онный сбор]] опл+ачивается ежег+одно.",
+          "en": "The licence fee is paid annually.",
+          "de": "Die Lizenzgebühr wird jährlich bezahlt."
+        }
+      ],
+      "gender": "m",
+      "plural": "лицензи+онные сб+оры"
+    },
+    {
+      "id": "ru-content26-ip-secret",
+      "t": "комм+ерческая т+айна",
+      "level": "B2",
+      "pos": "noun",
+      "en": "trade secret",
+      "de": "das Geschäftsgeheimnis",
+      "examples": [
+        {
+          "t": "Технол+огия защищен+а как [[комм+ерческая т+айна]].",
+          "en": "The technology is protected as a trade secret.",
+          "de": "Die Technologie ist als Geschäftsgeheimnis geschützt."
+        }
+      ],
+      "gender": "f",
+      "plural": "комм+ерческие т+айны"
+    },
+    {
+      "id": "ru-content26-ip-plagiarism",
+      "t": "плаги+ат",
+      "level": "B2",
+      "pos": "noun",
+      "en": "plagiarism",
+      "de": "das Plagiat",
+      "examples": [
+        {
+          "t": "Ком+иссия провер+яет раб+оту на [[плаги+ат]].",
+          "en": "The committee is checking the work for plagiarism.",
+          "de": "Die Kommission prüft die Arbeit auf Plagiate."
+        }
+      ],
+      "gender": "m",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-ip-domain",
+      "t": "общ+ественное досто+яние",
+      "level": "C1",
+      "pos": "noun",
+      "en": "public domain",
+      "de": "die Gemeinfreiheit",
+      "examples": [
+        {
+          "t": "Ст+атус [[общ+ественного досто+яния]] н+ужно пров+ерить для +этой стран+ы.",
+          "en": "Public-domain status needs to be checked for this country.",
+          "de": "Der Status der Gemeinfreiheit muss für dieses Land geprüft werden."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-ip-usage",
+      "t": "пр+аво исп+ользования",
+      "level": "B2",
+      "pos": "noun",
+      "en": "usage rights",
+      "de": "das Nutzungsrecht",
+      "examples": [
+        {
+          "t": "[[Пр+аво исп+ользования]] не означ+ает перед+ачу +авторства.",
+          "en": "Usage rights do not mean transfer of authorship.",
+          "de": "Ein Nutzungsrecht bedeutet keine Übertragung der Urheberschaft."
+        }
+      ],
+      "gender": "n",
+      "plural": "прав+а исп+ользования"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "legal_criminal",
+  "items": [
+    {
+      "id": "ru-content26-crime-obvinenie",
+      "t": "обвин+ительное заключ+ение",
+      "level": "B2",
+      "pos": "noun",
+      "en": "indictment",
+      "de": "die Anklageschrift",
+      "examples": [
+        {
+          "t": "В суд поступ+ило [[обвин+ительное заключ+ение]] по д+елу о мош+енничестве.",
+          "en": "An indictment in the fraud case was submitted to the court.",
+          "de": "Dem Gericht wurde eine Anklageschrift im Betrugsfall vorgelegt."
+        }
+      ],
+      "gender": "n",
+      "plural": "обвин+ительные заключ+ения"
+    },
+    {
+      "id": "ru-content26-crime-prokuratura",
+      "t": "прокурат+ура",
+      "level": "B2",
+      "pos": "noun",
+      "en": "prosecution",
+      "de": "die Staatsanwaltschaft",
+      "examples": [
+        {
+          "t": "[[Прокурат+ура]] запрос+ила дополн+ительные докум+енты.",
+          "en": "The prosecution requested additional documents.",
+          "de": "Die Staatsanwaltschaft forderte zusätzliche Dokumente an."
+        }
+      ],
+      "gender": "f",
+      "plural": "прокурат+уры"
+    },
+    {
+      "id": "ru-content26-crime-presumption",
+      "t": "през+умпция невин+овности",
+      "level": "C1",
+      "pos": "noun",
+      "en": "presumption of innocence",
+      "de": "die Unschuldsvermutung",
+      "examples": [
+        {
+          "t": "В обсужд+ении д+ела нельз+я забыв+ать о [[през+умпции невин+овности]].",
+          "en": "The presumption of innocence must not be forgotten when discussing the case.",
+          "de": "Bei der Diskussion des Falls darf die Unschuldsvermutung nicht vergessen werden."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-crime-acquittal",
+      "t": "оправд+ательный пригов+ор",
+      "level": "C1",
+      "pos": "noun",
+      "en": "acquittal",
+      "de": "der Freispruch",
+      "examples": [
+        {
+          "t": "Суд в+ынес [[оправд+ательный пригов+ор]].",
+          "en": "The court delivered an acquittal.",
+          "de": "Das Gericht sprach einen Freispruch aus."
+        }
+      ],
+      "gender": "m",
+      "plural": "оправд+ательные пригов+оры"
+    },
+    {
+      "id": "ru-content26-crime-testimony",
+      "t": "свид+етельские показ+ания",
+      "level": "B2",
+      "pos": "noun",
+      "en": "witness testimony",
+      "de": "die Zeugenaussage",
+      "examples": [
+        {
+          "t": "[[Свид+етельские показ+ания]] зап+исаны в проток+оле.",
+          "en": "The witness testimony is recorded in the minutes.",
+          "de": "Die Zeugenaussage ist im Protokoll festgehalten."
+        }
+      ],
+      "gender": "pl",
+      "plural": "свид+етельские показ+ания",
+      "note": {
+        "en": "Plural-only expression in this sense.",
+        "de": "In dieser Bedeutung nur im Plural gebräuchlich."
+      }
+    },
+    {
+      "id": "ru-content26-crime-appeal",
+      "t": "апелл+яция",
+      "level": "C1",
+      "pos": "noun",
+      "en": "appeal",
+      "de": "die Berufung",
+      "examples": [
+        {
+          "t": "Адвок+ат сообщ+ил, что [[апелл+яция]] п+одана.",
+          "en": "The lawyer said that the appeal had been filed.",
+          "de": "Der Anwalt teilte mit, dass die Berufung eingelegt wurde."
+        }
+      ],
+      "gender": "f",
+      "plural": "апелл+яции"
+    },
+    {
+      "id": "ru-content26-crime-fraud",
+      "t": "мош+енничество",
+      "level": "B2",
+      "pos": "noun",
+      "en": "fraud",
+      "de": "der Betrug",
+      "examples": [
+        {
+          "t": "Пол+иция рассл+едует предполаг+аемое [[мош+енничество]].",
+          "en": "The police are investigating suspected fraud.",
+          "de": "Die Polizei ermittelt wegen mutmaßlichen Betrugs."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "legal_labour",
+  "items": [
+    {
+      "id": "ru-content26-labour-contract",
+      "t": "трудов+ой догов+ор",
+      "level": "B2",
+      "pos": "noun",
+      "en": "employment contract",
+      "de": "der Arbeitsvertrag",
+      "examples": [
+        {
+          "t": "Я получ+ил [[трудов+ой догов+ор]] по электр+онной п+очте.",
+          "en": "I received the employment contract by email.",
+          "de": "Ich habe den Arbeitsvertrag per E-Mail erhalten."
+        }
+      ],
+      "gender": "m",
+      "plural": "трудов+ые догов+оры"
+    },
+    {
+      "id": "ru-content26-labour-collective",
+      "t": "коллект+ивный догов+ор",
+      "level": "B2",
+      "pos": "noun",
+      "en": "collective agreement",
+      "de": "die Kollektivvereinbarung",
+      "examples": [
+        {
+          "t": "[[Коллект+ивный догов+ор]] регул+ирует усл+овия труд+а.",
+          "en": "The collective agreement regulates working conditions.",
+          "de": "Die Kollektivvereinbarung regelt die Arbeitsbedingungen."
+        }
+      ],
+      "gender": "m",
+      "plural": "коллект+ивные догов+оры"
+    },
+    {
+      "id": "ru-content26-labour-notice",
+      "t": "срок уведомл+ения об увольн+ении",
+      "level": "B2",
+      "pos": "noun",
+      "en": "notice period",
+      "de": "die Kündigungsfrist",
+      "examples": [
+        {
+          "t": "В догов+оре ук+азан [[срок уведомл+ения об увольн+ении]].",
+          "en": "The notice period is stated in the contract.",
+          "de": "Die Kündigungsfrist steht im Vertrag."
+        }
+      ],
+      "gender": "m",
+      "plural": "ср+оки уведомл+ения об увольн+ении"
+    },
+    {
+      "id": "ru-content26-labour-termination",
+      "t": "соглаш+ение о расторж+ении",
+      "level": "C1",
+      "pos": "noun",
+      "en": "mutual termination agreement",
+      "de": "der Aufhebungsvertrag",
+      "examples": [
+        {
+          "t": "Стор+оны обсужд+ают [[соглаш+ение о расторж+ении]] догов+ора.",
+          "en": "The parties are discussing a mutual termination agreement.",
+          "de": "Die Parteien besprechen einen Aufhebungsvertrag."
+        }
+      ],
+      "gender": "n",
+      "plural": "соглаш+ения о расторж+ении"
+    },
+    {
+      "id": "ru-content26-labour-dispute",
+      "t": "трудов+ой спор",
+      "level": "B2",
+      "pos": "noun",
+      "en": "labour dispute",
+      "de": "der Arbeitskonflikt",
+      "examples": [
+        {
+          "t": "[[Трудов+ой спор]] п+ередали на рассмотр+ение.",
+          "en": "The labour dispute was referred for consideration.",
+          "de": "Der Arbeitskonflikt wurde zur Prüfung weitergeleitet."
+        }
+      ],
+      "gender": "m",
+      "plural": "трудов+ые сп+оры"
+    },
+    {
+      "id": "ru-content26-labour-parental",
+      "t": "+отпуск по ух+оду за ребёнком",
+      "level": "B2",
+      "pos": "noun",
+      "en": "parental leave",
+      "de": "die Elternzeit",
+      "examples": [
+        {
+          "t": "Он план+ирует взять [[+отпуск по ух+оду за ребёнком]].",
+          "en": "He plans to take parental leave.",
+          "de": "Er plant, Elternzeit zu nehmen."
+        }
+      ],
+      "gender": "m",
+      "plural": "отпуск+а по ух+оду за ребёнком"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "legal_corporate",
+  "items": [
+    {
+      "id": "ru-content26-corp-ustav",
+      "t": "уст+ав",
+      "level": "C1",
+      "pos": "noun",
+      "en": "articles of association",
+      "de": "die Satzung",
+      "examples": [
+        {
+          "t": "Н+овая ред+акция [[уст+ава]] утвержден+а учред+ителями.",
+          "en": "The founders approved the new version of the articles of association.",
+          "de": "Die Gründer genehmigten die neue Fassung der Satzung."
+        }
+      ],
+      "gender": "m",
+      "plural": "уст+авы"
+    },
+    {
+      "id": "ru-content26-corp-diligence",
+      "t": "к+омплексная пров+ерка",
+      "level": "C1",
+      "pos": "noun",
+      "en": "due diligence",
+      "de": "die Due-Diligence-Prüfung",
+      "examples": [
+        {
+          "t": "П+еред сд+елкой провод+илась [[к+омплексная пров+ерка]] комп+ании.",
+          "en": "Due diligence was carried out on the company before the transaction.",
+          "de": "Vor der Transaktion wurde eine Due-Diligence-Prüfung des Unternehmens durchgeführt."
+        }
+      ],
+      "gender": "f",
+      "plural": "к+омплексные пров+ерки"
+    },
+    {
+      "id": "ru-content26-corp-compliance",
+      "t": "соблюд+ение тр+ебований",
+      "level": "B2",
+      "pos": "noun",
+      "en": "compliance",
+      "de": "die Compliance",
+      "examples": [
+        {
+          "t": "За [[соблюд+ение тр+ебований]] отвеч+ает отд+ельная ком+анда.",
+          "en": "A separate team is responsible for compliance.",
+          "de": "Für die Compliance ist ein eigenes Team zuständig."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-corp-privacy",
+      "t": "защ+ита персон+альных д+анных",
+      "level": "B2",
+      "pos": "noun",
+      "en": "data protection",
+      "de": "der Datenschutz",
+      "examples": [
+        {
+          "t": "В прогр+амме обуч+ения есть разд+ел «[[Защ+ита персон+альных д+анных]]».",
+          "en": "The training programme includes a data protection section.",
+          "de": "Das Schulungsprogramm enthält einen Abschnitt zum Datenschutz."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-corp-insolvency",
+      "t": "неплатёжеспос+обность",
+      "level": "C1",
+      "pos": "noun",
+      "en": "insolvency",
+      "de": "die Zahlungsunfähigkeit",
+      "examples": [
+        {
+          "t": "В отчёте отм+ечен риск [[неплатёжеспос+обности]].",
+          "en": "The report notes a risk of insolvency.",
+          "de": "Der Bericht weist auf ein Risiko der Zahlungsunfähigkeit hin."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-corp-governance",
+      "t": "корпорат+ивное управл+ение",
+      "level": "C1",
+      "pos": "noun",
+      "en": "corporate governance",
+      "de": "die Unternehmensführung",
+      "examples": [
+        {
+          "t": "[[Корпорат+ивное управл+ение]] включ+ает контр+оль за реш+ениями руков+одства.",
+          "en": "Corporate governance includes oversight of management decisions.",
+          "de": "Unternehmensführung umfasst die Kontrolle von Entscheidungen der Geschäftsleitung."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "svc_hotel",
+  "items": [
+    {
+      "id": "ru-content26-hotel-reception",
+      "t": "ст+ойка регистр+ации",
+      "level": "B1",
+      "pos": "noun",
+      "en": "reception desk",
+      "de": "die Rezeption",
+      "examples": [
+        {
+          "t": "[[Ст+ойка регистр+ации]] нах+одится спр+ава от вх+ода.",
+          "en": "The reception desk is to the right of the entrance.",
+          "de": "Die Rezeption befindet sich rechts vom Eingang."
+        }
+      ],
+      "gender": "f",
+      "plural": "ст+ойки регистр+ации"
+    },
+    {
+      "id": "ru-content26-hotel-occupancy",
+      "t": "загр+узка гост+иницы",
+      "level": "B2",
+      "pos": "noun",
+      "en": "occupancy rate",
+      "de": "die Belegungsquote",
+      "examples": [
+        {
+          "t": "В +этом м+есяце [[загр+узка гост+иницы]] н+иже, чем л+етом.",
+          "en": "The hotel's occupancy rate is lower this month than in summer.",
+          "de": "Die Belegungsquote des Hotels ist diesen Monat niedriger als im Sommer."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-hotel-checkout",
+      "t": "п+оздний в+ыезд",
+      "level": "B2",
+      "pos": "noun",
+      "en": "late checkout",
+      "de": "die Spätabreise",
+      "examples": [
+        {
+          "t": "Мы зар+анее согласов+али [[п+оздний в+ыезд]].",
+          "en": "We arranged late checkout in advance.",
+          "de": "Wir haben eine Spätabreise im Voraus vereinbart."
+        }
+      ],
+      "gender": "m",
+      "plural": "п+оздние в+ыезды"
+    },
+    {
+      "id": "ru-content26-hotel-housekeeping",
+      "t": "уб+орка н+омера",
+      "level": "B1",
+      "pos": "noun",
+      "en": "housekeeping",
+      "de": "die Zimmerreinigung",
+      "examples": [
+        {
+          "t": "[[Уб+орка н+омера]] м+ожет быть перенесен+а на в+ечер.",
+          "en": "Housekeeping can be moved to the evening.",
+          "de": "Die Zimmerreinigung kann auf den Abend verschoben werden."
+        }
+      ],
+      "gender": "f",
+      "plural": "уб+орки н+омера"
+    },
+    {
+      "id": "ru-content26-hotel-noshow",
+      "t": "неза+езд",
+      "level": "B2",
+      "pos": "noun",
+      "en": "no-show",
+      "de": "die Nichtanreise",
+      "examples": [
+        {
+          "t": "Пор+ядок опл+аты при [[неза+езде]] ук+азан в усл+овиях брон+ирования.",
+          "en": "The payment policy for a no-show is stated in the booking conditions.",
+          "de": "Die Zahlungsbedingungen bei Nichtanreise stehen in den Buchungsbedingungen."
+        }
+      ],
+      "gender": "m",
+      "plural": "неза+езды"
+    },
+    {
+      "id": "ru-content26-hotel-deposit",
+      "t": "зал+ог",
+      "level": "B2",
+      "pos": "noun",
+      "en": "deposit",
+      "de": "die Kaution",
+      "examples": [
+        {
+          "t": "При засел+ении гост+иница попрос+ила [[зал+ог]].",
+          "en": "The hotel asked for a deposit at check-in.",
+          "de": "Beim Einchecken verlangte das Hotel eine Kaution."
+        }
+      ],
+      "gender": "m",
+      "plural": "зал+оги"
+    },
+    {
+      "id": "ru-content26-hotel-bronirovanie",
+      "t": "брон+ирование",
+      "level": "B1",
+      "pos": "noun",
+      "en": "reservation",
+      "de": "die Reservierung",
+      "examples": [
+        {
+          "t": "[[Брон+ирование]] подтвержден+о по электр+онной п+очте.",
+          "en": "The reservation has been confirmed by email.",
+          "de": "Die Reservierung wurde per E-Mail bestätigt."
+        }
+      ],
+      "gender": "n",
+      "plural": "брон+ирования"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "svc_gastro",
+  "items": [
+    {
+      "id": "ru-content26-gastro-hygiene",
+      "t": "пищев+ая гиги+ена",
+      "level": "B2",
+      "pos": "noun",
+      "en": "food hygiene",
+      "de": "die Lebensmittelhygiene",
+      "examples": [
+        {
+          "t": "[[Пищев+ая гиги+ена]] вх+одит в прогр+амму обуч+ения персон+ала.",
+          "en": "Food hygiene is part of the staff training programme.",
+          "de": "Lebensmittelhygiene gehört zum Schulungsprogramm des Personals."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-gastro-allergens",
+      "t": "маркир+овка аллерг+енов",
+      "level": "B2",
+      "pos": "noun",
+      "en": "allergen labelling",
+      "de": "die Allergenkennzeichnung",
+      "examples": [
+        {
+          "t": "В мен+ю обновлен+а [[маркир+овка аллерг+енов]].",
+          "en": "The allergen labelling in the menu has been updated.",
+          "de": "Die Allergenkennzeichnung auf der Speisekarte wurde aktualisiert."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-gastro-table",
+      "t": "брон+ирование ст+олика",
+      "level": "B1",
+      "pos": "noun",
+      "en": "table reservation",
+      "de": "die Tischreservierung",
+      "examples": [
+        {
+          "t": "[[Брон+ирование ст+олика]] возм+ожно по телеф+ону.",
+          "en": "A table reservation can be made by phone.",
+          "de": "Eine Tischreservierung ist telefonisch möglich."
+        }
+      ],
+      "gender": "n",
+      "plural": "брон+ирования ст+оликов"
+    },
+    {
+      "id": "ru-content26-gastro-dish",
+      "t": "бл+юдо дня",
+      "level": "B1",
+      "pos": "noun",
+      "en": "dish of the day",
+      "de": "das Tagesgericht",
+      "examples": [
+        {
+          "t": "Сег+одня [[бл+юдо дня]] — суп с овощ+ами.",
+          "en": "Today's dish of the day is vegetable soup.",
+          "de": "Das heutige Tagesgericht ist Gemüsesuppe."
+        }
+      ],
+      "gender": "n",
+      "plural": "бл+юда дня"
+    },
+    {
+      "id": "ru-content26-gastro-service",
+      "t": "с+ервисный сбор",
+      "level": "B2",
+      "pos": "noun",
+      "en": "service charge",
+      "de": "die Servicegebühr",
+      "examples": [
+        {
+          "t": "В счёт уж+е включён [[с+ервисный сбор]].",
+          "en": "A service charge is already included in the bill.",
+          "de": "Im Rechnungsbetrag ist bereits eine Servicegebühr enthalten."
+        }
+      ],
+      "gender": "m",
+      "plural": "с+ервисные сб+оры"
+    },
+    {
+      "id": "ru-content26-gastro-perishable",
+      "t": "скороп+ортящийся",
+      "level": "B2",
+      "pos": "adj",
+      "en": "perishable",
+      "de": "verderblich",
+      "examples": [
+        {
+          "t": "Молок+о — [[скороп+ортящийся]] прод+укт.",
+          "en": "Milk is a perishable product.",
+          "de": "Milch ist ein verderbliches Lebensmittel."
+        }
+      ]
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "svc_retail",
+  "items": [
+    {
+      "id": "ru-content26-retail-stocktake",
+      "t": "инвентариз+ация",
+      "level": "B2",
+      "pos": "noun",
+      "en": "stocktake",
+      "de": "die Inventur",
+      "examples": [
+        {
+          "t": "В понед+ельник в магаз+ине пройдёт [[инвентариз+ация]].",
+          "en": "The shop will carry out a stocktake on Monday.",
+          "de": "Am Montag findet im Geschäft eine Inventur statt."
+        }
+      ],
+      "gender": "f",
+      "plural": "инвентариз+ации"
+    },
+    {
+      "id": "ru-content26-retail-warranty",
+      "t": "гарант+ийная прет+ензия",
+      "level": "B2",
+      "pos": "noun",
+      "en": "warranty claim",
+      "de": "der Gewährleistungsanspruch",
+      "examples": [
+        {
+          "t": "[[Гарант+ийная прет+ензия]] передан+а в с+ервисный отд+ел.",
+          "en": "The warranty claim has been forwarded to the service department.",
+          "de": "Der Gewährleistungsanspruch wurde an die Serviceabteilung weitergeleitet."
+        }
+      ],
+      "gender": "f",
+      "plural": "гарант+ийные прет+ензии"
+    },
+    {
+      "id": "ru-content26-retail-exchange",
+      "t": "обм+ен тов+ара",
+      "level": "B1",
+      "pos": "noun",
+      "en": "exchange of goods",
+      "de": "der Umtausch",
+      "examples": [
+        {
+          "t": "Для [[обм+ена тов+ара]] сохран+ите чек.",
+          "en": "Keep the receipt for an exchange of goods.",
+          "de": "Bewahren Sie den Kassenbon für den Umtausch auf."
+        }
+      ],
+      "gender": "m",
+      "plural": "обм+ены тов+ара"
+    },
+    {
+      "id": "ru-content26-retail-support",
+      "t": "обсл+уживание кли+ентов",
+      "level": "B2",
+      "pos": "noun",
+      "en": "customer service",
+      "de": "der Kundenservice",
+      "examples": [
+        {
+          "t": "За [[обсл+уживание кли+ентов]] отвеч+ает н+овая ком+анда.",
+          "en": "A new team is responsible for customer service.",
+          "de": "Ein neues Team ist für den Kundenservice zuständig."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-retail-stock",
+      "t": "тов+арный зап+ас",
+      "level": "B2",
+      "pos": "noun",
+      "en": "stock",
+      "de": "der Warenbestand",
+      "examples": [
+        {
+          "t": "К конц+у нед+ели [[тов+арный зап+ас]] ум+еньшился.",
+          "en": "Stock decreased by the end of the week.",
+          "de": "Bis Ende der Woche hat sich der Warenbestand verringert."
+        }
+      ],
+      "gender": "m",
+      "plural": "тов+арные зап+асы"
+    },
+    {
+      "id": "ru-content26-retail-shortage",
+      "t": "недост+ача",
+      "level": "B2",
+      "pos": "noun",
+      "en": "stock shortage",
+      "de": "der Fehlbestand",
+      "examples": [
+        {
+          "t": "При пров+ерке обнар+ужилась [[недост+ача]] двух един+иц.",
+          "en": "The check revealed a stock shortage of two units.",
+          "de": "Bei der Kontrolle wurde ein Fehlbestand von zwei Stück festgestellt."
+        }
+      ],
+      "gender": "f",
+      "plural": "недост+ачи"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "fin_accounting",
+  "items": [
+    {
+      "id": "ru-content26-account-balance",
+      "t": "бухг+алтерский бал+анс",
+      "level": "B2",
+      "pos": "noun",
+      "en": "balance sheet",
+      "de": "die Bilanz",
+      "examples": [
+        {
+          "t": "[[Бухг+алтерский бал+анс]] отраж+ает акт+ивы и обяз+ательства.",
+          "en": "The balance sheet shows assets and liabilities.",
+          "de": "Die Bilanz zeigt Vermögenswerte und Verbindlichkeiten."
+        }
+      ],
+      "gender": "m",
+      "plural": "бухг+алтерские бал+ансы"
+    },
+    {
+      "id": "ru-content26-account-receivable",
+      "t": "дебит+орская зад+олженность",
+      "level": "C1",
+      "pos": "noun",
+      "en": "accounts receivable",
+      "de": "die Forderungen",
+      "examples": [
+        {
+          "t": "Проср+оченная [[дебит+орская зад+олженность]] возросл+а.",
+          "en": "Overdue accounts receivable have increased.",
+          "de": "Die überfälligen Forderungen sind gestiegen."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-account-payable",
+      "t": "кредит+орская зад+олженность",
+      "level": "C1",
+      "pos": "noun",
+      "en": "accounts payable",
+      "de": "die Verbindlichkeiten",
+      "examples": [
+        {
+          "t": "[[Кредит+орская зад+олженность]] включ+ает долг поставщик+ам.",
+          "en": "Accounts payable include amounts owed to suppliers.",
+          "de": "Die Verbindlichkeiten umfassen Schulden gegenüber Lieferanten."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-account-depreciation",
+      "t": "амортиз+ация",
+      "level": "B2",
+      "pos": "noun",
+      "en": "depreciation",
+      "de": "die Abschreibung",
+      "examples": [
+        {
+          "t": "[[Амортиз+ация]] обор+удования учтен+а в расх+одах.",
+          "en": "Equipment depreciation has been included in expenses.",
+          "de": "Die Abschreibung der Geräte ist in den Aufwendungen berücksichtigt."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-account-liquidity",
+      "t": "ликв+идность",
+      "level": "C1",
+      "pos": "noun",
+      "en": "liquidity",
+      "de": "die Liquidität",
+      "examples": [
+        {
+          "t": "Зад+ержки платеж+ей вли+яют на [[ликв+идность]] комп+ании.",
+          "en": "Payment delays affect the company's liquidity.",
+          "de": "Zahlungsverzögerungen beeinflussen die Liquidität des Unternehmens."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-account-cashflow",
+      "t": "д+енежный пот+ок",
+      "level": "B2",
+      "pos": "noun",
+      "en": "cash flow",
+      "de": "der Cashflow",
+      "examples": [
+        {
+          "t": "Операци+онный [[д+енежный пот+ок]] ост+ался полож+ительным.",
+          "en": "Operating cash flow remained positive.",
+          "de": "Der operative Cashflow blieb positiv."
+        }
+      ],
+      "gender": "m",
+      "plural": "д+енежные пот+оки"
+    },
+    {
+      "id": "ru-content26-account-audit",
+      "t": "бухг+алтерский ауд+ит",
+      "level": "B2",
+      "pos": "noun",
+      "en": "financial audit",
+      "de": "die Buchprüfung",
+      "examples": [
+        {
+          "t": "Вн+ешний [[бухг+алтерский ауд+ит]] начнётся в сл+едующем м+есяце.",
+          "en": "The external financial audit will begin next month.",
+          "de": "Die externe Buchprüfung beginnt nächsten Monat."
+        }
+      ],
+      "gender": "m",
+      "plural": "бухг+алтерские ауд+иты"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "fin_marketing",
+  "items": [
+    {
+      "id": "ru-content26-market-funnel",
+      "t": "вор+онка прод+аж",
+      "level": "B2",
+      "pos": "noun",
+      "en": "sales funnel",
+      "de": "der Verkaufstrichter",
+      "examples": [
+        {
+          "t": "Н+овая [[вор+онка прод+аж]] включ+ает пр+обный пер+иод.",
+          "en": "The new sales funnel includes a trial period.",
+          "de": "Der neue Verkaufstrichter enthält eine Testphase."
+        }
+      ],
+      "gender": "f",
+      "plural": "вор+онки прод+аж"
+    },
+    {
+      "id": "ru-content26-market-release",
+      "t": "пресс-рел+из",
+      "level": "B2",
+      "pos": "noun",
+      "en": "press release",
+      "de": "die Pressemitteilung",
+      "examples": [
+        {
+          "t": "[[Пресс-рел+из]] отпр+авили в ред+акции сег+одня +утром.",
+          "en": "The press release was sent to newsrooms this morning.",
+          "de": "Die Pressemitteilung wurde heute Morgen an die Redaktionen verschickt."
+        }
+      ],
+      "gender": "m",
+      "plural": "пресс-рел+изы"
+    },
+    {
+      "id": "ru-content26-market-positioning",
+      "t": "позицион+ирование бр+енда",
+      "level": "C1",
+      "pos": "noun",
+      "en": "brand positioning",
+      "de": "die Markenpositionierung",
+      "examples": [
+        {
+          "t": "[[Позицион+ирование бр+енда]] измен+илось п+осле иссл+едования.",
+          "en": "Brand positioning changed after the research.",
+          "de": "Die Markenpositionierung änderte sich nach der Untersuchung."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-market-share",
+      "t": "д+оля р+ынка",
+      "level": "B2",
+      "pos": "noun",
+      "en": "market share",
+      "de": "der Marktanteil",
+      "examples": [
+        {
+          "t": "За год [[д+оля р+ынка]] комп+ании увел+ичилась.",
+          "en": "The company's market share increased over the year.",
+          "de": "Der Marktanteil des Unternehmens ist im Laufe des Jahres gestiegen."
+        }
+      ],
+      "gender": "f",
+      "plural": "д+оли р+ынка"
+    },
+    {
+      "id": "ru-content26-market-campaign",
+      "t": "рекл+амная камп+ания",
+      "level": "B2",
+      "pos": "noun",
+      "en": "advertising campaign",
+      "de": "die Werbekampagne",
+      "examples": [
+        {
+          "t": "[[Рекл+амная камп+ания]] начнётся в сл+едующий понед+ельник.",
+          "en": "The advertising campaign will start next Monday.",
+          "de": "Die Werbekampagne beginnt nächsten Montag."
+        }
+      ],
+      "gender": "f",
+      "plural": "рекл+амные камп+ании"
+    },
+    {
+      "id": "ru-content26-market-acquisition",
+      "t": "привлеч+ение кли+ентов",
+      "level": "B2",
+      "pos": "noun",
+      "en": "customer acquisition",
+      "de": "die Kundengewinnung",
+      "examples": [
+        {
+          "t": "Расх+оды на [[привлеч+ение кли+ентов]] сн+изились.",
+          "en": "Customer acquisition costs have fallen.",
+          "de": "Die Kosten für die Kundengewinnung sind gesunken."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "fin_hr",
+  "items": [
+    {
+      "id": "ru-content26-hr-recruitment",
+      "t": "подб+ор персон+ала",
+      "level": "B2",
+      "pos": "noun",
+      "en": "recruitment",
+      "de": "die Personalbeschaffung",
+      "examples": [
+        {
+          "t": "[[Подб+ор персон+ала]] займёт н+есколько нед+ель.",
+          "en": "Recruitment will take several weeks.",
+          "de": "Die Personalbeschaffung wird einige Wochen dauern."
+        }
+      ],
+      "gender": "m",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-hr-screening",
+      "t": "отб+ор кандид+атов",
+      "level": "B2",
+      "pos": "noun",
+      "en": "candidate screening",
+      "de": "die Bewerberauswahl",
+      "examples": [
+        {
+          "t": "Перв+ичный [[отб+ор кандид+атов]] уж+е завершён.",
+          "en": "Initial candidate screening has already been completed.",
+          "de": "Die erste Bewerberauswahl ist bereits abgeschlossen."
+        }
+      ],
+      "gender": "m",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-hr-succession",
+      "t": "к+адровый рез+ерв",
+      "level": "C1",
+      "pos": "noun",
+      "en": "talent pool",
+      "de": "der Nachwuchspool",
+      "examples": [
+        {
+          "t": "Сотр+удницу включ+или в [[к+адровый рез+ерв]].",
+          "en": "The employee was added to the talent pool.",
+          "de": "Die Mitarbeiterin wurde in den Nachwuchspool aufgenommen."
+        }
+      ],
+      "gender": "m",
+      "plural": "к+адровые рез+ервы"
+    },
+    {
+      "id": "ru-content26-hr-appraisal",
+      "t": "оц+енка результ+атов раб+оты",
+      "level": "B2",
+      "pos": "noun",
+      "en": "performance appraisal",
+      "de": "die Leistungsbeurteilung",
+      "examples": [
+        {
+          "t": "Ежег+одная [[оц+енка результ+атов раб+оты]] состо+ится в декабр+е.",
+          "en": "The annual performance appraisal will take place in December.",
+          "de": "Die jährliche Leistungsbeurteilung findet im Dezember statt."
+        }
+      ],
+      "gender": "f",
+      "plural": "оц+енки результ+атов раб+оты"
+    },
+    {
+      "id": "ru-content26-hr-file",
+      "t": "л+ичное д+ело",
+      "level": "B2",
+      "pos": "noun",
+      "en": "personnel file",
+      "de": "die Personalakte",
+      "examples": [
+        {
+          "t": "Д+оступ к [[л+ичному д+елу]] сотр+удника огран+ичен.",
+          "en": "Access to the employee's personnel file is restricted.",
+          "de": "Der Zugriff auf die Personalakte des Mitarbeiters ist beschränkt."
+        }
+      ],
+      "gender": "n",
+      "plural": "л+ичные дел+а"
+    },
+    {
+      "id": "ru-content26-hr-package",
+      "t": "компенсаци+онный пак+ет",
+      "level": "C1",
+      "pos": "noun",
+      "en": "compensation package",
+      "de": "das Vergütungspaket",
+      "examples": [
+        {
+          "t": "[[Компенсаци+онный пак+ет]] включ+ает окл+ад и пр+емию.",
+          "en": "The compensation package includes a base salary and a bonus.",
+          "de": "Das Vergütungspaket umfasst Grundgehalt und Bonus."
+        }
+      ],
+      "gender": "m",
+      "plural": "компенсаци+онные пак+еты"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "med_clinical",
+  "items": [
+    {
+      "id": "ru-content26-med-history",
+      "t": "ан+амнез",
+      "level": "B2",
+      "pos": "noun",
+      "en": "patient history",
+      "de": "die Anamnese",
+      "examples": [
+        {
+          "t": "Врач собр+ал подр+обный [[ан+амнез]].",
+          "en": "The doctor took a detailed patient history.",
+          "de": "Der Arzt erhob eine ausführliche Anamnese."
+        }
+      ],
+      "gender": "m",
+      "plural": "ан+амнезы"
+    },
+    {
+      "id": "ru-content26-med-confidentiality",
+      "t": "врач+ебная т+айна",
+      "level": "B2",
+      "pos": "noun",
+      "en": "medical confidentiality",
+      "de": "die ärztliche Schweigepflicht",
+      "examples": [
+        {
+          "t": "[[Врач+ебная т+айна]] обсужд+ается на обуч+ении персон+ала.",
+          "en": "Medical confidentiality is discussed during staff training.",
+          "de": "Die ärztliche Schweigepflicht wird bei der Personalschulung besprochen."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-med-consent",
+      "t": "информ+ированное согл+асие",
+      "level": "B2",
+      "pos": "noun",
+      "en": "informed consent",
+      "de": "die informierte Einwilligung",
+      "examples": [
+        {
+          "t": "П+еред процед+урой обсуд+или [[информ+ированное согл+асие]].",
+          "en": "Informed consent was discussed before the procedure.",
+          "de": "Vor dem Eingriff wurde die informierte Einwilligung besprochen."
+        }
+      ],
+      "gender": "n",
+      "plural": "информ+ированные согл+асия"
+    },
+    {
+      "id": "ru-content26-med-contraindication",
+      "t": "противопоказ+ание",
+      "level": "B2",
+      "pos": "noun",
+      "en": "contraindication",
+      "de": "die Gegenanzeige",
+      "examples": [
+        {
+          "t": "Врач пров+ерит к+аждое [[противопоказ+ание]].",
+          "en": "The doctor will check each contraindication.",
+          "de": "Der Arzt prüft jede Gegenanzeige."
+        }
+      ],
+      "gender": "n",
+      "plural": "противопоказ+ания"
+    },
+    {
+      "id": "ru-content26-med-dosage",
+      "t": "дозир+овка",
+      "level": "B2",
+      "pos": "noun",
+      "en": "dosage",
+      "de": "die Dosierung",
+      "examples": [
+        {
+          "t": "[[Дозир+овка]] ук+азана в назнач+ении врач+а.",
+          "en": "The dosage is stated in the doctor's prescription.",
+          "de": "Die Dosierung steht in der ärztlichen Verordnung."
+        }
+      ],
+      "gender": "f",
+      "plural": "дозир+овки"
+    },
+    {
+      "id": "ru-content26-med-summary",
+      "t": "выписн+ой эпикр+из",
+      "level": "C1",
+      "pos": "noun",
+      "en": "discharge summary",
+      "de": "der Entlassungsbericht",
+      "examples": [
+        {
+          "t": "Паци+ент получ+ил [[выписн+ой эпикр+из]] п+еред ух+одом.",
+          "en": "The patient received the discharge summary before leaving.",
+          "de": "Der Patient erhielt vor dem Verlassen der Klinik den Entlassungsbericht."
+        }
+      ],
+      "gender": "m",
+      "plural": "выписн+ые эпикр+изы"
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "ops_logistics",
+  "items": [
+    {
+      "id": "ru-content26-log-supply",
+      "t": "цеп+очка пост+авок",
+      "level": "B2",
+      "pos": "noun",
+      "en": "supply chain",
+      "de": "die Lieferkette",
+      "examples": [
+        {
+          "t": "Сбой у поставщик+а повли+ял на всю [[цеп+очку пост+авок]].",
+          "en": "A supplier failure affected the entire supply chain.",
+          "de": "Ein Ausfall beim Lieferanten beeinträchtigte die gesamte Lieferkette."
+        }
+      ],
+      "gender": "f",
+      "plural": "цеп+очки пост+авок"
+    },
+    {
+      "id": "ru-content26-log-customs",
+      "t": "там+оженное оформл+ение",
+      "level": "B2",
+      "pos": "noun",
+      "en": "customs clearance",
+      "de": "die Zollabfertigung",
+      "examples": [
+        {
+          "t": "[[Там+оженное оформл+ение]] гр+уза ещё не завершен+о.",
+          "en": "Customs clearance for the shipment is not yet complete.",
+          "de": "Die Zollabfertigung der Sendung ist noch nicht abgeschlossen."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-log-consignment",
+      "t": "тр+анспортная накладн+ая",
+      "level": "B2",
+      "pos": "noun",
+      "en": "consignment note",
+      "de": "der Frachtbrief",
+      "examples": [
+        {
+          "t": "Вод+итель предъяв+ил [[тр+анспортную накладн+ую]].",
+          "en": "The driver presented the consignment note.",
+          "de": "Der Fahrer legte den Frachtbrief vor."
+        }
+      ],
+      "gender": "f",
+      "plural": "тр+анспортные накладн+ые"
+    },
+    {
+      "id": "ru-content26-log-picking",
+      "t": "комплект+ация зак+аза",
+      "level": "B2",
+      "pos": "noun",
+      "en": "order picking",
+      "de": "die Kommissionierung",
+      "examples": [
+        {
+          "t": "[[Комплект+ация зак+аза]] начнётся п+осле опл+аты.",
+          "en": "Order picking will begin after payment.",
+          "de": "Die Kommissionierung beginnt nach der Zahlung."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-log-cold",
+      "t": "холодов+ая цепь",
+      "level": "C1",
+      "pos": "noun",
+      "en": "cold chain",
+      "de": "die Kühlkette",
+      "examples": [
+        {
+          "t": "При перев+озке нельз+я наруш+ать [[холодов+ую цепь]].",
+          "en": "The cold chain must not be broken during transport.",
+          "de": "Beim Transport darf die Kühlkette nicht unterbrochen werden."
+        }
+      ],
+      "gender": "f",
+      "plural": "холодов+ые ц+епи"
+    },
+    {
+      "id": "ru-content26-log-tracking",
+      "t": "отсл+еживание отправл+ения",
+      "level": "B2",
+      "pos": "noun",
+      "en": "shipment tracking",
+      "de": "die Sendungsverfolgung",
+      "examples": [
+        {
+          "t": "[[Отсл+еживание отправл+ения]] дост+упно по н+омеру накладн+ой.",
+          "en": "Shipment tracking is available using the consignment note number.",
+          "de": "Die Sendungsverfolgung ist über die Frachtbriefnummer verfügbar."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    }
+  ]
+});
+
+GT.register({
+  "tab": "it",
+  "topic": "ops_trades",
+  "items": [
+    {
+      "id": "ru-content26-trade-blueprint",
+      "t": "чертёж",
+      "level": "B2",
+      "pos": "noun",
+      "en": "blueprint",
+      "de": "die Bauzeichnung",
+      "examples": [
+        {
+          "t": "Инжен+ер пров+ерил [[чертёж]] п+еред нач+алом раб+от.",
+          "en": "The engineer checked the blueprint before work began.",
+          "de": "Der Ingenieur prüfte die Bauzeichnung vor Beginn der Arbeiten."
+        }
+      ],
+      "gender": "m",
+      "plural": "чертеж+и"
+    },
+    {
+      "id": "ru-content26-trade-commissioning",
+      "t": "ввод в эксплуат+ацию",
+      "level": "B2",
+      "pos": "noun",
+      "en": "commissioning",
+      "de": "die Inbetriebnahme",
+      "examples": [
+        {
+          "t": "[[Ввод в эксплуат+ацию]] назн+ачен на понед+ельник.",
+          "en": "Commissioning is scheduled for Monday.",
+          "de": "Die Inbetriebnahme ist für Montag geplant."
+        }
+      ],
+      "gender": "m",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-trade-safety",
+      "t": "охр+ана труд+а",
+      "level": "B2",
+      "pos": "noun",
+      "en": "occupational safety",
+      "de": "die Arbeitssicherheit",
+      "examples": [
+        {
+          "t": "[[Охр+ана труд+а]] обсужд+ается на вв+одном инструкт+аже.",
+          "en": "Occupational safety is discussed during the induction briefing.",
+          "de": "Die Arbeitssicherheit wird bei der Einführung besprochen."
+        }
+      ],
+      "gender": "f",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-trade-ppe",
+      "t": "ср+едства индивиду+альной защ+иты",
+      "level": "B2",
+      "pos": "noun",
+      "en": "personal protective equipment",
+      "de": "die Schutzausrüstung",
+      "examples": [
+        {
+          "t": "На объ+екте н+ужно нос+ить [[ср+едства индивиду+альной защ+иты]].",
+          "en": "Personal protective equipment must be worn on site.",
+          "de": "Auf der Baustelle muss Schutzausrüstung getragen werden."
+        }
+      ],
+      "gender": "pl",
+      "plural": "ср+едства индивиду+альной защ+иты",
+      "note": {
+        "en": "Plural-only expression in this sense.",
+        "de": "In dieser Bedeutung nur im Plural gebräuchlich."
+      }
+    },
+    {
+      "id": "ru-content26-trade-maintenance",
+      "t": "техн+ическое обсл+уживание",
+      "level": "B2",
+      "pos": "noun",
+      "en": "maintenance",
+      "de": "die Instandhaltung",
+      "examples": [
+        {
+          "t": "Пл+ановое [[техн+ическое обсл+уживание]] сн+изило числ+о пол+омок.",
+          "en": "Scheduled maintenance reduced the number of breakdowns.",
+          "de": "Die planmäßige Instandhaltung verringerte die Zahl der Ausfälle."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    },
+    {
+      "id": "ru-content26-trade-defects",
+      "t": "устран+ение деф+ектов",
+      "level": "B2",
+      "pos": "noun",
+      "en": "defect rectification",
+      "de": "die Mängelbeseitigung",
+      "examples": [
+        {
+          "t": "[[Устран+ение деф+ектов]] включен+о в план раб+от.",
+          "en": "Defect rectification is included in the work plan.",
+          "de": "Die Mängelbeseitigung ist im Arbeitsplan enthalten."
+        }
+      ],
+      "gender": "n",
+      "note": {
+        "en": "Normally used in the singular in this sense; other senses may differ.",
+        "de": "In dieser Bedeutung normalerweise im Singular; bei anderen Bedeutungen kann es anders sein."
+      }
+    }
+  ]
+});
