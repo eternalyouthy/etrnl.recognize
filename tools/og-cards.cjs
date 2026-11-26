@@ -11,8 +11,7 @@ const fs = require('fs'), path = require('path'), os = require('os'), { execFile
 
 const SITE = 'https://etrnl.world/recognize/';
 const ROOT = path.resolve(__dirname, '..');
-const TAGLINE = 'A different approach to learning words. Open source, free, no data collection.';
-const CHIPS = ['Open source', 'Free', 'No tracking'];
+const TAGLINE = 'Free, open source, zero data collection.';
 
 // path (folder under the app) · hash route · eyebrow · title · description
 const SECTIONS = [
@@ -42,7 +41,8 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const slug = p => p ? p.replace(/\//g, '-') : '';
 const imgRel = s => s.path ? 'icons/og/' + slug(s.path) + '.png' : 'icons/og-image.png';
 const pageTitle = s => s.path ? s.title + ' · RECGZ' : 'RECGZ — multilingual vocabulary trainer';
-const fullDesc = s => s.desc + ' ' + TAGLINE;
+const fullDesc = s => (s.path ? s.desc : MAIN_LINE) + ' ' + TAGLINE;
+const MAIN_LINE = 'A different approach to learning words — through roots, grammar and spaced repetition.';
 
 const EYE = '<svg width="SIZE" height="SIZE" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0b1320" stroke="rgba(140,203,255,.35)"/>' +
   '<g transform="translate(8 8) scale(2)" fill="none" stroke="#8ccbff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
@@ -66,13 +66,10 @@ function cardHTML(s) {
     '.eb{margin:56px 0 0;font-family:"JetBrains Mono";font-weight:500;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:#8ccbff}' +
     'h2{margin:' + (main ? '52px' : '14px') + ' 0 0;font-family:"Space Grotesk";font-weight:' + (main ? 500 : 700) + ';font-size:' + (main ? 46 : 64) + 'px;line-height:1.1;max-width:1000px;position:relative}' +
     'p{margin:22px 0 0;font-size:28px;color:#93a1b5;max-width:960px;line-height:1.4;position:relative}' +
-    '.chips{position:absolute;left:96px;bottom:72px;display:flex;gap:16px}' +
-    '.chip{font-family:"JetBrains Mono";font-weight:500;font-size:22px;padding:10px 22px;border:1.5px solid rgba(140,203,255,.45);border-radius:999px;color:#8ccbff;background:rgba(140,203,255,.06)}' +
     '</style></head><body><div class="c">' + STARS +
     '<div class="logo">' + EYE.replace(/SIZE/g, main ? 120 : 56) + '<div class="brand">RECGZ</div></div>' +
     (main ? '' : '<div class="eb">' + esc(s.eyebrow) + '</div>') +
-    '<h2>' + esc(s.title) + '</h2><p>' + esc(main ? 'A different approach to learning words — through roots, grammar and spaced repetition.' : s.desc) + '</p>' +
-    '<div class="chips">' + (main ? ['DE', 'EN', 'RU'] : []).concat(CHIPS).map(c => '<span class="chip">' + c + '</span>').join('') + '</div>' +
+    '<h2>' + esc(s.title) + '</h2><p>' + esc(fullDesc(s)) + '</p>' +
     '</div></body></html>';
 }
 
