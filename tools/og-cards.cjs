@@ -77,7 +77,9 @@ function cardHTML(s) {
 }
 
 function metaTags(s) {
-  const url = SITE + (s.path ? s.path + '/' : ''), img = SITE + imgRel(s), t = esc(pageTitle(s)), d = esc(fullDesc(s)), alt = esc(pageTitle(s));
+  // ?v=<content hash>: X and Telegram cache previews by image URL, so a changed card needs a new URL.
+  const ver = require('crypto').createHash('sha1').update(fs.readFileSync(path.join(ROOT, imgRel(s)))).digest('hex').slice(0, 8);
+  const url = SITE + (s.path ? s.path + '/' : ''), img = SITE + imgRel(s) + '?v=' + ver, t = esc(pageTitle(s)), d = esc(fullDesc(s)), alt = esc(pageTitle(s));
   return [
     '<link rel="canonical" href="' + url + '">',
     '<meta name="description" content="' + d + '">',
