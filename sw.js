@@ -56,7 +56,9 @@ self.addEventListener('fetch', function (e) {
   }).catch(function () {
     return caches.open(VERSION).then(function (cache) {
       return cache.match(req, { ignoreSearch: true }).then(function (hit) {
-        return hit || (req.mode === 'navigate' ? cache.match('./') : null) || Response.error();
+        if (hit) return hit;
+        // cache.match() is a promise (always truthy): resolve it before falling back to a network error.
+        return (req.mode === 'navigate' ? cache.match('./') : Promise.resolve(null)).then(function (r) { return r || Response.error(); });
       });
     });
   }));

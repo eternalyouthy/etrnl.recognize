@@ -1072,7 +1072,12 @@
               var parsed = null;
               try { parsed = JSON.parse(trimmed); } catch (e) { return; }   // corrupt file → overwritten below
               if (f === main && parsed && parsed.app === 'etrnl' && parsed.progress) remotePrint = progressPrint(parsed.progress);
-              try { store.importJSON(trimmed, { replace: false, keepSettings: true, fromSync: true }); } catch (e) {}
+              // Only a corrupt/foreign file may be skipped (and overwritten below). A storage failure must
+              // abort the sync: swallowing it would upload local-only progress over the Drive copy.
+              var usable = false;
+              try { usable = Object.keys(parseImportText(trimmed).next).length > 0; } catch (e) {}
+              if (!usable) return;
+              store.importJSON(trimmed, { replace: false, keepSettings: true, fromSync: true });
             });
           });
         });
