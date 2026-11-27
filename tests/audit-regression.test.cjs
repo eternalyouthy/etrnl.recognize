@@ -507,10 +507,46 @@ async function testAppAndSW() {
     }
   }
 
-  // Root roulette renders build & same modes (translation + base root -> prefix/particle options) across all 3 languages without touching Review store
+  // Root roulette renders build & same modes across all 6 language pairs without leaks or Review store mutation
   const clickFns = winListeners['doc:click'] || [];
+  const forbiddenByLang = {
+    de: ['vorstellen', 'besetzt', 'abgesehen', 'gefällt', 'fällt etw. auf', 'kommt an auf'],
+    en: ['look out', 'carried away', 'call in'],
+    ru: []
+  };
   for (const lang of ['de', 'en', 'ru']) {
     await GT.setLanguages('learn', lang);
+    const knowLangs = ['ru', 'en', 'de'].filter(k => k !== lang);
+    const pool = GT.roulette.pool();
+    assert(pool.all.length > 0, `empty roulette pool in ${lang}`);
+    if (lang === 'de') {
+      const poolT = new Set(pool.all.map(w => w.t));
+      assert(!poolT.has('freisprechen') && !poolT.has('fernsehen') && !poolT.has('beantragen'), 'non-standard DE compound leaked into roulette pool');
+    }
+    for (const w of pool.all) {
+      const r = GT.roots[w.rootId];
+      if (!w.base) {
+        assert(w.core, `non-core word in roulette pool: ${lang} ${w.t}`);
+        const pk = lang === 'ru' && w.prefix === 'об' ? 'о' : w.prefix;
+        assert(GT.prefixes[pk], `unregistered prefix in roulette pool: ${lang} ${w.t} (${w.prefix})`);
+      }
+      const pd = Array.isArray(w.prefixDrill) ? w.prefixDrill[0] : w.prefixDrill;
+      const ex = (pd && w.examples && w.examples[pd.ex]) || (w.examples && w.examples[0]);
+      for (const kl of knowLangs) {
+        await GT.setLanguages('know', kl);
+        assert(ex && GT.gl(ex), `missing example context for roulette card ${lang}->${kl} ${w.t}`);
+        const pg = GT.roulette.promptGloss(w, r, GT.roulette.pfxDisplayOf(w, r), !w.prefix, !!w.particle);
+        assert(pg.length > 0, `empty promptGloss for ${lang}->${kl} ${w.t}`);
+        if (!w.base) {
+          const cleanT = String(w.t || '').replace(/^sich\s+/, '').replace(/\u0301/g, '').toLowerCase();
+          assert(!pg.toLowerCase().includes(cleanT), `target word leaked in promptGloss: ${lang}->${kl} ${w.t} -> ${pg}`);
+          for (const bad of forbiddenByLang[lang]) {
+            assert(!pg.toLowerCase().includes(bad), `forbidden leak "${bad}" in promptGloss: ${lang}->${kl} ${w.t} -> ${pg}`);
+          }
+        }
+      }
+    }
+
     const knowLang = lang === 'ru' ? 'en' : 'ru';
     await GT.setLanguages('know', knowLang);
     const beforeCards = JSON.stringify(GT.store.data.cards);
@@ -520,6 +556,7 @@ async function testAppAndSW() {
     assert(elements.main.innerHTML.includes('id="rrGame"'), `roulette missing in ${lang}`);
     assert(elements.main.innerHTML.includes('class="drill ag-card"'), `roulette card missing in ${lang}`);
     assert(elements.main.innerHTML.includes('class="rr-prompt-mean"'), `roulette translation prompt missing in ${lang}`);
+    assert(elements.main.innerHTML.includes('class="rr-prompt-ctx"'), `roulette usage context missing in ${lang}`);
     assert(elements.main.innerHTML.includes('class="rr-base"'), `roulette base root missing in ${lang}`);
     assert(elements.main.innerHTML.includes('rr-opts-pfx'), `roulette prefix options missing in ${lang}`);
     assert(!elements.main.innerHTML.includes('class="rr-base-gl"'), `roulette spoiled base gloss before reveal in ${lang}`);
@@ -540,6 +577,7 @@ async function testAppAndSW() {
       assert.equal(sameSt.cur.optPfx.length, 6, `same mode expected 6 options in ${lang}`);
       assert.equal(sameSt.cur.optPfx[5], '—', `same mode missing dash option in ${lang}`);
       assert(elements.rrGame.innerHTML.includes('class="rr-prompt-mean"'), `same mode missing translation prompt in ${lang}`);
+      assert(elements.rrGame.innerHTML.includes('class="rr-prompt-ctx"'), `same mode missing usage context in ${lang}`);
       assert(elements.rrGame.innerHTML.includes('rr-opts-pfx'), `same mode missing prefix options in ${lang}`);
       assert(elements.rrGame.innerHTML.includes('Switch root'), `same mode missing Switch root button in ${lang}`);
       assert(!elements.rrGame.innerHTML.includes('class="rr-base-gl"'), `same mode spoiled base gloss before reveal in ${lang}`);
