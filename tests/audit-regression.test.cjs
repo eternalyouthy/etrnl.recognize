@@ -579,12 +579,28 @@ async function testAppAndSW() {
       assert(elements.rrGame.innerHTML.includes('class="rr-prompt-mean"'), `same mode missing translation prompt in ${lang}`);
       assert(elements.rrGame.innerHTML.includes('class="rr-prompt-ctx"'), `same mode missing usage context in ${lang}`);
       assert(elements.rrGame.innerHTML.includes('rr-opts-pfx'), `same mode missing prefix options in ${lang}`);
+      assert(elements.rrGame.innerHTML.includes('rr-next'), `same mode missing full-width Next button in ${lang}`);
       assert(elements.rrGame.innerHTML.includes('Switch root'), `same mode missing Switch root button in ${lang}`);
       assert(!elements.rrGame.innerHTML.includes('class="rr-base-gl"'), `same mode spoiled base gloss before reveal in ${lang}`);
       assert(!elements.rrGame.innerHTML.includes('rr-opts-mean'), `same mode rendered old meaning options in ${lang}`);
+      const hintBtn = { dataset: { rr: 'hint' } };
+      clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? hintBtn : null) }, preventDefault() {} }));
+      assert(elements.rrGame.innerHTML.includes('class="rr-hints"'), `hint 1 missing .rr-hints in ${lang}`);
+      assert(elements.rrGame.innerHTML.includes('class="rr-h-blank"'), `hint 1 missing masked sentence in ${lang}`);
+      clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? hintBtn : null) }, preventDefault() {} }));
+      assert.equal(GT.roulette.state().hint, 2, `hint 2 did not advance in ${lang}`);
+      clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? hintBtn : null) }, preventDefault() {} }));
+      const hintedSt = GT.roulette.state();
+      assert.equal(hintedSt.cur.elim.length, 3, `hint 3 did not eliminate 3 options in ${lang}`);
+      assert(!hintedSt.cur.elim.includes(hintedSt.cur.pfxDisplay), `hint 3 eliminated the correct answer in ${lang}`);
+      assert(elements.rrGame.innerHTML.includes('rr-elim'), `hint 3 missing rr-elim class in ${lang}`);
+      const elimBtn = { dataset: { rr: 'opt', v: hintedSt.cur.elim[0] } };
+      clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? elimBtn : null) }, preventDefault() {} }));
+      assert.equal(GT.roulette.state().revealed, false, `eliminated option was clickable in ${lang}`);
       const optBtn = { dataset: { rr: 'opt', v: sameSt.cur.pfxDisplay } };
       clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? optBtn : null) }, preventDefault() {} }));
       assert(elements.rrGame.innerHTML.includes('class="drill-answer"'), `roulette failed to reveal answer in ${lang}`);
+      assert(elements.rrGame.innerHTML.includes('class="btn primary rr-next"'), `revealed roulette missing full-width Next button in ${lang}`);
       const backBtn = { dataset: { rr: 'mode', v: 'build' } };
       clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? backBtn : null) }, preventDefault() {} }));
     } finally {
