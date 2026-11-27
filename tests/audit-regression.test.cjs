@@ -522,18 +522,31 @@ async function testAppAndSW() {
     assert(elements.main.innerHTML.includes('class="rr-prompt-mean"'), `roulette translation prompt missing in ${lang}`);
     assert(elements.main.innerHTML.includes('class="rr-base"'), `roulette base root missing in ${lang}`);
     assert(elements.main.innerHTML.includes('rr-opts-pfx'), `roulette prefix options missing in ${lang}`);
+    assert(!elements.main.innerHTML.includes('class="rr-base-gl"'), `roulette spoiled base gloss before reveal in ${lang}`);
+    assert(elements.main.innerHTML.includes('1–6 · H hint'), `roulette 6-option key hint missing in ${lang}`);
     assert(!elements.main.innerHTML.includes('rr-opts-mean'), `roulette old meaning options still rendered in ${lang}`);
     assert(!elements.main.innerHTML.includes('Guess the meaning'), `roulette old mode tab still rendered in ${lang}`);
     assert(elements.main.innerHTML.includes(`lang="${knowLang}"`), `roulette translation missing known lang ${knowLang} for ${lang}`);
+    assert.equal(st.cur.optPfx.length, 6, `roulette expected 6 options in ${lang}`);
+    assert.equal(new Set(st.cur.optPfx.map(s => s.toLowerCase())).size, 6, `roulette options not distinct in ${lang}`);
+    assert.equal(st.cur.optPfx[5], '—', `roulette missing dash option in slot 6 for ${lang}`);
+    assert(st.cur.optPfx.includes(st.cur.pfxDisplay), `roulette answer missing from options in ${lang}`);
     elements.rrGame = { innerHTML: '' };
     try {
       const modeBtn = { dataset: { rr: 'mode', v: 'same' } };
       clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? modeBtn : null) }, preventDefault() {} }));
-      assert.equal(GT.roulette.state().mode, 'same', `roulette failed to switch to same mode in ${lang}`);
+      const sameSt = GT.roulette.state();
+      assert.equal(sameSt.mode, 'same', `roulette failed to switch to same mode in ${lang}`);
+      assert.equal(sameSt.cur.optPfx.length, 6, `same mode expected 6 options in ${lang}`);
+      assert.equal(sameSt.cur.optPfx[5], '—', `same mode missing dash option in ${lang}`);
       assert(elements.rrGame.innerHTML.includes('class="rr-prompt-mean"'), `same mode missing translation prompt in ${lang}`);
       assert(elements.rrGame.innerHTML.includes('rr-opts-pfx'), `same mode missing prefix options in ${lang}`);
       assert(elements.rrGame.innerHTML.includes('Switch root'), `same mode missing Switch root button in ${lang}`);
+      assert(!elements.rrGame.innerHTML.includes('class="rr-base-gl"'), `same mode spoiled base gloss before reveal in ${lang}`);
       assert(!elements.rrGame.innerHTML.includes('rr-opts-mean'), `same mode rendered old meaning options in ${lang}`);
+      const optBtn = { dataset: { rr: 'opt', v: sameSt.cur.pfxDisplay } };
+      clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? optBtn : null) }, preventDefault() {} }));
+      assert(elements.rrGame.innerHTML.includes('class="drill-answer"'), `roulette failed to reveal answer in ${lang}`);
       const backBtn = { dataset: { rr: 'mode', v: 'build' } };
       clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? backBtn : null) }, preventDefault() {} }));
     } finally {
