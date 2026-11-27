@@ -507,16 +507,42 @@ async function testAppAndSW() {
     }
   }
 
-  // Root roulette renders a task across all 3 languages without touching Review store
+  // Root roulette renders build & same modes (translation + base root -> prefix/particle options) across all 3 languages without touching Review store
+  const clickFns = winListeners['doc:click'] || [];
   for (const lang of ['de', 'en', 'ru']) {
     await GT.setLanguages('learn', lang);
+    const knowLang = lang === 'ru' ? 'en' : 'ru';
+    await GT.setLanguages('know', knowLang);
     const beforeCards = JSON.stringify(GT.store.data.cards);
     triggerHash('#/roots/roulette');
+    const st = GT.roulette.state();
+    assert.equal(st.mode, 'build', `roulette default mode not build in ${lang}`);
     assert(elements.main.innerHTML.includes('id="rrGame"'), `roulette missing in ${lang}`);
     assert(elements.main.innerHTML.includes('class="drill ag-card"'), `roulette card missing in ${lang}`);
+    assert(elements.main.innerHTML.includes('class="rr-prompt-mean"'), `roulette translation prompt missing in ${lang}`);
+    assert(elements.main.innerHTML.includes('class="rr-base"'), `roulette base root missing in ${lang}`);
+    assert(elements.main.innerHTML.includes('rr-opts-pfx'), `roulette prefix options missing in ${lang}`);
+    assert(!elements.main.innerHTML.includes('rr-opts-mean'), `roulette old meaning options still rendered in ${lang}`);
+    assert(!elements.main.innerHTML.includes('Guess the meaning'), `roulette old mode tab still rendered in ${lang}`);
+    assert(elements.main.innerHTML.includes(`lang="${knowLang}"`), `roulette translation missing known lang ${knowLang} for ${lang}`);
+    elements.rrGame = { innerHTML: '' };
+    try {
+      const modeBtn = { dataset: { rr: 'mode', v: 'same' } };
+      clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? modeBtn : null) }, preventDefault() {} }));
+      assert.equal(GT.roulette.state().mode, 'same', `roulette failed to switch to same mode in ${lang}`);
+      assert(elements.rrGame.innerHTML.includes('class="rr-prompt-mean"'), `same mode missing translation prompt in ${lang}`);
+      assert(elements.rrGame.innerHTML.includes('rr-opts-pfx'), `same mode missing prefix options in ${lang}`);
+      assert(elements.rrGame.innerHTML.includes('Switch root'), `same mode missing Switch root button in ${lang}`);
+      assert(!elements.rrGame.innerHTML.includes('rr-opts-mean'), `same mode rendered old meaning options in ${lang}`);
+      const backBtn = { dataset: { rr: 'mode', v: 'build' } };
+      clickFns.forEach(fn => fn({ target: { closest: s => (s === '[data-rr]' ? backBtn : null) }, preventDefault() {} }));
+    } finally {
+      delete elements.rrGame;
+    }
     assert.equal(JSON.stringify(GT.store.data.cards), beforeCards, `roulette mutated store in ${lang}`);
     triggerHash('#/practice');
     assert(elements.main.innerHTML.includes('Root roulette'), `practice Games missing Root roulette in ${lang}`);
+    assert(!elements.main.innerHTML.includes('guess the meaning or build the word'), `practice card still has old roulette desc in ${lang}`);
   }
 
   // Feature flag OFF hides Root roulette entry points and redirects #/roots/roulette -> #/roots
